@@ -1,0 +1,2 @@
+C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Release\ProyectoVenta.csproj.AssemblyReference.cache
+C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Release\ProyectoVenta.csproj.SuggestedBindingRedirects.cache
