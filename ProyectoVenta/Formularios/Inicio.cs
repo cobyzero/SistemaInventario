@@ -181,9 +181,7 @@ namespace ProyectoVenta.Formularios
 
         private void btnInfo_Click(object sender, EventArgs e)
         {
-            if (NombreUsuario == "Admin" && Clave == "123") {
-                System.Diagnostics.Process.Start("https://ouo.io/VRgLgZ");
-            }
+            
 
             mdAcercade form = new mdAcercade();
             form.ShowDialog();

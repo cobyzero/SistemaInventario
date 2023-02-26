@@ -128,9 +128,9 @@
             this.label1.ForeColor = System.Drawing.Color.Teal;
             this.label1.Location = new System.Drawing.Point(218, 60);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 15);
+            this.label1.Size = new System.Drawing.Size(128, 15);
             this.label1.TabIndex = 162;
-            this.label1.Text = "Permisos Empleado";
+            this.label1.Text = "Permisos Técnicos";
             // 
             // groupBox1
             // 
