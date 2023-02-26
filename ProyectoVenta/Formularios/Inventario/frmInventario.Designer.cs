@@ -52,9 +52,7 @@
             this.Almacen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Entradas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Salidas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StockActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalIngresos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalEgresos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StockActual = new System.Windows.Forms.DataGridViewTextBoxColumn(); 
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
@@ -254,9 +252,7 @@
             this.Almacen,
             this.Entradas,
             this.Salidas,
-            this.StockActual,
-            this.TotalIngresos,
-            this.TotalEgresos});
+            this.StockActual});
             this.dgvdata.Location = new System.Drawing.Point(21, 137);
             this.dgvdata.MultiSelect = false;
             this.dgvdata.Name = "dgvdata";
@@ -325,19 +321,7 @@
             // 
             this.StockActual.HeaderText = "Stock Actual";
             this.StockActual.Name = "StockActual";
-            this.StockActual.ReadOnly = true;
-            // 
-            // TotalIngresos
-            // 
-            this.TotalIngresos.HeaderText = "Total Ingresos";
-            this.TotalIngresos.Name = "TotalIngresos";
-            this.TotalIngresos.ReadOnly = true;
-            // 
-            // TotalEgresos
-            // 
-            this.TotalEgresos.HeaderText = "Total Egresos";
-            this.TotalEgresos.Name = "TotalEgresos";
-            this.TotalEgresos.ReadOnly = true;
+            this.StockActual.ReadOnly = true; 
             // 
             // label2
             // 
@@ -423,8 +407,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Almacen;
         private System.Windows.Forms.DataGridViewTextBoxColumn Entradas;
         private System.Windows.Forms.DataGridViewTextBoxColumn Salidas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StockActual;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalIngresos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalEgresos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StockActual; 
     }
 }
