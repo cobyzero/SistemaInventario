@@ -284,8 +284,8 @@
             // 
             // Categoria
             // 
-            this.Categoria.HeaderText = "Categoria";
-            this.Categoria.Name = "Categoria";
+            this.Categoria.HeaderText = "Longitud";
+            this.Categoria.Name = "Longitud";
             this.Categoria.ReadOnly = true;
             this.Categoria.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Categoria.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -293,8 +293,8 @@
             // 
             // Almacen
             // 
-            this.Almacen.HeaderText = "Almacen";
-            this.Almacen.Name = "Almacen";
+            this.Almacen.HeaderText = "Modelo";
+            this.Almacen.Name = "Modelo";
             this.Almacen.ReadOnly = true;
             this.Almacen.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Almacen.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;

@@ -108,7 +108,7 @@
             // 
             // Categoria
             // 
-            this.Categoria.HeaderText = "Categoria";
+            this.Categoria.HeaderText = "Longitud";
             this.Categoria.Name = "Categoria";
             this.Categoria.ReadOnly = true;
             this.Categoria.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -117,7 +117,7 @@
             // 
             // Almacen
             // 
-            this.Almacen.HeaderText = "Almacen";
+            this.Almacen.HeaderText = "Modelo";
             this.Almacen.Name = "Almacen";
             this.Almacen.ReadOnly = true;
             this.Almacen.Resizable = System.Windows.Forms.DataGridViewTriState.True;
