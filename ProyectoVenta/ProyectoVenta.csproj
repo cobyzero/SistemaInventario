@@ -297,7 +297,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Resources\PlantillaSalidaSinPrecio.html" />
     <None Include="Resources\PlantillaSalidaConPrecio.html" />
-    <None Include="Resources\PlantillaEntradaConPrecio.html" />
     <None Include="Resources\PlantillaEntradaSinPrecio.html" />
     <None Include="Resources\delete17.png" />
     <None Include="Resources\check16.png" />

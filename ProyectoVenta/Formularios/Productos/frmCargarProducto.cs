@@ -83,21 +83,21 @@ namespace ProyectoVenta.Formularios.Productos
                             
 
                             if (hoja.GetRow(0).GetCell(2) != null) {
-                                if (hoja.GetRow(0).Cells[2].StringCellValue.ToString().ToLower() != "categoria")
+                                if (hoja.GetRow(0).Cells[2].StringCellValue.ToString().ToLower() != "longitud")
                                 {
-                                    columnas += "No se encontró la columna \"Categoria\"\n";
+                                    columnas += "No se encontró la columna \"Longitud\"\n";
                                 }
                             }else
-                                columnas += "No se encontró la columna \"Categoria\"\n";
+                                columnas += "No se encontró la columna \"Longitud\"\n";
 
 
                             if (hoja.GetRow(0).GetCell(3) != null) {
-                                if (hoja.GetRow(0).Cells[3].StringCellValue.ToString().ToLower() != "almacen")
+                                if (hoja.GetRow(0).Cells[3].StringCellValue.ToString().ToLower() != "modelo")
                                 {
-                                    columnas += "No se encontró la columna \"Almacen\"\n";
+                                    columnas += "No se encontró la columna \"Modelo\"\n";
                                 }
                             }else
-                                columnas += "No se encontró la columna \"Almacen\"\n";
+                                columnas += "No se encontró la columna \"Modelo\"\n";
 
 
 

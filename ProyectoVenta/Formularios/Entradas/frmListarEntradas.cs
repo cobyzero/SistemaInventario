@@ -61,11 +61,8 @@ namespace ProyectoVenta.Formularios.Entradas
                     vr.CodigoProducto,
                     vr.DescripcionProducto,
                     vr.CategoriaProducto,
-                    vr.AlmacenProducto,
-                    vr.PrecioCompra,
-                    vr.PrecioVenta,
-                    vr.Cantidad,
-                    vr.SubTotal
+                    vr.AlmacenProducto, 
+                    vr.Cantidad, 
                 });
             }
         }
@@ -121,10 +118,7 @@ namespace ProyectoVenta.Formularios.Entradas
                         row.Cells[6].Value.ToString(),
                         row.Cells[7].Value.ToString(),
                         row.Cells[8].Value.ToString(),
-                        row.Cells[9].Value.ToString(),
-                        row.Cells[10].Value.ToString(),
-                        row.Cells[11].Value.ToString(),
-                        row.Cells[12].Value.ToString()
+                        row.Cells[9].Value.ToString()
                     });
                 }
 

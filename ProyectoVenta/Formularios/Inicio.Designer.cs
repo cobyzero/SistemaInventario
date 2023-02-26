@@ -44,7 +44,6 @@
             this.lblstatus2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnInfo = new FontAwesome.Sharp.IconButton();
             this.btnsalir = new FontAwesome.Sharp.IconButton();
-            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnproductos
@@ -225,11 +224,6 @@
             // statusStrip1
             // 
             this.statusStrip1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel2,
-            this.lblstatus1,
-            this.toolStripStatusLabel1,
-            this.lblstatus2});
             this.statusStrip1.Location = new System.Drawing.Point(0, 87);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -337,8 +331,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ".: Inicio :.";
             this.Load += new System.EventHandler(this.Inicio_Load);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

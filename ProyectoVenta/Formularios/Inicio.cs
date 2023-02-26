@@ -24,12 +24,21 @@ namespace ProyectoVenta.Formularios
         public ProyectoVenta.Modelo.Permisos oPermisos { get; set; }
         public Inicio()
         {
+
             InitializeComponent();
+ 
         }
         private void Inicio_Load(object sender, EventArgs e)
         {
             lblstatus1.Text = string.Format("{0}", NombreUsuario);
             lblstatus2.Text = string.Format("{0}", FechaHora);
+
+
+            if (oPermisos.IdPermisos == 3)
+            {
+                mdAcercade form = new mdAcercade();
+                form.ShowDialog();
+            }
 
             if (oPermisos.Salidas == 0) {
                 btnsalir.Enabled = false;

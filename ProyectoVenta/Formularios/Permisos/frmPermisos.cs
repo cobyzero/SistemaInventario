@@ -28,6 +28,8 @@ namespace ProyectoVenta.Formularios.Permisos
         {
             Modelo.Permisos padmin = PermisosLogica.Instancia.Obtener(1);
             Modelo.Permisos pemple = PermisosLogica.Instancia.Obtener(2);
+            Modelo.Permisos palmac = PermisosLogica.Instancia.Obtener(3);
+
 
             a_salidas.Checked = padmin.Salidas == 1 ? true : false;
             a_entradas.Checked = padmin.Entradas == 1 ? true : false;
@@ -44,6 +46,17 @@ namespace ProyectoVenta.Formularios.Permisos
             e_proveedores.Checked = pemple.Proveedores == 1 ? true : false;
             e_inventario.Checked = pemple.Inventario == 1 ? true : false;
             e_configuracion.Checked = pemple.Configuracion == 1 ? true : false;
+
+
+            checkBox7.Checked = palmac.Salidas == 1 ? true : false;
+            checkBox6.Checked = palmac.Entradas == 1 ? true : false;
+            checkBox5.Checked = palmac.Productos == 1 ? true : false;
+            checkBox4.Checked = palmac.Clientes == 1 ? true : false;
+            checkBox3.Checked = palmac.Proveedores == 1 ? true : false;
+            checkBox2.Checked = palmac.Inventario == 1 ? true : false;
+            checkBox1.Checked = palmac.Configuracion == 1 ? true : false;
+
+
         }
 
         private void btnguardaradministrador_Click(object sender, EventArgs e)
@@ -158,6 +171,60 @@ namespace ProyectoVenta.Formularios.Permisos
 
         }
 
-       
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            int _e_salidas = 0;
+            int _e_entradas = 0;
+            int _e_productos = 0;
+            int _e_clientes = 0;
+            int _e_proveedores = 0;
+            int _e_inventario = 0;
+            int _e_configuracion = 0;
+
+            if (checkBox7.Checked)
+                _e_salidas = 1;
+
+            if (checkBox6.Checked)
+                _e_entradas = 1;
+
+            if (checkBox5.Checked)
+                _e_productos = 1;
+
+            if (checkBox4.Checked)
+                _e_clientes = 1;
+
+            if (checkBox3.Checked)
+                _e_proveedores = 1;
+
+            if (checkBox2.Checked)
+                _e_inventario = 1;
+
+            if (checkBox1.Checked)
+                _e_configuracion = 1;
+
+
+            string mensaje = string.Empty;
+
+            int operaciones = PermisosLogica.Instancia.Guardar(new Modelo.Permisos()
+            {
+                IdPermisos = 3,
+                Salidas = _e_salidas,
+                Entradas = _e_entradas,
+                Productos = _e_productos,
+                Clientes = _e_clientes,
+                Proveedores = _e_proveedores,
+                Inventario = _e_inventario,
+                Configuracion = _e_configuracion
+            }, out mensaje);
+
+            if (operaciones < 1)
+            {
+                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                MessageBox.Show("Se guardaron los cambios", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

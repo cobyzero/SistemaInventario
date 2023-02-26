@@ -138,10 +138,7 @@
   </data>
   <data name="PlantillaEntradaSinPrecio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PlantillaEntradaSinPrecio.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="PlantillaEntradaConPrecio" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PlantillaEntradaConPrecio.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
+  </data> 
   <data name="PlantillaSalidaConPrecio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PlantillaSalidaConPrecio.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>

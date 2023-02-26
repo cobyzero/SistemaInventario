@@ -173,11 +173,8 @@ namespace ProyectoVenta.Logica
                                 CodigoProducto = dr["CodigoProducto"].ToString(),
                                 DescripcionProducto = dr["DescripcionProducto"].ToString(),
                                 CategoriaProducto = dr["CategoriaProducto"].ToString(),
-                                AlmacenProducto = dr["AlmacenProducto"].ToString(),
-                                PrecioCompra = dr["PrecioCompra"].ToString(),
-                                PrecioVenta = dr["PrecioVenta"].ToString(),
-                                Cantidad = dr["Cantidad"].ToString(),
-                                SubTotal = dr["SubTotal"].ToString()
+                                AlmacenProducto = dr["AlmacenProducto"].ToString(), 
+                                Cantidad = dr["Cantidad"].ToString(), 
                             });
                         }
                     }

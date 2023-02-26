@@ -58,8 +58,22 @@
             this.e_productos = new System.Windows.Forms.CheckBox();
             this.e_entradas = new System.Windows.Forms.CheckBox();
             this.e_salidas = new System.Windows.Forms.CheckBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnsalir
@@ -73,7 +87,7 @@
             this.btnsalir.IconColor = System.Drawing.Color.White;
             this.btnsalir.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnsalir.IconSize = 24;
-            this.btnsalir.Location = new System.Drawing.Point(344, 7);
+            this.btnsalir.Location = new System.Drawing.Point(551, 8);
             this.btnsalir.Name = "btnsalir";
             this.btnsalir.Size = new System.Drawing.Size(69, 31);
             this.btnsalir.TabIndex = 160;
@@ -89,11 +103,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(2, 2);
-            this.label3.MaximumSize = new System.Drawing.Size(416, 41);
-            this.label3.MinimumSize = new System.Drawing.Size(416, 41);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.label3.Size = new System.Drawing.Size(416, 41);
+            this.label3.Size = new System.Drawing.Size(621, 41);
             this.label3.TabIndex = 159;
             this.label3.Text = "Permisos";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -105,7 +117,7 @@
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(2, 42);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(416, 291);
+            this.label4.Size = new System.Drawing.Size(621, 291);
             this.label4.TabIndex = 158;
             // 
             // label6
@@ -416,12 +428,168 @@
             this.e_salidas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.e_salidas.UseVisualStyleBackColor = true;
             // 
+            // groupBox5
+            // 
+            this.groupBox5.BackColor = System.Drawing.Color.White;
+            this.groupBox5.Controls.Add(this.iconButton1);
+            this.groupBox5.Controls.Add(this.label9);
+            this.groupBox5.Controls.Add(this.label10);
+            this.groupBox5.Controls.Add(this.groupBox6);
+            this.groupBox5.Controls.Add(this.checkBox1);
+            this.groupBox5.Controls.Add(this.checkBox2);
+            this.groupBox5.Controls.Add(this.checkBox3);
+            this.groupBox5.Controls.Add(this.checkBox4);
+            this.groupBox5.Controls.Add(this.checkBox5);
+            this.groupBox5.Controls.Add(this.checkBox6);
+            this.groupBox5.Controls.Add(this.checkBox7);
+            this.groupBox5.Location = new System.Drawing.Point(421, 78);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(182, 238);
+            this.groupBox5.TabIndex = 165;
+            this.groupBox5.TabStop = false;
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Save;
+            this.iconButton1.IconColor = System.Drawing.Color.Black;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.iconButton1.IconSize = 17;
+            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.iconButton1.Location = new System.Drawing.Point(15, 201);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(146, 23);
+            this.iconButton1.TabIndex = 147;
+            this.iconButton1.Text = "Guardar Cambios";
+            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton1.UseVisualStyleBackColor = true;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(127, 19);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(34, 13);
+            this.label9.TabIndex = 145;
+            this.label9.Text = "Menú";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(16, 17);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(40, 13);
+            this.label10.TabIndex = 144;
+            this.label10.Text = "Activar";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.BackColor = System.Drawing.Color.White;
+            this.groupBox6.Location = new System.Drawing.Point(15, 30);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(149, 10);
+            this.groupBox6.TabIndex = 143;
+            this.groupBox6.TabStop = false;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBox1.Location = new System.Drawing.Point(19, 169);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(146, 24);
+            this.checkBox1.TabIndex = 13;
+            this.checkBox1.Text = "Configuracion";
+            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBox2.Location = new System.Drawing.Point(19, 148);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(146, 24);
+            this.checkBox2.TabIndex = 12;
+            this.checkBox2.Text = "Inventario";
+            this.checkBox2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBox3.Location = new System.Drawing.Point(19, 127);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(146, 24);
+            this.checkBox3.TabIndex = 11;
+            this.checkBox3.Text = "Proveedores";
+            this.checkBox3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBox4.Location = new System.Drawing.Point(19, 106);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(146, 24);
+            this.checkBox4.TabIndex = 10;
+            this.checkBox4.Text = "Clientes";
+            this.checkBox4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBox5.Location = new System.Drawing.Point(19, 85);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(146, 24);
+            this.checkBox5.TabIndex = 9;
+            this.checkBox5.Text = "Productos";
+            this.checkBox5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBox6.Location = new System.Drawing.Point(19, 64);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(146, 24);
+            this.checkBox6.TabIndex = 8;
+            this.checkBox6.Text = "Entradas";
+            this.checkBox6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBox7.Location = new System.Drawing.Point(19, 44);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(146, 24);
+            this.checkBox7.TabIndex = 7;
+            this.checkBox7.Text = "Salidas";
+            this.checkBox7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.White;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Teal;
+            this.label11.Location = new System.Drawing.Point(418, 60);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(147, 15);
+            this.label11.TabIndex = 166;
+            this.label11.Text = "Permisos Almacenero";
+            // 
             // frmPermisos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(419, 335);
+            this.ClientSize = new System.Drawing.Size(623, 335);
             this.ControlBox = false;
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
@@ -431,8 +599,6 @@
             this.Controls.Add(this.label4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(435, 374);
-            this.MinimumSize = new System.Drawing.Size(435, 374);
             this.Name = "frmPermisos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ".: Permisos :.";
@@ -441,6 +607,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -477,5 +645,18 @@
         private System.Windows.Forms.CheckBox e_salidas;
         private FontAwesome.Sharp.IconButton btnguardaradministrador;
         private FontAwesome.Sharp.IconButton btnguardarempleados;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private FontAwesome.Sharp.IconButton iconButton1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.Label label11;
     }
 }

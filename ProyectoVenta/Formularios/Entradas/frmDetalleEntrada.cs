@@ -65,26 +65,7 @@ namespace ProyectoVenta.Formularios.Entradas
             }
         }
 
-        private void chkocultarprecios_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkocultarprecios.Checked)
-            {
-                dgvdata.Columns["PrecioCompra"].Visible = false;
-                dgvdata.Columns["PrecioVenta"].Visible = false;
-                dgvdata.Columns["SubTotal"].Visible = false;
-
-                lbltextototal.Visible = false;
-                lbltotal.Visible = false;
-            }
-            else {
-                dgvdata.Columns["PrecioCompra"].Visible = true;
-                dgvdata.Columns["PrecioVenta"].Visible = true;
-                dgvdata.Columns["SubTotal"].Visible = true;
-
-                lbltextototal.Visible = true;
-                lbltotal.Visible = true;
-            }
-        }
+    
 
         private void btndescargarpdf_Click(object sender, EventArgs e)
         {
@@ -94,13 +75,9 @@ namespace ProyectoVenta.Formularios.Entradas
             }
 
             string Texto_Html = string.Empty;
-            if (chkocultarprecios.Checked)
-            {
+            
                 Texto_Html = Properties.Resources.PlantillaEntradaSinPrecio.ToString();
-            }
-            else {
-                Texto_Html = Properties.Resources.PlantillaEntradaConPrecio.ToString();
-            }
+             
 
             Datos odatos = DatoLogica.Instancia.Obtener();
 
@@ -121,13 +98,9 @@ namespace ProyectoVenta.Formularios.Entradas
                 filas += "<tr>";
                 filas += "<td>" + row.Cells["Codigo"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["Descripcion"].Value.ToString() + "</td>";
-                filas += "<td>" + row.Cells["Categoria"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["Longitud"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["Cantidad"].Value.ToString() + "</td>";
-                if (!chkocultarprecios.Checked) {
-                    filas += "<td>" + row.Cells["PrecioCompra"].Value.ToString() + "</td>";
-                    filas += "<td>" + row.Cells["PrecioVenta"].Value.ToString() + "</td>";
-                    filas += "<td>" + row.Cells["SubTotal"].Value.ToString() + "</td>";
-                }
+ 
                 filas += "</tr>";
             }
             Texto_Html = Texto_Html.Replace("@filas", filas);
@@ -179,7 +152,7 @@ namespace ProyectoVenta.Formularios.Entradas
             txtdocumentoproveedor.Text = "";
             txtnombreproveedor.Text = "";
             dgvdata.Rows.Clear();
-            chkocultarprecios.Checked = false;
+           
             lbltotal.Text = "0.00";
             txtnumerodocumento.Focus();
         }

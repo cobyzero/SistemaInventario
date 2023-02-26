@@ -28,20 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDetalleEntrada));
             this.btndescargarpdf = new FontAwesome.Sharp.IconButton();
-            this.chkocultarprecios = new System.Windows.Forms.CheckBox();
             this.dgvdata = new System.Windows.Forms.DataGridView();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Almacen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnbuscar = new FontAwesome.Sharp.IconButton();
@@ -85,49 +81,33 @@
             this.btndescargarpdf.UseVisualStyleBackColor = true;
             this.btndescargarpdf.Click += new System.EventHandler(this.btndescargarpdf_Click);
             // 
-            // chkocultarprecios
-            // 
-            this.chkocultarprecios.AutoSize = true;
-            this.chkocultarprecios.BackColor = System.Drawing.Color.White;
-            this.chkocultarprecios.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chkocultarprecios.Location = new System.Drawing.Point(612, 182);
-            this.chkocultarprecios.Name = "chkocultarprecios";
-            this.chkocultarprecios.Size = new System.Drawing.Size(98, 17);
-            this.chkocultarprecios.TabIndex = 5;
-            this.chkocultarprecios.Text = "Ocultar Precios";
-            this.chkocultarprecios.UseVisualStyleBackColor = false;
-            this.chkocultarprecios.CheckedChanged += new System.EventHandler(this.chkocultarprecios_CheckedChanged);
-            // 
             // dgvdata
             // 
             this.dgvdata.AllowUserToAddRows = false;
             this.dgvdata.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvdata.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvdata.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Codigo,
             this.Descripcion,
             this.Categoria,
             this.Almacen,
-            this.Cantidad,
-            this.PrecioCompra,
-            this.PrecioVenta,
-            this.SubTotal});
+            this.Cantidad});
             this.dgvdata.Location = new System.Drawing.Point(24, 205);
             this.dgvdata.MultiSelect = false;
             this.dgvdata.Name = "dgvdata";
             this.dgvdata.ReadOnly = true;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvdata.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.White;
             this.dgvdata.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvdata.RowTemplate.Height = 24;
@@ -153,15 +133,15 @@
             // 
             // Categoria
             // 
-            this.Categoria.HeaderText = "Categoria";
-            this.Categoria.Name = "Categoria";
+            this.Categoria.HeaderText = "Longitud";
+            this.Categoria.Name = "Longitud";
             this.Categoria.ReadOnly = true;
             this.Categoria.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Almacen
             // 
-            this.Almacen.HeaderText = "Almacen";
-            this.Almacen.Name = "Almacen";
+            this.Almacen.HeaderText = "Modelo";
+            this.Almacen.Name = "Modelo";
             this.Almacen.ReadOnly = true;
             this.Almacen.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
@@ -173,31 +153,6 @@
             this.Cantidad.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Cantidad.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Cantidad.Width = 70;
-            // 
-            // PrecioCompra
-            // 
-            this.PrecioCompra.HeaderText = "Precio Compra";
-            this.PrecioCompra.Name = "PrecioCompra";
-            this.PrecioCompra.ReadOnly = true;
-            this.PrecioCompra.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.PrecioCompra.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // PrecioVenta
-            // 
-            this.PrecioVenta.HeaderText = "Precio Venta";
-            this.PrecioVenta.Name = "PrecioVenta";
-            this.PrecioVenta.ReadOnly = true;
-            this.PrecioVenta.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.PrecioVenta.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // SubTotal
-            // 
-            this.SubTotal.HeaderText = "Sub Total";
-            this.SubTotal.Name = "SubTotal";
-            this.SubTotal.ReadOnly = true;
-            this.SubTotal.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.SubTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.SubTotal.Width = 80;
             // 
             // groupBox1
             // 
@@ -443,7 +398,6 @@
             this.Controls.Add(this.txtfecha);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btndescargarpdf);
-            this.Controls.Add(this.chkocultarprecios);
             this.Controls.Add(this.dgvdata);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label7);
@@ -477,7 +431,6 @@
         #endregion
 
         private FontAwesome.Sharp.IconButton btndescargarpdf;
-        private System.Windows.Forms.CheckBox chkocultarprecios;
         private System.Windows.Forms.DataGridView dgvdata;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label7;
@@ -502,10 +455,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn Almacen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioCompra;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioVenta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad; 
         private FontAwesome.Sharp.IconButton btnborrar;
         private System.Windows.Forms.Label lblnrodocumento;
     }
