@@ -19,9 +19,6 @@ namespace ProyectoVenta.Modales
         {
             InitializeComponent();
 
-            this.pushData();
-           
-          
         }
 
         private void dgvdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -29,19 +26,37 @@ namespace ProyectoVenta.Modales
           
         }
 
-        private void pushData()
+        private bool checkExistData()
         {
-            dgvdata.Rows.Clear();
-
-             DateTime dt1 = Convert.ToDateTime("01/01/2000");
+            DateTime dt1 = Convert.ToDateTime("01/01/2000");
             DateTime dt2 = Convert.ToDateTime("01/01/2025");
- 
+
             List<ProyectoVenta.Modelo.Inventario> lista = InventarioLogica.Instancia.Resumen(dt1.ToString("yyyy-MM-dd", new CultureInfo("en-US")), dt2.ToString("yyyy-MM-dd", new CultureInfo("en-US")));
 
             foreach (ProyectoVenta.Modelo.Inventario vr in lista)
             {
-                if (int.Parse(vr.Stock) <= 5) 
+                if (int.Parse(vr.Stock) <= 5)
                 {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void pushData()
+        {
+            dgvdata.Rows.Clear();
+            
+             DateTime dt1 = Convert.ToDateTime("01/01/2000");
+            DateTime dt2 = Convert.ToDateTime("01/01/2025");
+ 
+            List<ProyectoVenta.Modelo.Inventario> lista = InventarioLogica.Instancia.Resumen(dt1.ToString("yyyy-MM-dd", new CultureInfo("en-US")), dt2.ToString("yyyy-MM-dd", new CultureInfo("en-US")));
+             
+            foreach (ProyectoVenta.Modelo.Inventario vr in lista)
+            {
+                if (int.Parse(vr.Stock) <= 5) 
+                { 
                     dgvdata.Rows.Add(new object[] {
                     vr.Codigo,
                     vr.Descripcion,
@@ -53,10 +68,11 @@ namespace ProyectoVenta.Modales
                     vr.TotalIngresos,
                     vr.TotalEgresos
                 });
-                } 
-            }
+                }
+                
 
-            
+            }
+ 
 
         }
 
@@ -68,6 +84,17 @@ namespace ProyectoVenta.Modales
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void mdAcercade_Load(object sender, EventArgs e)
+        {
+
+            this.pushData();
+            if (!checkExistData())
+            {
+                MessageBox.Show("No tienes datos actualmente");
+                this.Close();
+            }
         }
     }
 }

@@ -12,6 +12,8 @@ using ProyectoVenta.Formularios.Clientes;
 using ProyectoVenta.Formularios.Proveedores;
 using ProyectoVenta.Formularios.Inventario;
 using ProyectoVenta.Modales;
+using ProyectoVenta.Logica;
+using System.Globalization;
 
 namespace ProyectoVenta.Formularios
 {
@@ -28,16 +30,37 @@ namespace ProyectoVenta.Formularios
             InitializeComponent();
  
         }
+
+        private bool checkExistData()
+        { 
+            DateTime dt1 = Convert.ToDateTime("01/01/2000");
+            DateTime dt2 = Convert.ToDateTime("01/01/2025");
+
+            List<ProyectoVenta.Modelo.Inventario> lista = InventarioLogica.Instancia.Resumen(dt1.ToString("yyyy-MM-dd", new CultureInfo("en-US")), dt2.ToString("yyyy-MM-dd", new CultureInfo("en-US")));
+
+            foreach (ProyectoVenta.Modelo.Inventario vr in lista)
+            {
+                if (int.Parse(vr.Stock) <= 5)
+                {
+                    return true;                     
+                } 
+            }
+
+             return false; 
+        }
+
+
+
         private void Inicio_Load(object sender, EventArgs e)
         {
             lblstatus1.Text = string.Format("{0}", NombreUsuario);
             lblstatus2.Text = string.Format("{0}", FechaHora);
 
 
-            if (oPermisos.IdPermisos == 3)
+            if (oPermisos.IdPermisos == 3 && checkExistData())
             {
                 mdAcercade form = new mdAcercade();
-                form.ShowDialog();
+                form.ShowDialog(); 
             }
 
             if (oPermisos.Salidas == 0) {
@@ -189,9 +212,7 @@ namespace ProyectoVenta.Formularios
         }
 
         private void btnInfo_Click(object sender, EventArgs e)
-        {
-            
-
+        { 
             mdAcercade form = new mdAcercade();
             form.ShowDialog();
         }
