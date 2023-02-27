@@ -95,16 +95,9 @@ namespace ProyectoVenta.Formularios.Salidas
             }
 
             string Texto_Html = string.Empty;
-            if (chkocultarprecios.Checked)
-            {
-                Texto_Html = Properties.Resources.PlantillaSalidaSinPrecio.ToString();
-            }
-            else
-            {
-                Texto_Html = Properties.Resources.PlantillaSalidaConPrecio.ToString();
-            }
-
-
+             
+            Texto_Html = Properties.Resources.PlantillaSalidaSinPrecio.ToString();
+             
             Datos odatos = DatoLogica.Instancia.Obtener();
 
             Texto_Html = Texto_Html.Replace("@nombrenegocio", odatos.RazonSocial.ToUpper());
@@ -124,7 +117,7 @@ namespace ProyectoVenta.Formularios.Salidas
                 filas += "<tr>";
                 filas += "<td>" + row.Cells["Codigo"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["Descripcion"].Value.ToString() + "</td>";
-                filas += "<td>" + row.Cells["Categoria"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["Longitud"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["Cantidad"].Value.ToString() + "</td>";
                
                 filas += "</tr>";

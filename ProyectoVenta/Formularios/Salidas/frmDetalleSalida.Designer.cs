@@ -50,9 +50,7 @@
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Almacen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            
-            this.chkocultarprecios = new System.Windows.Forms.CheckBox();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn(); 
             this.btndescargarpdf = new FontAwesome.Sharp.IconButton();
             this.lblnrodocumento = new System.Windows.Forms.Label();
             this.btnborrar = new FontAwesome.Sharp.IconButton();
@@ -265,8 +263,8 @@
             // 
             // Categoria
             // 
-            this.Categoria.HeaderText = "Categoria";
-            this.Categoria.Name = "Categoria";
+            this.Categoria.HeaderText = "Longitud";
+            this.Categoria.Name = "Longitud";
             this.Categoria.ReadOnly = true;
             this.Categoria.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
@@ -286,18 +284,7 @@
             this.Cantidad.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Cantidad.Width = 70;
             
-            // 
-            // chkocultarprecios
-            // 
-            this.chkocultarprecios.AutoSize = true;
-            this.chkocultarprecios.BackColor = System.Drawing.Color.White;
-            this.chkocultarprecios.Location = new System.Drawing.Point(614, 184);
-            this.chkocultarprecios.Name = "chkocultarprecios";
-            this.chkocultarprecios.Size = new System.Drawing.Size(98, 17);
-            this.chkocultarprecios.TabIndex = 8;
-            this.chkocultarprecios.Text = "Ocultar Precios";
-            this.chkocultarprecios.UseVisualStyleBackColor = false;
-            this.chkocultarprecios.CheckedChanged += new System.EventHandler(this.chkocultarprecios_CheckedChanged);
+           
             // 
             // btndescargarpdf
             // 
@@ -413,8 +400,7 @@
             this.Controls.Add(this.btnbuscar);
             this.Controls.Add(this.btnborrar);
             this.Controls.Add(this.lblnrodocumento);
-            this.Controls.Add(this.btndescargarpdf);
-            this.Controls.Add(this.chkocultarprecios);
+            this.Controls.Add(this.btndescargarpdf); 
             this.Controls.Add(this.dgvdata);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label7);
@@ -460,8 +446,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dgvdata;
-        private System.Windows.Forms.CheckBox chkocultarprecios;
+        private System.Windows.Forms.DataGridView dgvdata; 
         private FontAwesome.Sharp.IconButton btndescargarpdf;
         private System.Windows.Forms.Label lblnrodocumento;
         private FontAwesome.Sharp.IconButton btnborrar;
