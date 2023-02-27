@@ -464,6 +464,7 @@
             this.cborol.Name = "cborol";
             this.cborol.Size = new System.Drawing.Size(215, 21);
             this.cborol.TabIndex = 181;
+            this.cborol.SelectedIndexChanged += new System.EventHandler(this.cborol_SelectedIndexChanged);
             // 
             // frmUsuarios
             // 

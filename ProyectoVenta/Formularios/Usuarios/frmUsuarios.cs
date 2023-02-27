@@ -48,6 +48,9 @@ namespace ProyectoVenta.Formularios.Usuarios
 
             cborol.Items.Add(new OpcionCombo() { Valor = 1, Texto = "Administrador" });
             cborol.Items.Add(new OpcionCombo() { Valor = 2, Texto = "Empleado" });
+            cborol.Items.Add(new OpcionCombo() { Valor = 3, Texto = "Almacenero" });
+
+
             cborol.DisplayMember = "Texto";
             cborol.ValueMember = "Valor";
             cborol.SelectedIndex = 0;
@@ -285,6 +288,11 @@ namespace ProyectoVenta.Formularios.Usuarios
                 row.Visible = true;
             }
             dgvdata.ClearSelection();
+        }
+
+        private void cborol_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
