@@ -72,17 +72,10 @@ namespace ProyectoVenta.Formularios.Salidas
 
         private void chkocultarprecios_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkocultarprecios.Checked)
-            { 
+            
                 lbltextototal.Visible = false;
                 lbltotal.Visible = false;
-            }
-            else
-            { 
-
-                lbltextototal.Visible = true;
-                lbltotal.Visible = true;
-            }
+            
         }
 
         private void btndescargarpdf_Click(object sender, EventArgs e)
@@ -170,8 +163,7 @@ namespace ProyectoVenta.Formularios.Salidas
             txtusuario.Text = "";
             txtdoccliente.Text = "";
             txtnomcliente.Text = "";
-            dgvdata.Rows.Clear();
-            chkocultarprecios.Checked = false;
+            dgvdata.Rows.Clear(); 
             lbltotal.Text = "0.00";
             txtnumerodocumento.Focus();
         }
