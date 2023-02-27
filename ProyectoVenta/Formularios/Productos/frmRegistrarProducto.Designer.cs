@@ -140,7 +140,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 13);
             this.label4.TabIndex = 99;
-            this.label4.Text = "Almacen :";
+            this.label4.Text = "Longitud :";
             // 
             // txtalmacen
             // 
@@ -157,7 +157,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(54, 13);
             this.label5.TabIndex = 101;
-            this.label5.Text = "Longitud :";
+            this.label5.Text = "Almacen :";
             // 
             // dgvdata
             // 
@@ -243,7 +243,7 @@
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.Almacen.DefaultCellStyle = dataGridViewCellStyle2;
             this.Almacen.HeaderText = "Almacen";
-            this.Almacen.Name = "Categoria";
+            this.Almacen.Name = "Almacen";
             this.Almacen.ReadOnly = true;
             this.Almacen.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Almacen.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;

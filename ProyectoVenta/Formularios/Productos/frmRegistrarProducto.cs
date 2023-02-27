@@ -100,7 +100,7 @@ namespace ProyectoVenta.Formularios
                     _indice = index;
                     txtcodigo.Text = dgvdata.Rows[index].Cells["Codigo"].Value.ToString();
                     txtdescripcion.Text = dgvdata.Rows[index].Cells["Descripcion"].Value.ToString();
-                    txtcategoria.Text = dgvdata.Rows[index].Cells["Categoria"].Value.ToString();
+                    txtcategoria.Text = dgvdata.Rows[index].Cells["Longitud"].Value.ToString();
                     txtalmacen.Text = dgvdata.Rows[index].Cells["Almacen"].Value.ToString();
 
                     txtcodigo.BackColor = Color.LemonChiffon;
