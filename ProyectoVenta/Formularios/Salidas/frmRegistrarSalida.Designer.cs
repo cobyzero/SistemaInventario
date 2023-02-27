@@ -128,7 +128,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(68, 13);
             this.label5.TabIndex = 110;
-            this.label5.Text = "Doc. Cliente:";
+            this.label5.Text = "Doc. Tecnico:";
             // 
             // txtfecharegistro
             // 
@@ -431,7 +431,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(82, 13);
             this.label10.TabIndex = 133;
-            this.label10.Text = "Nombre Cliente:";
+            this.label10.Text = "Nombre Tecnico:";
             // 
             // txtnomcliente
             // 

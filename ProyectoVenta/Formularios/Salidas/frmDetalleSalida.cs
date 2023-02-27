@@ -57,7 +57,7 @@ namespace ProyectoVenta.Formularios.Salidas
                 dgvdata.Rows.Clear();
                 foreach (DetalleSalida de in olista)
                 {
-                    dgvdata.Rows.Add(new object[] { de.CodigoProducto, de.DescripcionProducto, de.CategoriaProducto, de.AlmacenProducto, de.Cantidad, de.PrecioVenta, de.SubTotal });
+                    dgvdata.Rows.Add(new object[] { de.CodigoProducto, de.DescripcionProducto, de.CategoriaProducto, de.AlmacenProducto, de.Cantidad});
                 }
 
                 lbltotal.Text = obj.MontoTotal;
@@ -73,17 +73,12 @@ namespace ProyectoVenta.Formularios.Salidas
         private void chkocultarprecios_CheckedChanged(object sender, EventArgs e)
         {
             if (chkocultarprecios.Checked)
-            {
-                dgvdata.Columns["PrecioVenta"].Visible = false;
-                dgvdata.Columns["SubTotal"].Visible = false;
-
+            { 
                 lbltextototal.Visible = false;
                 lbltotal.Visible = false;
             }
             else
-            {
-                dgvdata.Columns["PrecioVenta"].Visible = true;
-                dgvdata.Columns["SubTotal"].Visible = true;
+            { 
 
                 lbltextototal.Visible = true;
                 lbltotal.Visible = true;
@@ -131,11 +126,7 @@ namespace ProyectoVenta.Formularios.Salidas
                 filas += "<td>" + row.Cells["Descripcion"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["Categoria"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["Cantidad"].Value.ToString() + "</td>";
-                if (!chkocultarprecios.Checked)
-                {
-                    filas += "<td>" + row.Cells["PrecioVenta"].Value.ToString() + "</td>";
-                    filas += "<td>" + row.Cells["SubTotal"].Value.ToString() + "</td>";
-                }
+               
                 filas += "</tr>";
             }
             Texto_Html = Texto_Html.Replace("@filas", filas);

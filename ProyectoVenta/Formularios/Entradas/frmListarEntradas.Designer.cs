@@ -39,9 +39,9 @@
             this.MontoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodigoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DescripcionProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CategoriaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AlmacenProducto = new System.Windows.Forms.DataGridViewTextBoxColumn(); 
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn(); 
+            this.LongitudProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AlmacenProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnsalir = new FontAwesome.Sharp.IconButton();
@@ -57,6 +57,8 @@
             this.cbobuscar = new System.Windows.Forms.ComboBox();
             this.txtbuscar = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,8 +84,8 @@
             this.MontoTotal,
             this.CodigoProducto,
             this.DescripcionProducto,
-            this.CategoriaProducto,
-            this.AlmacenProducto, 
+            this.LongitudProducto,
+            this.AlmacenProducto,
             this.Cantidad});
             this.dgvdata.Location = new System.Drawing.Point(20, 136);
             this.dgvdata.MultiSelect = false;
@@ -99,7 +101,7 @@
             this.dgvdata.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvdata.RowTemplate.Height = 24;
             this.dgvdata.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvdata.Size = new System.Drawing.Size(1055, 412);
+            this.dgvdata.Size = new System.Drawing.Size(1055, 385);
             this.dgvdata.TabIndex = 113;
             // 
             // FechaRegistro
@@ -158,25 +160,23 @@
             this.DescripcionProducto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.DescripcionProducto.Width = 130;
             // 
-            // CategoriaProducto
+            // LongitudProducto
             // 
-            this.CategoriaProducto.HeaderText = "Longitud Producto";
-            this.CategoriaProducto.Name = "LongitudProducto";
-            this.CategoriaProducto.ReadOnly = true;
+            this.LongitudProducto.HeaderText = "Longitud Producto";
+            this.LongitudProducto.Name = "LongitudProducto";
+            this.LongitudProducto.ReadOnly = true;
             // 
             // AlmacenProducto
             // 
             this.AlmacenProducto.HeaderText = "Almacen Producto";
             this.AlmacenProducto.Name = "AlmacenProducto";
             this.AlmacenProducto.ReadOnly = true;
-           
             // 
             // Cantidad
             // 
             this.Cantidad.HeaderText = "Cantidad";
             this.Cantidad.Name = "Cantidad";
             this.Cantidad.ReadOnly = true;
-            
             // 
             // label2
             // 
@@ -375,12 +375,32 @@
             this.label12.TabIndex = 131;
             this.label12.Text = "Buscar por:";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(996, 534);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(13, 13);
+            this.label6.TabIndex = 144;
+            this.label6.Text = "0";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(953, 534);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(37, 13);
+            this.label5.TabIndex = 143;
+            this.label5.Text = "Total: ";
+            // 
             // frmListarEntradas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1094, 565);
             this.ControlBox = false;
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnbuscar);
             this.Controls.Add(this.txtfechafin);
             this.Controls.Add(this.txtfechainicio);
@@ -438,6 +458,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DescripcionProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn CategoriaProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn AlmacenProducto; 
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad; 
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LongitudProducto;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
     }
 }

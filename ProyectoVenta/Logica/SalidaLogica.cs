@@ -150,16 +150,14 @@ namespace ProyectoVenta.Logica
 
                     foreach (DetalleSalida de in obj.olistaDetalle)
                     {
-                        query.AppendLine(string.Format("insert into DETALLE_SALIDA(IdSalida,IdProducto,CodigoProducto,DescripcionProducto,CategoriaProducto,AlmacenProducto,PrecioVenta,Cantidad,SubTotal) values({0},{1},'{2}','{3}','{4}','{5}','{6}',{7},'{8}');",
+                        query.AppendLine(string.Format("insert into DETALLE_SALIDA(IdSalida,IdProducto,CodigoProducto,DescripcionProducto,CategoriaProducto,AlmacenProducto,Cantidad) values({0},{1},'{2}','{3}','{4}','{5}','{6}');",
                             "(select id from _TEMP)",
                             de.IdProducto,
                             de.CodigoProducto,
                             de.DescripcionProducto,
                             de.CategoriaProducto,
-                            de.AlmacenProducto,
-                            de.PrecioVenta,
-                            de.Cantidad,
-                            de.SubTotal
+                            de.AlmacenProducto, 
+                            de.Cantidad
                             ));
 
                     }
@@ -206,7 +204,7 @@ namespace ProyectoVenta.Logica
                     query.AppendLine("select e.NumeroDocumento,strftime('%d/%m/%Y', date(e.FechaRegistro))[FechaRegistro],e.UsuarioRegistro,");
                     query.AppendLine("e.DocumentoCliente,e.NombreCliente,e.MontoTotal,");
                     query.AppendLine("de.CodigoProducto,de.DescripcionProducto,de.CategoriaProducto,de.AlmacenProducto,");
-                    query.AppendLine("de.PrecioVenta,de.Cantidad,de.SubTotal");
+                    query.AppendLine("de.Cantidad");
                     query.AppendLine("from SALIDA e");
                     query.AppendLine("inner join DETALLE_SALIDA de on e.IdSalida = de.IdSalida");
                     query.AppendLine("where DATE(e.FechaRegistro) BETWEEN DATE(@pfechainicio) AND DATE(@pfechafin)");
@@ -231,10 +229,8 @@ namespace ProyectoVenta.Logica
                                 CodigoProducto = dr["CodigoProducto"].ToString(),
                                 DescripcionProducto = dr["DescripcionProducto"].ToString(),
                                 CategoriaProducto = dr["CategoriaProducto"].ToString(),
-                                AlmacenProducto = dr["AlmacenProducto"].ToString(),
-                                PrecioVenta = dr["PrecioVenta"].ToString(),
-                                Cantidad = dr["Cantidad"].ToString(),
-                                SubTotal = dr["SubTotal"].ToString()
+                                AlmacenProducto = dr["AlmacenProducto"].ToString(), 
+                                Cantidad = dr["Cantidad"].ToString(), 
                             });
                         }
                     }
@@ -304,7 +300,7 @@ namespace ProyectoVenta.Logica
                     conexion.Open();
                     StringBuilder query = new StringBuilder();
                     query.AppendLine("select CodigoProducto, DescripcionProducto, CategoriaProducto,");
-                    query.AppendLine("AlmacenProducto, PrecioVenta, Cantidad, SubTotal");
+                    query.AppendLine("AlmacenProducto, Cantidad");
                     query.AppendLine("from DETALLE_SALIDA where IdSalida = @pidsalida");
 
                     SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
@@ -320,10 +316,8 @@ namespace ProyectoVenta.Logica
                                 CodigoProducto = dr["CodigoProducto"].ToString(),
                                 DescripcionProducto = dr["DescripcionProducto"].ToString(),
                                 CategoriaProducto = dr["CategoriaProducto"].ToString(),
-                                AlmacenProducto = dr["AlmacenProducto"].ToString(),
-                                PrecioVenta = dr["PrecioVenta"].ToString(),
-                                Cantidad = Convert.ToInt32(dr["Cantidad"].ToString()),
-                                SubTotal = dr["SubTotal"].ToString()
+                                AlmacenProducto = dr["AlmacenProducto"].ToString(), 
+                                Cantidad = Convert.ToInt32(dr["Cantidad"].ToString()), 
                             });
                         }
                     }

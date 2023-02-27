@@ -279,12 +279,12 @@ namespace ProyectoVenta.Formularios.Salidas
         {
             if (txtdoccliente.Text.Trim() == "")
             {
-                MessageBox.Show("Debe ingresar el documento del cliente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Debe ingresar el documento del tecnico", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             if (txtnomcliente.Text.Trim() == "")
             {
-                MessageBox.Show("Debe ingresar el nombre del cliente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Debe ingresar el nombre del tecnico", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -315,9 +315,9 @@ namespace ProyectoVenta.Formularios.Salidas
                     DescripcionProducto = row.Cells["Descripcion"].Value.ToString(),
                     CategoriaProducto = row.Cells["Categoria"].Value.ToString(),
                     AlmacenProducto = row.Cells["Almacen"].Value.ToString(),
-                    PrecioVenta = row.Cells["PrecioUnit"].Value.ToString(),
+                    
                     Cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()),
-                    SubTotal = row.Cells["SubTotal"].Value.ToString()
+                    
                 });
 
                 cantidad_productos += Convert.ToInt32(row.Cells["Cantidad"].Value.ToString());

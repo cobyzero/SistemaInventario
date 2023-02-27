@@ -51,8 +51,7 @@
             this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Almacen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            
             this.chkocultarprecios = new System.Windows.Forms.CheckBox();
             this.btndescargarpdf = new FontAwesome.Sharp.IconButton();
             this.lblnrodocumento = new System.Windows.Forms.Label();
@@ -101,7 +100,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(82, 13);
             this.label10.TabIndex = 146;
-            this.label10.Text = "Nombre Cliente:";
+            this.label10.Text = "Nombre Tecnico:";
             // 
             // groupBox2
             // 
@@ -167,7 +166,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(68, 13);
             this.label5.TabIndex = 138;
-            this.label5.Text = "Doc. Cliente:";
+            this.label5.Text = "Doc. Tecnico:";
             // 
             // label2
             // 
@@ -233,9 +232,7 @@
             this.Descripcion,
             this.Categoria,
             this.Almacen,
-            this.Cantidad,
-            this.PrecioVenta,
-            this.SubTotal});
+            this.Cantidad});
             this.dgvdata.Location = new System.Drawing.Point(26, 207);
             this.dgvdata.MultiSelect = false;
             this.dgvdata.Name = "dgvdata";
@@ -288,24 +285,7 @@
             this.Cantidad.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Cantidad.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Cantidad.Width = 70;
-            // 
-            // PrecioVenta
-            // 
-            this.PrecioVenta.HeaderText = "Precio Venta";
-            this.PrecioVenta.Name = "PrecioVenta";
-            this.PrecioVenta.ReadOnly = true;
-            this.PrecioVenta.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.PrecioVenta.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.PrecioVenta.Width = 80;
-            // 
-            // SubTotal
-            // 
-            this.SubTotal.HeaderText = "Sub Total";
-            this.SubTotal.Name = "SubTotal";
-            this.SubTotal.ReadOnly = true;
-            this.SubTotal.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.SubTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.SubTotal.Width = 80;
+            
             // 
             // chkocultarprecios
             // 
@@ -494,8 +474,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn Almacen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioVenta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad; 
     }
 }

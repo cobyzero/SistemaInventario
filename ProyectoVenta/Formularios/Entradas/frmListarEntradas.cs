@@ -17,6 +17,7 @@ namespace ProyectoVenta.Formularios.Entradas
 {
     public partial class frmListarEntradas : Form
     {
+        int total = 0;
         public frmListarEntradas()
         {
             InitializeComponent();
@@ -43,6 +44,7 @@ namespace ProyectoVenta.Formularios.Entradas
 
         private void btnbuscar_Click(object sender, EventArgs e)
         {
+            total = 0;
             dgvdata.Rows.Clear();
 
             DateTime dt1 = Convert.ToDateTime(txtfechainicio.Value.ToString("dd/MM/yyyy"));
@@ -64,7 +66,11 @@ namespace ProyectoVenta.Formularios.Entradas
                     vr.AlmacenProducto, 
                     vr.Cantidad, 
                 });
+
+                total += int.Parse(vr.Cantidad);
             }
+
+            this.label6.Text = total.ToString();
         }
 
         private void btnbusqueda_Click(object sender, EventArgs e)
@@ -116,9 +122,7 @@ namespace ProyectoVenta.Formularios.Entradas
                         row.Cells[4].Value.ToString(),
                         row.Cells[5].Value.ToString(),
                         row.Cells[6].Value.ToString(),
-                        row.Cells[7].Value.ToString(),
-                        row.Cells[8].Value.ToString(),
-                        row.Cells[9].Value.ToString()
+                        row.Cells[7].Value.ToString(), 
                     });
                 }
 

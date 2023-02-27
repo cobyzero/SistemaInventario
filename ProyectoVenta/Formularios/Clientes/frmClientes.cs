@@ -197,12 +197,12 @@ namespace ProyectoVenta.Formularios.Clientes
                         Limpiar(false);
                     }
                     else
-                        MessageBox.Show("No se pudo eliminar el cliente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("No se pudo eliminar el tecnico", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
             else
             {
-                MessageBox.Show("Debe seleccionar un cliente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Debe seleccionar un tecnico", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 

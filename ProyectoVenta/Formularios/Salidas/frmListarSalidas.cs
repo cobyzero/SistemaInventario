@@ -17,6 +17,8 @@ namespace ProyectoVenta.Formularios.Salidas
 {
     public partial class frmListarSalidas : Form
     {
+
+        int total = 0;
         public frmListarSalidas()
         {
             InitializeComponent();
@@ -43,6 +45,7 @@ namespace ProyectoVenta.Formularios.Salidas
 
         private void btnbuscar_Click(object sender, EventArgs e)
         {
+            total = 0;
             dgvdata.Rows.Clear();
 
             DateTime dt1 = Convert.ToDateTime(txtfechainicio.Value.ToString("dd/MM/yyyy"));
@@ -61,12 +64,14 @@ namespace ProyectoVenta.Formularios.Salidas
                     vr.CodigoProducto,
                     vr.DescripcionProducto,
                     vr.CategoriaProducto,
-                    vr.AlmacenProducto,
-                    vr.PrecioVenta,
-                    vr.Cantidad,
-                    vr.SubTotal
+                    vr.AlmacenProducto, 
+                    vr.Cantidad, 
                 });
+
+                total += int.Parse(vr.Cantidad);
             }
+
+            this.label6.Text = total.ToString();
         }
 
         private void btnbusqueda_Click(object sender, EventArgs e)
@@ -119,9 +124,7 @@ namespace ProyectoVenta.Formularios.Salidas
                         row.Cells[6].Value.ToString(),
                         row.Cells[7].Value.ToString(),
                         row.Cells[8].Value.ToString(),
-                        row.Cells[9].Value.ToString(),
-                        row.Cells[10].Value.ToString(),
-                        row.Cells[11].Value.ToString()
+                        row.Cells[9].Value.ToString(), 
                     });
                 }
 

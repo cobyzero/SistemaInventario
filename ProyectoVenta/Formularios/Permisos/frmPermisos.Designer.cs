@@ -249,7 +249,7 @@
             this.a_clientes.Name = "a_clientes";
             this.a_clientes.Size = new System.Drawing.Size(146, 24);
             this.a_clientes.TabIndex = 10;
-            this.a_clientes.Text = "Clientes";
+            this.a_clientes.Text = "Técnicos";
             this.a_clientes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.a_clientes.UseVisualStyleBackColor = true;
             // 
@@ -391,7 +391,7 @@
             this.e_clientes.Name = "e_clientes";
             this.e_clientes.Size = new System.Drawing.Size(146, 24);
             this.e_clientes.TabIndex = 10;
-            this.e_clientes.Text = "Clientes";
+            this.e_clientes.Text = "Tecnicos";
             this.e_clientes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.e_clientes.UseVisualStyleBackColor = true;
             // 
@@ -533,7 +533,7 @@
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(146, 24);
             this.checkBox4.TabIndex = 10;
-            this.checkBox4.Text = "Clientes";
+            this.checkBox4.Text = "Tecnicos";
             this.checkBox4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBox4.UseVisualStyleBackColor = true;
             // 

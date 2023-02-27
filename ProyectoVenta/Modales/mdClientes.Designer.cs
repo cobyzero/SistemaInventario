@@ -87,7 +87,7 @@
             this.label2.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.label2.Size = new System.Drawing.Size(625, 41);
             this.label2.TabIndex = 145;
-            this.label2.Text = "Clientes";
+            this.label2.Text = "Tecnicos";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnsalir

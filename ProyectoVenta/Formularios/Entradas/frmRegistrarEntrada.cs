@@ -252,12 +252,11 @@ namespace ProyectoVenta.Formularios.Entradas
                     CategoriaProducto = row.Cells["Categoria"].Value.ToString(),
                     AlmacenProducto = row.Cells["Almacen"].Value.ToString(),
 
-                    PrecioVenta = "0",
-                    PrecioCompra =  "0",
+                     
 
                     Cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()),
 
-                    SubTotal = "0"
+                    
                 });
 
                 cantidad_productos += Convert.ToInt32(row.Cells["Cantidad"].Value.ToString());

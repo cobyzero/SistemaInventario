@@ -53,7 +53,7 @@ namespace ProyectoVenta.Formularios.Entradas
                 List<DetalleEntrada> olista = EntradaLogica.Instancia.ListarDetalle(obj.IdEntrada);
                 dgvdata.Rows.Clear();
                 foreach(DetalleEntrada de in olista) {
-                    dgvdata.Rows.Add(new object[] {de.CodigoProducto,de.DescripcionProducto,de.CategoriaProducto,de.AlmacenProducto,de.Cantidad,de.PrecioCompra,de.PrecioVenta,de.SubTotal });
+                    dgvdata.Rows.Add(new object[] {de.CodigoProducto,de.DescripcionProducto,de.CategoriaProducto,de.AlmacenProducto,de.Cantidad });
                 }
 
                 lbltotal.Text = obj.MontoTotal;

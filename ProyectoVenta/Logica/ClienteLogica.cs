@@ -120,7 +120,7 @@ namespace ProyectoVenta.Logica
 
                     respuesta = Convert.ToInt32(cmd.ExecuteScalar().ToString());
                     if (respuesta < 1)
-                        mensaje = "No se pudo registrar el cliente";
+                        mensaje = "No se pudo registrar el tecnico";
                 }
                 catch (Exception ex)
                 {
@@ -153,7 +153,7 @@ namespace ProyectoVenta.Logica
 
                     respuesta = cmd.ExecuteNonQuery();
                     if (respuesta < 1)
-                        mensaje = "No se pudo editar el cliente";
+                        mensaje = "No se pudo editar el tecnico";
                 }
                 catch (Exception ex)
                 {
