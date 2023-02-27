@@ -51,8 +51,9 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(143, 40);
             this.label5.TabIndex = 45;
-            this.label5.Text = "CE INVENTARIO LIBRE";
+            this.label5.Text = "INVENTARIO";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // iconPictureBox1
             // 
