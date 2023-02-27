@@ -47,7 +47,7 @@ namespace ProyectoVenta.Formularios.Usuarios
             }
 
             cborol.Items.Add(new OpcionCombo() { Valor = 1, Texto = "Administrador" });
-            cborol.Items.Add(new OpcionCombo() { Valor = 2, Texto = "Empleado" });
+            cborol.Items.Add(new OpcionCombo() { Valor = 2, Texto = "Tecnico" });
             cborol.Items.Add(new OpcionCombo() { Valor = 3, Texto = "Almacenero" });
 
 
