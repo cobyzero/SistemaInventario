@@ -166,8 +166,8 @@
             // 
             // AlmacenProducto
             // 
-            this.AlmacenProducto.HeaderText = "Modelo Producto";
-            this.AlmacenProducto.Name = "ModeloProducto";
+            this.AlmacenProducto.HeaderText = "Almacen Producto";
+            this.AlmacenProducto.Name = "AlmacenProducto";
             this.AlmacenProducto.ReadOnly = true;
            
             // 

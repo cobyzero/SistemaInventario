@@ -140,8 +140,8 @@
             // 
             // Almacen
             // 
-            this.Almacen.HeaderText = "Modelo";
-            this.Almacen.Name = "Modelo";
+            this.Almacen.HeaderText = "Almacen";
+            this.Almacen.Name = "Almacen";
             this.Almacen.ReadOnly = true;
             this.Almacen.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 

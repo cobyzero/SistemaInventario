@@ -92,12 +92,12 @@ namespace ProyectoVenta.Formularios.Productos
 
 
                             if (hoja.GetRow(0).GetCell(3) != null) {
-                                if (hoja.GetRow(0).Cells[3].StringCellValue.ToString().ToLower() != "modelo")
+                                if (hoja.GetRow(0).Cells[3].StringCellValue.ToString().ToLower() != "almacen")
                                 {
-                                    columnas += "No se encontró la columna \"Modelo\"\n";
+                                    columnas += "No se encontró la columna \"Almacen\"\n";
                                 }
                             }else
-                                columnas += "No se encontró la columna \"Modelo\"\n";
+                                columnas += "No se encontró la columna \"Almacen\"\n";
 
 
 

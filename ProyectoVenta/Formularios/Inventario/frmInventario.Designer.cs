@@ -293,7 +293,7 @@
             // 
             // Almacen
             // 
-            this.Almacen.HeaderText = "Modelo";
+            this.Almacen.HeaderText = "Almacen";
             this.Almacen.Name = "Modelo";
             this.Almacen.ReadOnly = true;
             this.Almacen.Resizable = System.Windows.Forms.DataGridViewTriState.True;
