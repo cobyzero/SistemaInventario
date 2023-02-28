@@ -121,7 +121,9 @@ namespace ProyectoVenta.Formularios.Entradas
                         row.Cells[4].Value.ToString(),
                         row.Cells[5].Value.ToString(),
                         row.Cells[6].Value.ToString(),
-                        row.Cells[7].Value.ToString(), 
+                        row.Cells[7].Value.ToString(),
+                        row.Cells[8].Value.ToString(),
+
                     });
                 }
 
