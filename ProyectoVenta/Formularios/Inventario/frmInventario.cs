@@ -60,8 +60,7 @@ namespace ProyectoVenta.Formularios.Inventario
                     vr.Entradas,
                     vr.Salidas,
                     vr.Stock,
-                    vr.TotalIngresos,
-                    vr.TotalEgresos
+                    
                 });
             }
         }

@@ -240,7 +240,7 @@ namespace ProyectoVenta.Logica
                     conexion.Open();
                     StringBuilder query = new StringBuilder();
                     query.AppendLine("select CodigoProducto, DescripcionProducto, CategoriaProducto,");
-                    query.AppendLine("AlmacenProducto, PrecioCompra, Cantidad");
+                    query.AppendLine("AlmacenProducto, Cantidad");
                     query.AppendLine("from DETALLE_ENTRADA where IdEntrada = @pidentrada");
 
                     SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);

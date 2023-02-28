@@ -14,9 +14,7 @@ namespace ProyectoVenta.Modelo
         public string Almacen { get; set; }
         public string Entradas { get; set; }
         public string Salidas { get; set; }
-        public string Stock { get; set; }
-        public string TotalEgresos { get; set; }
-        public string TotalIngresos { get; set; }
+        public string Stock { get; set; } 
 
     }
 }

@@ -64,9 +64,7 @@ namespace ProyectoVenta.Modales
                     vr.Almacen,
                     vr.Entradas,
                     vr.Salidas,
-                    vr.Stock,
-                    vr.TotalIngresos,
-                    vr.TotalEgresos
+                    vr.Stock, 
                 });
                 }
                 
