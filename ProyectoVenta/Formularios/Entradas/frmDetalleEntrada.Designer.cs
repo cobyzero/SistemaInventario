@@ -35,7 +35,7 @@
             this.dgvdata = new System.Windows.Forms.DataGridView();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Longitud = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Almacen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -44,8 +44,7 @@
             this.btnsalir = new FontAwesome.Sharp.IconButton();
             this.txtnombreproveedor = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox(); 
-            this.lbltextototal = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label26 = new System.Windows.Forms.Label();
             this.txtnumerodocumento = new System.Windows.Forms.TextBox();
             this.txtdocumentoproveedor = new System.Windows.Forms.TextBox();
@@ -97,7 +96,7 @@
             this.dgvdata.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Codigo,
             this.Descripcion,
-            this.Categoria,
+            this.Longitud,
             this.Almacen,
             this.Cantidad});
             this.dgvdata.Location = new System.Drawing.Point(24, 205);
@@ -130,12 +129,12 @@
             this.Descripcion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Descripcion.Width = 220;
             // 
-            // Categoria
+            // Longitud
             // 
-            this.Categoria.HeaderText = "Longitud";
-            this.Categoria.Name = "Longitud";
-            this.Categoria.ReadOnly = true;
-            this.Categoria.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Longitud.HeaderText = "Longitud";
+            this.Longitud.Name = "Longitud";
+            this.Longitud.ReadOnly = true;
+            this.Longitud.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Almacen
             // 
@@ -238,18 +237,6 @@
             this.groupBox2.Size = new System.Drawing.Size(688, 10);
             this.groupBox2.TabIndex = 160;
             this.groupBox2.TabStop = false;
-           
-            // 
-            // lbltextototal
-            // 
-            this.lbltextototal.AutoSize = true;
-            this.lbltextototal.BackColor = System.Drawing.Color.White;
-            this.lbltextototal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltextototal.Location = new System.Drawing.Point(24, 499);
-            this.lbltextototal.Name = "lbltextototal";
-            this.lbltextototal.Size = new System.Drawing.Size(43, 15);
-            this.lbltextototal.TabIndex = 162;
-            this.lbltextototal.Text = "Total:";
             // 
             // label26
             // 
@@ -394,8 +381,7 @@
             this.Controls.Add(this.btnsalir);
             this.Controls.Add(this.txtnombreproveedor);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.groupBox2); 
-            this.Controls.Add(this.lbltextototal);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.txtnumerodocumento);
             this.Controls.Add(this.txtdocumentoproveedor);
@@ -427,7 +413,6 @@
         private System.Windows.Forms.TextBox txtnombreproveedor;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox2; 
-        private System.Windows.Forms.Label lbltextototal;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox txtnumerodocumento;
         private System.Windows.Forms.TextBox txtdocumentoproveedor;
@@ -445,5 +430,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad; 
         private FontAwesome.Sharp.IconButton btnborrar;
         private System.Windows.Forms.Label lblnrodocumento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Longitud;
     }
 }

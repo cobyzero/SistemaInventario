@@ -34,8 +34,6 @@
             this.txtnomproveedor = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-           
-            this.label8 = new System.Windows.Forms.Label();
             this.dgvdata = new System.Windows.Forms.DataGridView();
             this.btneliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -93,18 +91,6 @@
             this.groupBox2.Size = new System.Drawing.Size(719, 10);
             this.groupBox2.TabIndex = 149;
             this.groupBox2.TabStop = false;
-           
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.White;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(25, 515);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(43, 15);
-            this.label8.TabIndex = 158;
-            this.label8.Text = "Total:";
             // 
             // dgvdata
             // 
@@ -443,8 +429,7 @@
             this.Controls.Add(this.txtnomproveedor);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.btnguardarentrada); 
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.btnguardarentrada);
             this.Controls.Add(this.dgvdata);
             this.Controls.Add(this.btnagregar);
             this.Controls.Add(this.txtcantidad);
@@ -486,7 +471,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox2;
         private FontAwesome.Sharp.IconButton btnguardarentrada; 
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridView dgvdata;
         private FontAwesome.Sharp.IconButton btnagregar;
         private System.Windows.Forms.NumericUpDown txtcantidad;

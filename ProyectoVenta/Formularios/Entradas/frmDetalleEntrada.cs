@@ -160,5 +160,7 @@ namespace ProyectoVenta.Formularios.Entradas
         {
             limpiar();
         }
+
+     
     }
 }

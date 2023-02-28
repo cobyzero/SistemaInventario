@@ -200,7 +200,7 @@ namespace ProyectoVenta.Formularios
                 {
                     dgvdata.Rows[_indice].Cells["Codigo"].Value = obj.Codigo;
                     dgvdata.Rows[_indice].Cells["Descripcion"].Value = obj.Descripcion;
-                    dgvdata.Rows[_indice].Cells["Categoria"].Value = obj.Categoria;
+                    dgvdata.Rows[_indice].Cells["Longitud"].Value = obj.Categoria;
                     dgvdata.Rows[_indice].Cells["Almacen"].Value = obj.Almacen;
                     Limpiar();
                     lblresultado.Text = "Modificación Correcta";
