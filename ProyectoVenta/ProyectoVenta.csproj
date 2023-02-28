@@ -8,7 +8,7 @@
     <ProjectGuid>{5A0AB6A2-C2B6-44BB-9DCE-EA689B12A771}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>ProyectoVenta</RootNamespace>
-    <AssemblyName>CE Inventario Libre</AssemblyName>
+    <AssemblyName>Proyecto Inventario</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

@@ -20,8 +20,7 @@ namespace ProyectoVenta.Modales
         public string _descripcion { get; set; }
         public string _categoria { get; set; }
         public string _almacen { get; set; }
-        public int _stock { get; set; }
-        public string _precioventa { get; set; }
+        public int _stock { get; set; } 
 
         public mdProductos()
         {
@@ -47,8 +46,7 @@ namespace ProyectoVenta.Modales
                     pr.Descripcion,
                     pr.Categoria,
                     pr.Almacen,
-                    pr.Stock,
-                    pr.PrecioVenta
+                    pr.Stock, 
                 });
             }
 
@@ -96,7 +94,7 @@ namespace ProyectoVenta.Modales
                     _categoria = dgvdata.Rows[index].Cells["Categoria"].Value.ToString();
                     _almacen = dgvdata.Rows[index].Cells["Almacen"].Value.ToString();
                     _stock = Convert.ToInt32(dgvdata.Rows[index].Cells["Stock"].Value.ToString());
-                    _precioventa = dgvdata.Rows[index].Cells["PrecioVenta"].Value.ToString();
+                    
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }

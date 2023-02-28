@@ -40,7 +40,7 @@ namespace ProyectoVenta.Logica
                 {
                     conexion.Open();
 
-                    string query = "select IdProducto,Codigo,Descripcion,Categoria,Almacen,Stock,PrecioVenta from PRODUCTO;";
+                    string query = "select IdProducto,Codigo,Descripcion,Categoria,Almacen,Stock from PRODUCTO;";
                     SQLiteCommand cmd = new SQLiteCommand(query, conexion);
                     cmd.CommandType = System.Data.CommandType.Text;
 
@@ -55,8 +55,7 @@ namespace ProyectoVenta.Logica
                                 Descripcion = dr["Descripcion"].ToString(),
                                 Categoria = dr["Categoria"].ToString(),
                                 Almacen = dr["Almacen"].ToString(),
-                                Stock = Convert.ToInt32(dr["Stock"].ToString()),
-                                PrecioVenta = dr["PrecioVenta"].ToString()
+                                Stock = Convert.ToInt32(dr["Stock"].ToString()), 
                             });
                         }
                     }

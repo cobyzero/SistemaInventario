@@ -13,7 +13,6 @@ namespace ProyectoVenta.Modelo
         public string Descripcion { get; set; }
         public string Categoria { get; set; }
         public string Almacen { get; set; }
-        public int Stock { get; set; }
-        public string PrecioVenta { get; set; }
+        public int Stock { get; set; } 
     }
 }

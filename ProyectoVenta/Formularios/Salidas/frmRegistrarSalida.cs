@@ -19,8 +19,7 @@ namespace ProyectoVenta.Formularios.Salidas
         private static int _idproducto = 0;
         private static string _categoria = "";
         private static string _almacen = "";
-        private static int _stock = 0;
-        private static string _precioventa = "";
+        private static int _stock = 0; 
 
         private static string _NombreUsuario = "";
 
@@ -68,8 +67,7 @@ namespace ProyectoVenta.Formularios.Salidas
                     txtstock.Text = form._stock.ToString();
                     _categoria = form._categoria;
                     _almacen = form._almacen;
-                    _stock = form._stock;
-                    _precioventa = form._precioventa;
+                    _stock = form._stock; 
 
                     txtcantidad.Value = 1;
                     txtcantidad.Focus();
@@ -111,8 +109,7 @@ namespace ProyectoVenta.Formularios.Salidas
                     _idproducto = Convert.ToInt32(pr.IdProducto.ToString());
                     _categoria = pr.Categoria;
                     _almacen = pr.Almacen;
-                    _stock = pr.Stock;
-                    _precioventa = pr.PrecioVenta;
+                    _stock = pr.Stock; 
 
                     txtcantidad.Value = 1;
                     txtcantidad.Focus();
@@ -170,32 +167,22 @@ namespace ProyectoVenta.Formularios.Salidas
             }
 
 
-            decimal precioventa = 0;
-            decimal subtotal = 0;
-            if (!decimal.TryParse(_precioventa, out precioventa))
-            {
-                MessageBox.Show("Error al convertir internamente el tipo de moneda - Precio Venta\nEjemplo Formato ##.##", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
+           
+            
             string mensaje = string.Empty;
             int operaciones = SalidaLogica.Instancia.reducirStock(_idproducto, Convert.ToInt32(txtcantidad.Value.ToString()), out mensaje);
 
             if (operaciones > 0)
-            {
-                subtotal = Convert.ToDecimal(txtcantidad.Value.ToString()) * precioventa;
-
+            { 
                 dgvdata.Rows.Add(new object[] {"",
                     _idproducto.ToString(),
                     txtcodigoproducto.Text,
                     txtdescripcionproducto.Text,
                     _categoria,
                     _almacen,
-                    txtcantidad.Value.ToString(),
-                    precioventa.ToString("0.00"),
-                    subtotal.ToString("0.00")
+                    txtcantidad.Value.ToString(), 
                 });
-
-                calcularTotal();
+                 
 
                 _idproducto = 0;
                 txtcodigoproducto.Text = "";
@@ -204,8 +191,7 @@ namespace ProyectoVenta.Formularios.Salidas
                 txtstock.Text = "";
                 _categoria = "";
                 _almacen = "";
-                _stock = 0;
-                _precioventa = "";
+                _stock = 0; 
                 txtcantidad.Value = 1;
                 txtcodigoproducto.Focus();
 
@@ -216,19 +202,7 @@ namespace ProyectoVenta.Formularios.Salidas
            
         }
 
-
-        private void calcularTotal()
-        {
-            decimal total = 0;
-            if (dgvdata.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow row in dgvdata.Rows)
-                {
-                    total += Convert.ToDecimal(row.Cells["SubTotal"].Value.ToString());
-                }
-            } 
-        }
-
+         
         private void dgvdata_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex < 0)
@@ -263,7 +237,7 @@ namespace ProyectoVenta.Formularios.Salidas
                     if (operaciones > 0)
                     {
                         dgvdata.Rows.RemoveAt(index);
-                        calcularTotal();
+                         
                     }
                     else {
                         MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

@@ -1,9 +1,6 @@
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Release\ProyectoVenta.csproj.AssemblyReference.cache
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Release\ProyectoVenta.csproj.SuggestedBindingRedirects.cache
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Release\BDINVENTARIO.db
-C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Release\CE Inventario Libre.exe.config
-C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Release\CE Inventario Libre.exe
-C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Release\CE Inventario Libre.pdb
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Release\BarcodeLib.dll
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Release\BouncyCastle.Crypto.dll
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Release\ClosedXML.dll
@@ -64,5 +61,8 @@ C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Release\ProyectoVenta
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Release\ProyectoVenta.csproj.GenerateResource.cache
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Release\ProyectoVenta.csproj.CoreCompileInputs.cache
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Release\ProyectoVenta.csproj.CopyComplete
-C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Release\CE Inventario Libre.exe
-C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Release\CE Inventario Libre.pdb
+C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Release\Proyecto Inventario.exe.config
+C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Release\Proyecto Inventario.exe
+C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Release\Proyecto Inventario.pdb
+C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Release\Proyecto Inventario.exe
+C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Release\Proyecto Inventario.pdb
