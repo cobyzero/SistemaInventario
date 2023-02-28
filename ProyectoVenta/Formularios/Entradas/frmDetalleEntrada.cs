@@ -56,7 +56,7 @@ namespace ProyectoVenta.Formularios.Entradas
                     dgvdata.Rows.Add(new object[] {de.CodigoProducto,de.DescripcionProducto,de.CategoriaProducto,de.AlmacenProducto,de.Cantidad });
                 }
 
-                lbltotal.Text = obj.MontoTotal;
+                
             }
             else {
                 limpiar();
@@ -103,8 +103,7 @@ namespace ProyectoVenta.Formularios.Entradas
  
                 filas += "</tr>";
             }
-            Texto_Html = Texto_Html.Replace("@filas", filas);
-            Texto_Html = Texto_Html.Replace("@montototal", lbltotal.Text);
+            Texto_Html = Texto_Html.Replace("@filas", filas); 
 
 
             SaveFileDialog savefile = new SaveFileDialog();
@@ -153,7 +152,7 @@ namespace ProyectoVenta.Formularios.Entradas
             txtnombreproveedor.Text = "";
             dgvdata.Rows.Clear();
            
-            lbltotal.Text = "0.00";
+             
             txtnumerodocumento.Focus();
         }
 

@@ -34,7 +34,7 @@
             this.txtnomproveedor = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lbltotal = new System.Windows.Forms.Label();
+           
             this.label8 = new System.Windows.Forms.Label();
             this.dgvdata = new System.Windows.Forms.DataGridView();
             this.btneliminar = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -93,17 +93,7 @@
             this.groupBox2.Size = new System.Drawing.Size(719, 10);
             this.groupBox2.TabIndex = 149;
             this.groupBox2.TabStop = false;
-            // 
-            // lbltotal
-            // 
-            this.lbltotal.AutoSize = true;
-            this.lbltotal.BackColor = System.Drawing.Color.White;
-            this.lbltotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltotal.Location = new System.Drawing.Point(74, 515);
-            this.lbltotal.Name = "lbltotal";
-            this.lbltotal.Size = new System.Drawing.Size(35, 15);
-            this.lbltotal.TabIndex = 159;
-            this.lbltotal.Text = "0.00";
+           
             // 
             // label8
             // 
@@ -453,8 +443,7 @@
             this.Controls.Add(this.txtnomproveedor);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.btnguardarentrada);
-            this.Controls.Add(this.lbltotal);
+            this.Controls.Add(this.btnguardarentrada); 
             this.Controls.Add(this.label8);
             this.Controls.Add(this.dgvdata);
             this.Controls.Add(this.btnagregar);
@@ -496,8 +485,7 @@
         private System.Windows.Forms.TextBox txtnomproveedor;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox2;
-        private FontAwesome.Sharp.IconButton btnguardarentrada;
-        private System.Windows.Forms.Label lbltotal;
+        private FontAwesome.Sharp.IconButton btnguardarentrada; 
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridView dgvdata;
         private FontAwesome.Sharp.IconButton btnagregar;

@@ -36,7 +36,7 @@
             this.NroDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UsuarioRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Proveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MontoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            
             this.CodigoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DescripcionProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LongitudProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -80,8 +80,7 @@
             this.FechaRegistro,
             this.NroDocumento,
             this.UsuarioRegistro,
-            this.Proveedor,
-            this.MontoTotal,
+            this.Proveedor, 
             this.CodigoProducto,
             this.DescripcionProducto,
             this.LongitudProducto,
@@ -135,12 +134,7 @@
             this.Proveedor.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Proveedor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Proveedor.Width = 230;
-            // 
-            // MontoTotal
-            // 
-            this.MontoTotal.HeaderText = "Monto Total";
-            this.MontoTotal.Name = "MontoTotal";
-            this.MontoTotal.ReadOnly = true;
+           
             // 
             // CodigoProducto
             // 
@@ -452,8 +446,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaRegistro;
         private System.Windows.Forms.DataGridViewTextBoxColumn NroDocumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn UsuarioRegistro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Proveedor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MontoTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Proveedor; 
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn DescripcionProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn CategoriaProducto;

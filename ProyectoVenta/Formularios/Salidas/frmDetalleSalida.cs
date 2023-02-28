@@ -60,7 +60,7 @@ namespace ProyectoVenta.Formularios.Salidas
                     dgvdata.Rows.Add(new object[] { de.CodigoProducto, de.DescripcionProducto, de.CategoriaProducto, de.AlmacenProducto, de.Cantidad});
                 }
 
-                lbltotal.Text = obj.MontoTotal;
+                
             }
             else
             {
@@ -73,9 +73,7 @@ namespace ProyectoVenta.Formularios.Salidas
         private void chkocultarprecios_CheckedChanged(object sender, EventArgs e)
         {
             
-                lbltextototal.Visible = false;
-                lbltotal.Visible = false;
-            
+                lbltextototal.Visible = false; 
         }
 
         private void btndescargarpdf_Click(object sender, EventArgs e)
@@ -116,8 +114,7 @@ namespace ProyectoVenta.Formularios.Salidas
                 filas += "</tr>";
             }
             Texto_Html = Texto_Html.Replace("@filas", filas);
-            Texto_Html = Texto_Html.Replace("@montototal", lbltotal.Text);
-
+ 
 
             SaveFileDialog savefile = new SaveFileDialog();
             savefile.FileName = string.Format("Salida_{0}.pdf", lblnrodocumento.Text);
@@ -163,8 +160,7 @@ namespace ProyectoVenta.Formularios.Salidas
             txtusuario.Text = "";
             txtdoccliente.Text = "";
             txtnomcliente.Text = "";
-            dgvdata.Rows.Clear(); 
-            lbltotal.Text = "0.00";
+            dgvdata.Rows.Clear();  
             txtnumerodocumento.Focus();
         }
 

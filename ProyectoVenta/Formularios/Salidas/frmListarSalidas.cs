@@ -59,8 +59,7 @@ namespace ProyectoVenta.Formularios.Salidas
                     vr.FechaRegistro,
                     vr.NumeroDocumento,
                     vr.UsuarioRegistro,
-                    vr.NombreCliente,
-                    vr.MontoTotal,
+                    vr.NombreCliente, 
                     vr.CodigoProducto,
                     vr.DescripcionProducto,
                     vr.CategoriaProducto,
@@ -123,9 +122,7 @@ namespace ProyectoVenta.Formularios.Salidas
                         row.Cells[5].Value.ToString(),
                         row.Cells[6].Value.ToString(),
                         row.Cells[7].Value.ToString(),
-                        row.Cells[8].Value.ToString(),
-                        row.Cells[9].Value.ToString(), 
-                    });
+                        row.Cells[8].Value.ToString(),                     });
                 }
 
                 SaveFileDialog savefile = new SaveFileDialog();

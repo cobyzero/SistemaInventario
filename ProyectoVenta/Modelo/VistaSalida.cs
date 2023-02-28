@@ -12,8 +12,7 @@ namespace ProyectoVenta.Modelo
         public string FechaRegistro { get; set; }
         public string UsuarioRegistro { get; set; }
         public string DocumentoCliente { get; set; }
-        public string NombreCliente { get; set; }
-        public string MontoTotal { get; set; }
+        public string NombreCliente { get; set; } 
         public string CodigoProducto { get; set; }
         public string DescripcionProducto { get; set; }
         public string CategoriaProducto { get; set; }

@@ -132,21 +132,14 @@ namespace ProyectoVenta.Formularios.Entradas
                 MessageBox.Show("El producto ya está agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            
- 
- 
-
-            
+             
             dgvdata.Rows.Add(new object[] {"",
                 _idproducto.ToString(),
                 txtcodigoproducto.Text,
                 txtdescripcionproducto.Text,
                 _categoria,
                 _almacen,
-               txtcantidad.Value.ToString(),
-               "0.02",
-                "0.00",
-                "0.03"
+               txtcantidad.Value.ToString(), 
             });
              
 
@@ -235,6 +228,7 @@ namespace ProyectoVenta.Formularios.Entradas
 
             string mensaje = string.Empty;
             int cantidad_productos = 0;
+
             List<DetalleEntrada> olista = new List<DetalleEntrada>();
 
             int encontrado = EntradaLogica.Instancia.Existe(txtnumerodocumento.Text, out mensaje);
@@ -243,6 +237,8 @@ namespace ProyectoVenta.Formularios.Entradas
                 return;
             }
 
+            
+
             foreach (DataGridViewRow row in dgvdata.Rows)
             {
                 olista.Add(new DetalleEntrada() {
@@ -250,15 +246,10 @@ namespace ProyectoVenta.Formularios.Entradas
                     CodigoProducto = row.Cells["Codigo"].Value.ToString(),
                     DescripcionProducto = row.Cells["Descripcion"].Value.ToString(),
                     CategoriaProducto = row.Cells["Categoria"].Value.ToString(),
-                    AlmacenProducto = row.Cells["Almacen"].Value.ToString(),
-
-                     
-
-                    Cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()),
-
-                    
+                    AlmacenProducto = row.Cells["Almacen"].Value.ToString(), 
+                    Cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()), 
                 });
-
+                 
                 cantidad_productos += Convert.ToInt32(row.Cells["Cantidad"].Value.ToString());
             }
 
@@ -269,7 +260,7 @@ namespace ProyectoVenta.Formularios.Entradas
                 DocumentoProveedor = txtdocproveedor.Text,
                 NombreProveedor = txtnomproveedor.Text,
                 CantidadProductos = cantidad_productos,
-                MontoTotal = lbltotal.Text,
+                
                 olistaDetalle = olista
             };
            
@@ -277,6 +268,7 @@ namespace ProyectoVenta.Formularios.Entradas
 
             if (operaciones < 1)
             {
+                
                 MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else {
@@ -284,7 +276,7 @@ namespace ProyectoVenta.Formularios.Entradas
                 txtdocproveedor.Text = "";
                 txtnomproveedor.Text = "";
                 dgvdata.Rows.Clear();
-                lbltotal.Text = "0.00";
+               
                 txtnumerodocumento.Focus();
 
                 MessageBox.Show("Entrada registrada!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);

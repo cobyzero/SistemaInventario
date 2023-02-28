@@ -137,14 +137,13 @@ namespace ProyectoVenta.Logica
                     StringBuilder query = new StringBuilder();
 
                     query.AppendLine("CREATE TEMP TABLE _TEMP(id INTEGER);");
-                    query.AppendLine(string.Format("Insert into SALIDA(NumeroDocumento,FechaRegistro,UsuarioRegistro,DocumentoCliente,NombreCliente,CantidadProductos,MontoTotal) values('{0}','{1}','{2}','{3}','{4}',{5},'{6}');",
+                    query.AppendLine(string.Format("Insert into SALIDA(NumeroDocumento,FechaRegistro,UsuarioRegistro,DocumentoCliente,NombreCliente,CantidadProductos) values('{0}','{1}','{2}','{3}','{4}',{5});",
                         obj.NumeroDocumento,
                         obj.FechaRegistro,
                         obj.UsuarioRegistro,
                         obj.DocumentoCliente,
                         obj.NombreCliente,
-                        obj.CantidadProductos,
-                        obj.MontoTotal));
+                        obj.CantidadProductos));
 
                     query.AppendLine("INSERT INTO _TEMP (id) VALUES (last_insert_rowid());");
 
@@ -202,7 +201,7 @@ namespace ProyectoVenta.Logica
                     StringBuilder query = new StringBuilder();
                
                     query.AppendLine("select e.NumeroDocumento,strftime('%d/%m/%Y', date(e.FechaRegistro))[FechaRegistro],e.UsuarioRegistro,");
-                    query.AppendLine("e.DocumentoCliente,e.NombreCliente,e.MontoTotal,");
+                    query.AppendLine("e.DocumentoCliente,e.NombreCliente,");
                     query.AppendLine("de.CodigoProducto,de.DescripcionProducto,de.CategoriaProducto,de.AlmacenProducto,");
                     query.AppendLine("de.Cantidad");
                     query.AppendLine("from SALIDA e");
@@ -224,8 +223,7 @@ namespace ProyectoVenta.Logica
                                 FechaRegistro = dr["FechaRegistro"].ToString(),
                                 UsuarioRegistro = dr["UsuarioRegistro"].ToString(),
                                 DocumentoCliente = dr["DocumentoCliente"].ToString(),
-                                NombreCliente = dr["NombreCliente"].ToString(),
-                                MontoTotal = dr["MontoTotal"].ToString(),
+                                NombreCliente = dr["NombreCliente"].ToString(), 
                                 CodigoProducto = dr["CodigoProducto"].ToString(),
                                 DescripcionProducto = dr["DescripcionProducto"].ToString(),
                                 CategoriaProducto = dr["CategoriaProducto"].ToString(),
@@ -255,7 +253,7 @@ namespace ProyectoVenta.Logica
                     conexion.Open();
                     StringBuilder query = new StringBuilder();
                     query.AppendLine("select IdSalida,NumeroDocumento, strftime('%d/%m/%Y', date(FechaRegistro))[FechaRegistro],UsuarioRegistro,DocumentoCliente,");
-                    query.AppendLine("NombreCliente,CantidadProductos,MontoTotal from SALIDA");
+                    query.AppendLine("NombreCliente,CantidadProductos from SALIDA");
                     query.AppendLine("where NumeroDocumento = @pnumero");
 
                     SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
@@ -274,8 +272,7 @@ namespace ProyectoVenta.Logica
                                 UsuarioRegistro = dr["UsuarioRegistro"].ToString(),
                                 DocumentoCliente = dr["DocumentoCliente"].ToString(),
                                 NombreCliente = dr["NombreCliente"].ToString(),
-                                CantidadProductos = Convert.ToInt32(dr["CantidadProductos"].ToString()),
-                                MontoTotal = dr["MontoTotal"].ToString(),
+                                CantidadProductos = Convert.ToInt32(dr["CantidadProductos"].ToString()), 
                             };
                         }
                     }

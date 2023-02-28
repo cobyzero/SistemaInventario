@@ -77,20 +77,19 @@ namespace ProyectoVenta.Logica
                     StringBuilder query = new StringBuilder();
 
                     query.AppendLine("CREATE TEMP TABLE _TEMP(id INTEGER);");
-                    query.AppendLine(string.Format("Insert into ENTRADA(NumeroDocumento,FechaRegistro,UsuarioRegistro,DocumentoProveedor,NombreProveedor,CantidadProductos,MontoTotal) values('{0}','{1}','{2}','{3}','{4}',{5},'{6}');",
+                    query.AppendLine(string.Format("Insert into ENTRADA(NumeroDocumento,FechaRegistro,UsuarioRegistro,DocumentoProveedor,NombreProveedor,CantidadProductos) values('{0}','{1}','{2}','{3}','{4}',{5});",
                         obj.NumeroDocumento,
                         obj.FechaRegistro,
                         obj.UsuarioRegistro,
                         obj.DocumentoProveedor,
                         obj.NombreProveedor,
-                        obj.CantidadProductos,
-                        obj.MontoTotal));
+                        obj.CantidadProductos));
 
                     query.AppendLine("INSERT INTO _TEMP (id) VALUES (last_insert_rowid());");
 
                     foreach (DetalleEntrada de in obj.olistaDetalle)
                     {
-                        query.AppendLine(string.Format("insert into DETALLE_ENTRADA(IdEntrada,IdProducto,CodigoProducto,DescripcionProducto,CategoriaProducto,AlmacenProducto,PrecioCompra,Cantidad) values({0},{1},'{2}','{3}','{4}','{5}','{6}','{7}');",
+                        query.AppendLine(string.Format("insert into DETALLE_ENTRADA(IdEntrada,IdProducto,CodigoProducto,DescripcionProducto,CategoriaProducto,AlmacenProducto,Cantidad) values({0},{1},'{2}','{3}','{4}','{5}','{6}');",
                             "(select id from _TEMP)",
                             de.IdProducto,
                             de.CodigoProducto,
@@ -143,7 +142,7 @@ namespace ProyectoVenta.Logica
                     StringBuilder query = new StringBuilder();
 
                     query.AppendLine("select e.NumeroDocumento,strftime('%d/%m/%Y', date(e.FechaRegistro))[FechaRegistro],e.UsuarioRegistro,");
-                    query.AppendLine("e.DocumentoProveedor,e.NombreProveedor,e.MontoTotal,");
+                    query.AppendLine("e.DocumentoProveedor,e.NombreProveedor,");
                     query.AppendLine("de.CodigoProducto,de.DescripcionProducto,de.CategoriaProducto,de.AlmacenProducto,de.PrecioCompra,");
                     query.AppendLine("de.Cantidad");
                     query.AppendLine("from ENTRADA e");
@@ -166,7 +165,7 @@ namespace ProyectoVenta.Logica
                                 UsuarioRegistro = dr["UsuarioRegistro"].ToString(),
                                 DocumentoProveedor = dr["DocumentoProveedor"].ToString(),
                                 NombreProveedor = dr["NombreProveedor"].ToString(),
-                                MontoTotal = dr["MontoTotal"].ToString(),
+                                
                                 CodigoProducto = dr["CodigoProducto"].ToString(),
                                 DescripcionProducto = dr["DescripcionProducto"].ToString(),
                                 CategoriaProducto = dr["CategoriaProducto"].ToString(),
@@ -196,7 +195,7 @@ namespace ProyectoVenta.Logica
                     conexion.Open();
                     StringBuilder query = new StringBuilder();
                     query.AppendLine("select IdEntrada,NumeroDocumento, strftime('%d/%m/%Y', date(FechaRegistro))[FechaRegistro],UsuarioRegistro,DocumentoProveedor,");
-                    query.AppendLine("NombreProveedor,CantidadProductos,MontoTotal from ENTRADA");
+                    query.AppendLine("NombreProveedor,CantidadProductos from ENTRADA");
                     query.AppendLine("where NumeroDocumento = @pnumero");
 
                     SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
@@ -216,7 +215,7 @@ namespace ProyectoVenta.Logica
                                 DocumentoProveedor = dr["DocumentoProveedor"].ToString(),
                                 NombreProveedor = dr["NombreProveedor"].ToString(),
                                 CantidadProductos = Convert.ToInt32(dr["CantidadProductos"].ToString()),
-                                MontoTotal = dr["MontoTotal"].ToString(),
+                                
                             };
                         }
                     }

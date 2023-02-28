@@ -66,8 +66,7 @@
             this.txtnomcliente = new System.Windows.Forms.TextBox();
             this.btnsalir = new FontAwesome.Sharp.IconButton();
             this.txtdescripcionproducto = new System.Windows.Forms.TextBox();
-            this.btnbuscarproducto = new FontAwesome.Sharp.IconButton();
-            this.lbltotal = new System.Windows.Forms.Label();
+            this.btnbuscarproducto = new FontAwesome.Sharp.IconButton(); 
             ((System.ComponentModel.ISupportInitialize)(this.txtcantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
             this.SuspendLayout();
@@ -484,25 +483,14 @@
             this.btnbuscarproducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnbuscarproducto.UseVisualStyleBackColor = true;
             this.btnbuscarproducto.Click += new System.EventHandler(this.btnbuscarproducto_Click);
-            // 
-            // lbltotal
-            // 
-            this.lbltotal.AutoSize = true;
-            this.lbltotal.BackColor = System.Drawing.Color.White;
-            this.lbltotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltotal.Location = new System.Drawing.Point(65, 511);
-            this.lbltotal.Name = "lbltotal";
-            this.lbltotal.Size = new System.Drawing.Size(35, 15);
-            this.lbltotal.TabIndex = 160;
-            this.lbltotal.Text = "0.00";
+       
             // 
             // frmRegistrarSalida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(760, 546);
-            this.ControlBox = false;
-            this.Controls.Add(this.lbltotal);
+            this.ControlBox = false; 
             this.Controls.Add(this.btnbuscarproducto);
             this.Controls.Add(this.txtdescripcionproducto);
             this.Controls.Add(this.btnsalir);
@@ -573,8 +561,7 @@
         private System.Windows.Forms.TextBox txtnomcliente;
         private FontAwesome.Sharp.IconButton btnsalir;
         private System.Windows.Forms.TextBox txtdescripcionproducto;
-        private FontAwesome.Sharp.IconButton btnbuscarproducto;
-        private System.Windows.Forms.Label lbltotal;
+        private FontAwesome.Sharp.IconButton btnbuscarproducto; 
         private System.Windows.Forms.DataGridViewButtonColumn btneliminar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;

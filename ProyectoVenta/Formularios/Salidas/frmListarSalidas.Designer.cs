@@ -42,7 +42,7 @@
             this.NroDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UsuarioRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tecnico = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MontoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+ 
             this.CodigoProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DescripcionProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LongitudProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -147,8 +147,7 @@
             this.FechaRegistro,
             this.NroDocumento,
             this.UsuarioRegistro,
-            this.Tecnico,
-            this.MontoTotal,
+            this.Tecnico, 
             this.CodigoProd,
             this.DescripcionProd,
             this.LongitudProd,
@@ -197,13 +196,7 @@
             this.Tecnico.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Tecnico.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Tecnico.Width = 150;
-            // 
-            // MontoTotal
-            // 
-            this.MontoTotal.HeaderText = "Monto Total";
-            this.MontoTotal.Name = "MontoTotal";
-            this.MontoTotal.ReadOnly = true;
-            this.MontoTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+ 
             // 
             // CodigoProd
             // 
@@ -457,8 +450,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaRegistro;
         private System.Windows.Forms.DataGridViewTextBoxColumn NroDocumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn UsuarioRegistro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MontoTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cliente; 
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoProd;
         private System.Windows.Forms.DataGridViewTextBoxColumn DescripcionProd;
         private System.Windows.Forms.DataGridViewTextBoxColumn CategoriaProd;

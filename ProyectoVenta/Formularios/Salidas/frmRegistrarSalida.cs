@@ -226,8 +226,7 @@ namespace ProyectoVenta.Formularios.Salidas
                 {
                     total += Convert.ToDecimal(row.Cells["SubTotal"].Value.ToString());
                 }
-            }
-            lbltotal.Text = total.ToString("0.00");
+            } 
         }
 
         private void dgvdata_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -330,8 +329,7 @@ namespace ProyectoVenta.Formularios.Salidas
                 UsuarioRegistro = _NombreUsuario,
                 DocumentoCliente = txtdoccliente.Text,
                 NombreCliente = txtnomcliente.Text,
-                CantidadProductos = cantidad_productos,
-                MontoTotal = lbltotal.Text,
+                CantidadProductos = cantidad_productos, 
                 olistaDetalle = olista
             };
 
@@ -345,8 +343,7 @@ namespace ProyectoVenta.Formularios.Salidas
             {
                 txtdoccliente.Text = "";
                 txtnomcliente.Text = "";
-                dgvdata.Rows.Clear();
-                lbltotal.Text = "0.00";
+                dgvdata.Rows.Clear(); 
                 txtdoccliente.Focus();
 
                 mdSalidaExitosa md = new mdSalidaExitosa();

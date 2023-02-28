@@ -14,8 +14,7 @@ namespace ProyectoVenta.Modelo
         public string UsuarioRegistro { get; set; }
         public string DocumentoProveedor { get; set; }
         public string NombreProveedor { get; set; }
-        public int CantidadProductos { get; set; }
-        public string MontoTotal { get; set; }
+        public int CantidadProductos { get; set; } 
         public List<DetalleEntrada> olistaDetalle { get; set; }
     }
 }

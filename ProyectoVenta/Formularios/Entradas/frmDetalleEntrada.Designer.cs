@@ -44,8 +44,7 @@
             this.btnsalir = new FontAwesome.Sharp.IconButton();
             this.txtnombreproveedor = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lbltotal = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox(); 
             this.lbltextototal = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.txtnumerodocumento = new System.Windows.Forms.TextBox();
@@ -239,17 +238,7 @@
             this.groupBox2.Size = new System.Drawing.Size(688, 10);
             this.groupBox2.TabIndex = 160;
             this.groupBox2.TabStop = false;
-            // 
-            // lbltotal
-            // 
-            this.lbltotal.AutoSize = true;
-            this.lbltotal.BackColor = System.Drawing.Color.White;
-            this.lbltotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltotal.Location = new System.Drawing.Point(73, 499);
-            this.lbltotal.Name = "lbltotal";
-            this.lbltotal.Size = new System.Drawing.Size(35, 15);
-            this.lbltotal.TabIndex = 163;
-            this.lbltotal.Text = "0.00";
+           
             // 
             // lbltextototal
             // 
@@ -405,8 +394,7 @@
             this.Controls.Add(this.btnsalir);
             this.Controls.Add(this.txtnombreproveedor);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.lbltotal);
+            this.Controls.Add(this.groupBox2); 
             this.Controls.Add(this.lbltextototal);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.txtnumerodocumento);
@@ -438,8 +426,7 @@
         private FontAwesome.Sharp.IconButton btnsalir;
         private System.Windows.Forms.TextBox txtnombreproveedor;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label lbltotal;
+        private System.Windows.Forms.GroupBox groupBox2; 
         private System.Windows.Forms.Label lbltextototal;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox txtnumerodocumento;
