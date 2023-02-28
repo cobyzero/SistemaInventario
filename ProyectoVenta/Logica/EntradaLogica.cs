@@ -143,7 +143,7 @@ namespace ProyectoVenta.Logica
 
                     query.AppendLine("select e.NumeroDocumento,strftime('%d/%m/%Y', date(e.FechaRegistro))[FechaRegistro],e.UsuarioRegistro,");
                     query.AppendLine("e.DocumentoProveedor,e.NombreProveedor,");
-                    query.AppendLine("de.CodigoProducto,de.DescripcionProducto,de.CategoriaProducto,de.AlmacenProducto,de.PrecioCompra,");
+                    query.AppendLine("de.CodigoProducto,de.DescripcionProducto,de.CategoriaProducto,de.AlmacenProducto,");
                     query.AppendLine("de.Cantidad");
                     query.AppendLine("from ENTRADA e");
                     query.AppendLine("inner join DETALLE_ENTRADA de on e.IdEntrada = de.IdEntrada");
