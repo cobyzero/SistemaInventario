@@ -1,4 +1,5 @@
-﻿using ProyectoVenta.Logica;
+﻿using ProyectoVenta.Data;
+using ProyectoVenta.Logica;
 using ProyectoVenta.Modales;
 using ProyectoVenta.Modelo;
 using System;
@@ -99,7 +100,7 @@ namespace ProyectoVenta.Formularios.Salidas
             string mensaje = string.Empty;
             if (e.KeyData == Keys.Enter)
             {
-                Producto pr = ProductoLogica.Instancia.Listar(out mensaje).Where(p => p.Codigo.ToUpper() == txtcodigoproducto.Text.Trim().ToUpper()).FirstOrDefault();
+                Modelo.Producto pr = ProductoLogica.Instancia.Listar(out mensaje).Where(p => p.Codigo.ToUpper() == txtcodigoproducto.Text.Trim().ToUpper()).FirstOrDefault();
                 if (pr != null)
                 {
                     txtcodigoproducto.BackColor = Color.Honeydew;
@@ -248,7 +249,7 @@ namespace ProyectoVenta.Formularios.Salidas
             }
         }
 
-        private void btnguardarsalida_Click(object sender, EventArgs e)
+        private async void btnguardarsalida_Click(object sender, EventArgs e)
         {
             if (txtdoccliente.Text.Trim() == "")
             {
@@ -271,7 +272,8 @@ namespace ProyectoVenta.Formularios.Salidas
             string mensaje = string.Empty;
             int cantidad_productos = 0;
             int idcorrelativo = SalidaLogica.Instancia.ObtenerCorrelativo(out mensaje);
-            List<DetalleSalida> olista = new List<DetalleSalida>();
+
+            List<DetalleSalidum> olista = new List<DetalleSalidum>();
 
             if (idcorrelativo < 1)
             {
@@ -281,48 +283,45 @@ namespace ProyectoVenta.Formularios.Salidas
 
             foreach (DataGridViewRow row in dgvdata.Rows)
             {
-                olista.Add(new DetalleSalida()
+                olista.Add(new DetalleSalidum()
                 {
                     IdProducto = Convert.ToInt32(row.Cells["Id"].Value.ToString()),
                     CodigoProducto = row.Cells["Codigo"].Value.ToString(),
                     DescripcionProducto = row.Cells["Descripcion"].Value.ToString(),
                     CategoriaProducto = row.Cells["Categoria"].Value.ToString(),
                     AlmacenProducto = row.Cells["Almacen"].Value.ToString(),
-                    
-                    Cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()),
-                    
+                    Cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()), 
                 });
 
                 cantidad_productos += Convert.ToInt32(row.Cells["Cantidad"].Value.ToString());
             }
-
-            Salida oSalida = new Salida()
+               
+            Salidum oSalida = new Salidum()
             {
                 NumeroDocumento = String.Format("{0:00000}", idcorrelativo),
                 FechaRegistro = DateTime.Now.ToString("yyyy-MM-dd", new CultureInfo("en-US")),
                 UsuarioRegistro = _NombreUsuario,
                 DocumentoCliente = txtdoccliente.Text,
                 NombreCliente = txtnomcliente.Text,
-                CantidadProductos = cantidad_productos, 
-                olistaDetalle = olista
+                CantidadProductos = cantidad_productos  
             };
+             
+            bool operaciones = await SalidaLogica.Instancia.Registrar(oSalida, olista);
 
-            int operaciones = SalidaLogica.Instancia.Registrar(oSalida, out mensaje);
-
-            if (operaciones < 1)
-            {
-                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
+            if (operaciones)
             {
                 txtdoccliente.Text = "";
                 txtnomcliente.Text = "";
-                dgvdata.Rows.Clear(); 
+                dgvdata.Rows.Clear();
                 txtdoccliente.Focus();
 
                 mdSalidaExitosa md = new mdSalidaExitosa();
                 md._numerodocumento = String.Format("{0:00000}", idcorrelativo);
                 md.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
 

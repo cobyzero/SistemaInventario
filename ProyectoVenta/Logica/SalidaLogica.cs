@@ -1,10 +1,12 @@
-﻿using ProyectoVenta.Modelo;
+﻿using ProyectoVenta.Data;
+using ProyectoVenta.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProyectoVenta.Logica
 {
@@ -121,73 +123,31 @@ namespace ProyectoVenta.Logica
         }
 
 
-        public int Registrar(Salida obj, out string mensaje)
+        public async Task<bool> Registrar(Salidum salidum, List<DetalleSalidum> detalleSalidum)
         {
-
-            mensaje = string.Empty;
-            int respuesta = 0;
-            SQLiteTransaction objTransaccion = null;
-
-            using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+            try
             {
-                try
+                using (var db = new BdinventarioContext())
                 {
-                    conexion.Open();
-                    objTransaccion = conexion.BeginTransaction();
-                    StringBuilder query = new StringBuilder();
+                    db.Salida.Add(salidum);
 
-                    query.AppendLine("CREATE TEMP TABLE _TEMP(id INTEGER);");
-                    query.AppendLine(string.Format("Insert into SALIDA(NumeroDocumento,FechaRegistro,UsuarioRegistro,DocumentoCliente,NombreCliente,CantidadProductos) values('{0}','{1}','{2}','{3}','{4}',{5});",
-                        obj.NumeroDocumento,
-                        obj.FechaRegistro,
-                        obj.UsuarioRegistro,
-                        obj.DocumentoCliente,
-                        obj.NombreCliente,
-                        obj.CantidadProductos));
-
-                    query.AppendLine("INSERT INTO _TEMP (id) VALUES (last_insert_rowid());");
-
-                    foreach (DetalleSalida de in obj.olistaDetalle)
+                    foreach (var item in detalleSalidum)
                     {
-                        query.AppendLine(string.Format("insert into DETALLE_SALIDA(IdSalida,IdProducto,CodigoProducto,DescripcionProducto,CategoriaProducto,AlmacenProducto,Cantidad) values({0},{1},'{2}','{3}','{4}','{5}','{6}');",
-                            "(select id from _TEMP)",
-                            de.IdProducto,
-                            de.CodigoProducto,
-                            de.DescripcionProducto,
-                            de.CategoriaProducto,
-                            de.AlmacenProducto, 
-                            de.Cantidad
-                            ));
-
+                        item.IdSalida = salidum.IdSalida;
+                        item.IdSalidaNavigation = salidum;
+                        db.DetalleSalida.Add(item);
                     }
 
-                    query.AppendLine("DROP TABLE _TEMP;");
-
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-                    cmd.CommandType = System.Data.CommandType.Text;
-                    cmd.Transaction = objTransaccion;
-                    respuesta = cmd.ExecuteNonQuery();
-
-
-                    if (respuesta < 1)
-                    {
-                        objTransaccion.Rollback();
-                        mensaje = "No se pudo registrar la salida de los productos";
-                    }
-
-                    objTransaccion.Commit();
-
+                    await db.SaveChangesAsync();
                 }
-                catch (Exception ex)
-                {
-                    objTransaccion.Rollback();
-                    respuesta = 0;
-                    mensaje = ex.Message;
-                }
+                return true;
             }
-
-
-            return respuesta;
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex);
+                return false; 
+            }
+            
         }
 
         public List<VistaSalida> Resumen(string fechainicio = "", string fechafin = "")
