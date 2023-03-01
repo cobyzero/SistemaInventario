@@ -3,4 +3,81 @@
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="Formularios\Clientes\frmClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Configuracion\frmConfiguracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Entradas\frmDetalleEntrada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Entradas\frmListarEntradas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Entradas\frmRegistrarEntrada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Inicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Inventario\frmInventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Permisos\frmPermisos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Productos\frmCargarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Productos\frmRegistrarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Proveedores\frmProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Salidas\frmDetalleSalida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Salidas\frmListarSalidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Salidas\frmRegistrarSalida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Usuarios\frmUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Intermedios\IConfiguracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Intermedios\IEntradas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Intermedios\IProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Intermedios\ISalidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Modales\mdAcercade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Modales\mdClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Modales\mdProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Modales\mdProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Modales\mdSalidaExitosa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
 </Project>
