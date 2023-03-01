@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoVenta.Data;
 
 public partial class DetalleEntradum
 {
-    public long IdDetalleEntrada { get; set; }
+    [Key]
+    public int IdDetalleEntrada { get; set; }
 
-    public long IdEntrada { get; set; }
+    public int IdEntrada { get; set; }
 
-    public long IdProducto { get; set; }
+    public int IdProducto { get; set; }
 
     public string CodigoProducto { get; set; }
 

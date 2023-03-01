@@ -185,3 +185,4 @@ C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Debug\net7.0-windows\
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Debug\net7.0-windows\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Debug\net7.0-windows\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Debug\net7.0-windows\runtimes\win-x86\native\e_sqlite3.dll
+C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Formularios.Pedidos.frmPedidos.resources

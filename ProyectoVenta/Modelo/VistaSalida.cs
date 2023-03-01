@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace ProyectoVenta.Modelo
 {
     public class VistaSalida
     {
+        [Key]
         public string NumeroDocumento { get; set; }
         public string FechaRegistro { get; set; }
         public string UsuarioRegistro { get; set; }

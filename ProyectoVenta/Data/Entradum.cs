@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoVenta.Data;
 
 public partial class Entradum
 {
-    public long IdEntrada { get; set; }
+    [Key]
+    public int IdEntrada { get; set; }
 
     public string NumeroDocumento { get; set; }
 

@@ -14,6 +14,7 @@ using ProyectoVenta.Formularios.Inventario;
 using ProyectoVenta.Modales;
 using ProyectoVenta.Logica;
 using System.Globalization;
+using ProyectoVenta.Formularios.Pedidos;
 
 namespace ProyectoVenta.Formularios
 {
@@ -215,6 +216,12 @@ namespace ProyectoVenta.Formularios
         { 
             mdAcercade form = new mdAcercade();
             form.ShowDialog();
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            frmPedidos pedidos = new frmPedidos();
+            pedidos.ShowDialog();
         }
     }
 }

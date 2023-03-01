@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoVenta.Data;
 
 public partial class Dato
 {
-    public long IdDato { get; set; }
+    [Key]
+    public int IdDato { get; set; }
 
     public string RazonSocial { get; set; }
 

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoVenta.Data;
 
 public partial class TipoBarra
 {
-    public long IdTipoBarra { get; set; }
+    [Key]
+    public int IdTipoBarra { get; set; }
 
     public long Value { get; set; }
 }

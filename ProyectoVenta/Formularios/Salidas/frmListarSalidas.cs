@@ -43,7 +43,7 @@ namespace ProyectoVenta.Formularios.Salidas
             cbobuscar.SelectedIndex = 0;
         }
 
-        private void btnbuscar_Click(object sender, EventArgs e)
+        private async void btnbuscar_Click(object sender, EventArgs e)
         {
             total = 0;
             dgvdata.Rows.Clear();

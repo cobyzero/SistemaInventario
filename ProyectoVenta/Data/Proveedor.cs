@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoVenta.Data;
 
 public partial class Proveedor
 {
-    public long IdProveedor { get; set; }
+    [Key]
+    public int IdProveedor { get; set; }
 
     public string NumeroDocumento { get; set; }
 

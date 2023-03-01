@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoVenta.Data;
 
 public partial class Permiso
 {
-    public long IdPermisos { get; set; }
+    [Key]
+    public int IdPermisos { get; set; }
 
     public string Descripcion { get; set; }
 

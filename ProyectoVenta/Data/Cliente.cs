@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoVenta.Data;
 
 public partial class Cliente
 {
-    public long IdCliente { get; set; }
+    [Key]
+    public int IdCliente { get; set; }
 
     public string NumeroDocumento { get; set; }
 
