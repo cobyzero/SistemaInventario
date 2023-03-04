@@ -20,14 +20,32 @@ namespace ProyectoVenta.Formularios.Salidas
         private static int _idproducto = 0;
         private static string _categoria = "";
         private static string _almacen = "";
-        private static int _stock = 0; 
+        private static int _stock = 0;
 
         private static string _NombreUsuario = "";
 
         public frmRegistrarSalida(string _usuario = "")
-        {
+        { 
             _NombreUsuario = _usuario;
             InitializeComponent();
+
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                Text = ".:Neuer Ausgang:.";
+                label2.Text = "Neuer Ausgang";
+                btnsalir.Text = "Beendet";
+                label26.Text = "Technischer Code";
+                label27.Text = "Datum der Ausstellung";
+                label3.Text = "Produktcode";
+                label4.Text = "beschreibung";
+                label6.Text = "Menge";
+                label8.Text = "Gesamt:";
+                btnguardarsalida.Text = "Ausgabe speichern";
+                Codigo.HeaderText = "Code";
+                Descripcion.HeaderText = "Beschreibung";
+                Cantidad.HeaderText = "Menge";
+
+            } 
         }
 
         private void btnsalir_Click(object sender, EventArgs e)
@@ -68,7 +86,7 @@ namespace ProyectoVenta.Formularios.Salidas
                     txtstock.Text = form._stock.ToString();
                     _categoria = form._categoria;
                     _almacen = form._almacen;
-                    _stock = form._stock; 
+                    _stock = form._stock;
 
                     txtcantidad.Value = 1;
                     txtcantidad.Focus();
@@ -110,7 +128,7 @@ namespace ProyectoVenta.Formularios.Salidas
                     _idproducto = Convert.ToInt32(pr.IdProducto.ToString());
                     _categoria = pr.Categoria;
                     _almacen = pr.Almacen;
-                    _stock = pr.Stock; 
+                    _stock = pr.Stock;
 
                     txtcantidad.Value = 1;
                     txtcantidad.Focus();
@@ -162,28 +180,29 @@ namespace ProyectoVenta.Formularios.Salidas
                 return;
             }
 
-            if (txtcantidad.Value > _stock) {
+            if (txtcantidad.Value > _stock)
+            {
                 MessageBox.Show("La cantidad no puede ser mayor al stock", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
 
-           
-            
+
+
             string mensaje = string.Empty;
             int operaciones = SalidaLogica.Instancia.reducirStock(_idproducto, Convert.ToInt32(txtcantidad.Value.ToString()), out mensaje);
 
             if (operaciones > 0)
-            { 
+            {
                 dgvdata.Rows.Add(new object[] {"",
                     _idproducto.ToString(),
                     txtcodigoproducto.Text,
                     txtdescripcionproducto.Text,
                     _categoria,
                     _almacen,
-                    txtcantidad.Value.ToString(), 
+                    txtcantidad.Value.ToString(),
                 });
-                 
+
 
                 _idproducto = 0;
                 txtcodigoproducto.Text = "";
@@ -192,18 +211,19 @@ namespace ProyectoVenta.Formularios.Salidas
                 txtstock.Text = "";
                 _categoria = "";
                 _almacen = "";
-                _stock = 0; 
+                _stock = 0;
                 txtcantidad.Value = 1;
                 txtcodigoproducto.Focus();
 
             }
-            else {
+            else
+            {
                 MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-           
+
         }
 
-         
+
         private void dgvdata_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex < 0)
@@ -238,13 +258,14 @@ namespace ProyectoVenta.Formularios.Salidas
                     if (operaciones > 0)
                     {
                         dgvdata.Rows.RemoveAt(index);
-                         
+
                     }
-                    else {
+                    else
+                    {
                         MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
 
-                    
+
                 }
             }
         }
@@ -290,12 +311,12 @@ namespace ProyectoVenta.Formularios.Salidas
                     DescripcionProducto = row.Cells["Descripcion"].Value.ToString(),
                     CategoriaProducto = row.Cells["Categoria"].Value.ToString(),
                     AlmacenProducto = row.Cells["Almacen"].Value.ToString(),
-                    Cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()), 
+                    Cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()),
                 });
 
                 cantidad_productos += Convert.ToInt32(row.Cells["Cantidad"].Value.ToString());
             }
-               
+
             Salidum oSalida = new Salidum()
             {
                 NumeroDocumento = String.Format("{0:00000}", idcorrelativo),
@@ -303,9 +324,9 @@ namespace ProyectoVenta.Formularios.Salidas
                 UsuarioRegistro = _NombreUsuario,
                 DocumentoCliente = txtdoccliente.Text,
                 NombreCliente = txtnomcliente.Text,
-                CantidadProductos = cantidad_productos  
+                CantidadProductos = cantidad_productos
             };
-             
+
             bool operaciones = await SalidaLogica.Instancia.Registrar(oSalida, olista);
 
             if (operaciones)

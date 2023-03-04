@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static NPOI.HSSF.Util.HSSFColor;
 
 namespace ProyectoVenta.Formularios.Salidas
 {
@@ -22,6 +23,29 @@ namespace ProyectoVenta.Formularios.Salidas
         public frmListarSalidas()
         {
             InitializeComponent();
+
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                Text = ".:Bericht:.";
+                label2.Text = "Warenausgangsliste";
+                label4.Text = "Anfangsdatum";
+                label3.Text = "Endedatum";
+                btnbuscar.Text = "Suchen";
+                btnexportar.Text = "Herunterladen Excel";
+                label12.Text = "Suchen zu:";
+                FechaRegistro.HeaderText = "Datum der Ausstellung";
+                NroDocumento.HeaderText = "Antragsnummer";
+                UsuarioRegistro.HeaderText = "Benutzerregister";
+                Tecnico.HeaderText = "Techniker(in)";
+                CodigoProd.HeaderText = "Produktcode";
+                DescripcionProd.HeaderText = "Produktbeschreibung";
+                LongitudProd.HeaderText = "Lange";
+                AlmacenProd.HeaderText = "Lager";
+                Cantidad.HeaderText = "Menge";
+                btnsalir.Text = "Beendet";
+                label5.Text = "Gesamt";
+            }
+
         }
 
         private void btnsalir_Click(object sender, EventArgs e)

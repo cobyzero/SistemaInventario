@@ -18,6 +18,15 @@ namespace ProyectoVenta.Intermedios
         public ISalidas()
         {
             InitializeComponent();
+
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            { 
+                label7.Text = "Warenausgang";
+                btnagregar.Text = "Neu";
+                btnlistar.Text = "Bericht";
+                btnbuscar.Text = "Suchen";
+                btncerrar.Text = "Schließen";
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)

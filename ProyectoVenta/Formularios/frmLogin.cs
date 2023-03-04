@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static NPOI.HSSF.Util.HSSFColor;
 
 namespace ProyectoVenta.Formularios
 {
@@ -17,11 +18,22 @@ namespace ProyectoVenta.Formularios
         public frmLogin()
         {
             InitializeComponent();
+
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                Text = ".:Anmeldung:.";
+                label5.Text = "Inventur".ToUpper();
+                label2.Text = "Benutzer";
+                label3.Text = "Pasword";
+                btningresar.Text = "Eingehen";
+                btnSalir.Text = "Beendet";
+
+            }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            
+
             this.Close();
         }
 

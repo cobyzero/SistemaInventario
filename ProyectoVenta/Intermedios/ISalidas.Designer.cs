@@ -28,143 +28,149 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnlistar = new FontAwesome.Sharp.IconButton();
-            this.btncerrar = new FontAwesome.Sharp.IconButton();
-            this.btnagregar = new FontAwesome.Sharp.IconButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnbuscar = new FontAwesome.Sharp.IconButton();
-            this.label7 = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            btnlistar = new FontAwesome.Sharp.IconButton();
+            btncerrar = new FontAwesome.Sharp.IconButton();
+            btnagregar = new FontAwesome.Sharp.IconButton();
+            label1 = new System.Windows.Forms.Label();
+            btnbuscar = new FontAwesome.Sharp.IconButton();
+            label7 = new System.Windows.Forms.Label();
+            SuspendLayout();
             // 
             // btnlistar
             // 
-            this.btnlistar.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnlistar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnlistar.FlatAppearance.BorderColor = System.Drawing.Color.Teal;
-            this.btnlistar.FlatAppearance.BorderSize = 2;
-            this.btnlistar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnlistar.ForeColor = System.Drawing.Color.Black;
-            this.btnlistar.IconChar = FontAwesome.Sharp.IconChar.ListOl;
-            this.btnlistar.IconColor = System.Drawing.Color.Black;
-            this.btnlistar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnlistar.IconSize = 80;
-            this.btnlistar.Location = new System.Drawing.Point(131, 48);
-            this.btnlistar.Name = "btnlistar";
-            this.btnlistar.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.btnlistar.Size = new System.Drawing.Size(87, 92);
-            this.btnlistar.TabIndex = 11;
-            this.btnlistar.Text = "Listar";
-            this.btnlistar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnlistar.UseVisualStyleBackColor = false;
-            this.btnlistar.Click += new System.EventHandler(this.btnlistar_Click);
+            btnlistar.BackColor = System.Drawing.Color.WhiteSmoke;
+            btnlistar.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnlistar.FlatAppearance.BorderColor = System.Drawing.Color.Teal;
+            btnlistar.FlatAppearance.BorderSize = 2;
+            btnlistar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnlistar.ForeColor = System.Drawing.Color.Black;
+            btnlistar.IconChar = FontAwesome.Sharp.IconChar.ListOl;
+            btnlistar.IconColor = System.Drawing.Color.Black;
+            btnlistar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnlistar.IconSize = 80;
+            btnlistar.Location = new System.Drawing.Point(153, 55);
+            btnlistar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnlistar.Name = "btnlistar";
+            btnlistar.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            btnlistar.Size = new System.Drawing.Size(102, 106);
+            btnlistar.TabIndex = 11;
+            btnlistar.Text = "Listar";
+            btnlistar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            btnlistar.UseVisualStyleBackColor = false;
+            btnlistar.Click += btnlistar_Click;
             // 
             // btncerrar
             // 
-            this.btncerrar.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btncerrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btncerrar.FlatAppearance.BorderColor = System.Drawing.Color.Teal;
-            this.btncerrar.FlatAppearance.BorderSize = 2;
-            this.btncerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btncerrar.ForeColor = System.Drawing.Color.Black;
-            this.btncerrar.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
-            this.btncerrar.IconColor = System.Drawing.Color.Black;
-            this.btncerrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btncerrar.IconSize = 80;
-            this.btncerrar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btncerrar.Location = new System.Drawing.Point(349, 48);
-            this.btncerrar.Name = "btncerrar";
-            this.btncerrar.Size = new System.Drawing.Size(87, 92);
-            this.btncerrar.TabIndex = 10;
-            this.btncerrar.Text = "Cerrar";
-            this.btncerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btncerrar.UseVisualStyleBackColor = false;
-            this.btncerrar.Click += new System.EventHandler(this.btnvolver_Click);
+            btncerrar.BackColor = System.Drawing.Color.WhiteSmoke;
+            btncerrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            btncerrar.FlatAppearance.BorderColor = System.Drawing.Color.Teal;
+            btncerrar.FlatAppearance.BorderSize = 2;
+            btncerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btncerrar.ForeColor = System.Drawing.Color.Black;
+            btncerrar.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
+            btncerrar.IconColor = System.Drawing.Color.Black;
+            btncerrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btncerrar.IconSize = 80;
+            btncerrar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            btncerrar.Location = new System.Drawing.Point(407, 55);
+            btncerrar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btncerrar.Name = "btncerrar";
+            btncerrar.Size = new System.Drawing.Size(102, 106);
+            btncerrar.TabIndex = 10;
+            btncerrar.Text = "Cerrar";
+            btncerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            btncerrar.UseVisualStyleBackColor = false;
+            btncerrar.Click += btnvolver_Click;
             // 
             // btnagregar
             // 
-            this.btnagregar.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnagregar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnagregar.FlatAppearance.BorderColor = System.Drawing.Color.Teal;
-            this.btnagregar.FlatAppearance.BorderSize = 2;
-            this.btnagregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnagregar.ForeColor = System.Drawing.Color.Black;
-            this.btnagregar.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
-            this.btnagregar.IconColor = System.Drawing.Color.Black;
-            this.btnagregar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnagregar.IconSize = 80;
-            this.btnagregar.Location = new System.Drawing.Point(23, 48);
-            this.btnagregar.Name = "btnagregar";
-            this.btnagregar.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.btnagregar.Size = new System.Drawing.Size(87, 92);
-            this.btnagregar.TabIndex = 9;
-            this.btnagregar.Text = "Nuevo";
-            this.btnagregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnagregar.UseVisualStyleBackColor = false;
-            this.btnagregar.Click += new System.EventHandler(this.btnagregar_Click);
+            btnagregar.BackColor = System.Drawing.Color.WhiteSmoke;
+            btnagregar.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnagregar.FlatAppearance.BorderColor = System.Drawing.Color.Teal;
+            btnagregar.FlatAppearance.BorderSize = 2;
+            btnagregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnagregar.ForeColor = System.Drawing.Color.Black;
+            btnagregar.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
+            btnagregar.IconColor = System.Drawing.Color.Black;
+            btnagregar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnagregar.IconSize = 80;
+            btnagregar.Location = new System.Drawing.Point(27, 55);
+            btnagregar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnagregar.Name = "btnagregar";
+            btnagregar.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            btnagregar.Size = new System.Drawing.Size(102, 106);
+            btnagregar.TabIndex = 9;
+            btnagregar.Text = "Nuevo";
+            btnagregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            btnagregar.UseVisualStyleBackColor = false;
+            btnagregar.Click += btnagregar_Click;
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(4, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(448, 154);
-            this.label1.TabIndex = 12;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            label1.BackColor = System.Drawing.Color.White;
+            label1.Location = new System.Drawing.Point(5, 5);
+            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(523, 178);
+            label1.TabIndex = 12;
+            label1.Click += label1_Click;
             // 
             // btnbuscar
             // 
-            this.btnbuscar.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnbuscar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnbuscar.FlatAppearance.BorderColor = System.Drawing.Color.Teal;
-            this.btnbuscar.FlatAppearance.BorderSize = 2;
-            this.btnbuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnbuscar.ForeColor = System.Drawing.Color.Black;
-            this.btnbuscar.IconChar = FontAwesome.Sharp.IconChar.Search;
-            this.btnbuscar.IconColor = System.Drawing.Color.Black;
-            this.btnbuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnbuscar.IconSize = 80;
-            this.btnbuscar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnbuscar.Location = new System.Drawing.Point(240, 48);
-            this.btnbuscar.Name = "btnbuscar";
-            this.btnbuscar.Size = new System.Drawing.Size(87, 92);
-            this.btnbuscar.TabIndex = 13;
-            this.btnbuscar.Text = "Buscar";
-            this.btnbuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnbuscar.UseVisualStyleBackColor = false;
-            this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click);
+            btnbuscar.BackColor = System.Drawing.Color.WhiteSmoke;
+            btnbuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnbuscar.FlatAppearance.BorderColor = System.Drawing.Color.Teal;
+            btnbuscar.FlatAppearance.BorderSize = 2;
+            btnbuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnbuscar.ForeColor = System.Drawing.Color.Black;
+            btnbuscar.IconChar = FontAwesome.Sharp.IconChar.Search;
+            btnbuscar.IconColor = System.Drawing.Color.Black;
+            btnbuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnbuscar.IconSize = 80;
+            btnbuscar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            btnbuscar.Location = new System.Drawing.Point(280, 55);
+            btnbuscar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnbuscar.Name = "btnbuscar";
+            btnbuscar.Size = new System.Drawing.Size(102, 106);
+            btnbuscar.TabIndex = 13;
+            btnbuscar.Text = "Buscar";
+            btnbuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            btnbuscar.UseVisualStyleBackColor = false;
+            btnbuscar.Click += btnbuscar_Click;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.White;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Teal;
-            this.label7.Location = new System.Drawing.Point(18, 18);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 15);
-            this.label7.TabIndex = 114;
-            this.label7.Text = "SALIDAS";
+            label7.AutoSize = true;
+            label7.BackColor = System.Drawing.Color.White;
+            label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
+            label7.ForeColor = System.Drawing.Color.Teal;
+            label7.Location = new System.Drawing.Point(21, 21);
+            label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(63, 15);
+            label7.TabIndex = 114;
+            label7.Text = "SALIDAS";
             // 
             // ISalidas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Red;
-            this.ClientSize = new System.Drawing.Size(456, 163);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.btnbuscar);
-            this.Controls.Add(this.btnlistar);
-            this.Controls.Add(this.btncerrar);
-            this.Controls.Add(this.btnagregar);
-            this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ISalidas";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "ISalidas";
-            this.Load += new System.EventHandler(this.ISalidas_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.Red;
+            ClientSize = new System.Drawing.Size(532, 188);
+            Controls.Add(label7);
+            Controls.Add(btnbuscar);
+            Controls.Add(btnlistar);
+            Controls.Add(btncerrar);
+            Controls.Add(btnagregar);
+            Controls.Add(label1);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            Name = "ISalidas";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            Text = "ISalidas";
+            Load += ISalidas_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

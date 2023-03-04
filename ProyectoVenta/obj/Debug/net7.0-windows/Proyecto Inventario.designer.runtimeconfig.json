@@ -13,7 +13,8 @@
     ],
     "additionalProbingPaths": [
       "C:\\Users\\edyne\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\edyne\\.nuget\\packages"
+      "C:\\Users\\edyne\\.nuget\\packages",
+      "C:\\Users\\edyne\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder"
     ],
     "configProperties": {
       "System.Reflection.NullabilityInfoContext.IsSupported": true,

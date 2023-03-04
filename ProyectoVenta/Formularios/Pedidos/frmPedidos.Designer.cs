@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPedidos));
             this.label4 = new System.Windows.Forms.Label();
@@ -45,9 +44,6 @@
             this.CodigoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Almacen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Entradas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Salidas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StockActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -72,11 +68,11 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(24, 93);
+            this.groupBox2.Location = new System.Drawing.Point(20, 93);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox2.Size = new System.Drawing.Size(1330, 12);
+            this.groupBox2.Size = new System.Drawing.Size(829, 18);
             this.groupBox2.TabIndex = 153;
             this.groupBox2.TabStop = false;
             // 
@@ -110,7 +106,7 @@
             this.btnlimpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnlimpiar.IconSize = 17;
             this.btnlimpiar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnlimpiar.Location = new System.Drawing.Point(1312, 118);
+            this.btnlimpiar.Location = new System.Drawing.Point(806, 117);
             this.btnlimpiar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnlimpiar.Name = "btnlimpiar";
             this.btnlimpiar.Size = new System.Drawing.Size(43, 24);
@@ -129,7 +125,7 @@
             this.btnbusqueda.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnbusqueda.IconSize = 17;
             this.btnbusqueda.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnbusqueda.Location = new System.Drawing.Point(1262, 118);
+            this.btnbusqueda.Location = new System.Drawing.Point(756, 117);
             this.btnbusqueda.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnbusqueda.Name = "btnbusqueda";
             this.btnbusqueda.Size = new System.Drawing.Size(43, 24);
@@ -145,32 +141,35 @@
             this.cbobuscar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbobuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.45F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbobuscar.FormattingEnabled = true;
-            this.cbobuscar.Location = new System.Drawing.Point(922, 118);
+            this.cbobuscar.Location = new System.Drawing.Point(416, 117);
             this.cbobuscar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbobuscar.Name = "cbobuscar";
             this.cbobuscar.Size = new System.Drawing.Size(168, 21);
             this.cbobuscar.TabIndex = 148;
+            this.cbobuscar.SelectedIndexChanged += new System.EventHandler(this.cbobuscar_SelectedIndexChanged);
             // 
             // txtbuscar
             // 
             this.txtbuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtbuscar.Location = new System.Drawing.Point(1098, 118);
+            this.txtbuscar.Location = new System.Drawing.Point(592, 117);
             this.txtbuscar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtbuscar.Name = "txtbuscar";
             this.txtbuscar.Size = new System.Drawing.Size(157, 21);
             this.txtbuscar.TabIndex = 149;
+            this.txtbuscar.TextChanged += new System.EventHandler(this.txtbuscar_TextChanged);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.White;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label12.Location = new System.Drawing.Point(834, 121);
+            this.label12.Location = new System.Drawing.Point(328, 120);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(69, 15);
             this.label12.TabIndex = 147;
             this.label12.Text = "Buscar por:";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // btnsalir
             // 
@@ -183,7 +182,7 @@
             this.btnsalir.IconColor = System.Drawing.Color.White;
             this.btnsalir.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnsalir.IconSize = 24;
-            this.btnsalir.Location = new System.Drawing.Point(1294, 9);
+            this.btnsalir.Location = new System.Drawing.Point(769, 9);
             this.btnsalir.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnsalir.Name = "btnsalir";
             this.btnsalir.Size = new System.Drawing.Size(80, 36);
@@ -211,23 +210,20 @@
             this.CodigoProducto,
             this.Descripcion,
             this.Categoria,
-            this.Almacen,
-            this.Entradas,
-            this.Salidas,
             this.StockActual});
             this.dgvdata.Location = new System.Drawing.Point(24, 158);
             this.dgvdata.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvdata.MultiSelect = false;
             this.dgvdata.Name = "dgvdata";
             this.dgvdata.ReadOnly = true;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvdata.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.White;
             this.dgvdata.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvdata.RowTemplate.Height = 24;
             this.dgvdata.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvdata.Size = new System.Drawing.Size(1331, 475);
+            this.dgvdata.Size = new System.Drawing.Size(532, 475);
             this.dgvdata.TabIndex = 143;
             // 
             // CodigoProducto
@@ -254,32 +250,6 @@
             this.Categoria.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Categoria.Width = 110;
             // 
-            // Almacen
-            // 
-            this.Almacen.HeaderText = "Almacen";
-            this.Almacen.Name = "Almacen";
-            this.Almacen.ReadOnly = true;
-            this.Almacen.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Almacen.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Almacen.Width = 150;
-            // 
-            // Entradas
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Entradas.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Entradas.HeaderText = "Entradas";
-            this.Entradas.Name = "Entradas";
-            this.Entradas.ReadOnly = true;
-            this.Entradas.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Entradas.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Entradas.Width = 130;
-            // 
-            // Salidas
-            // 
-            this.Salidas.HeaderText = "Salidas";
-            this.Salidas.Name = "Salidas";
-            this.Salidas.ReadOnly = true;
-            // 
             // StockActual
             // 
             this.StockActual.HeaderText = "Stock Actual";
@@ -296,10 +266,11 @@
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
-            this.label2.Size = new System.Drawing.Size(1374, 47);
+            this.label2.Size = new System.Drawing.Size(852, 47);
             this.label2.TabIndex = 145;
             this.label2.Text = "Pedidos";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -309,8 +280,9 @@
             this.label1.Location = new System.Drawing.Point(5, 51);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1374, 601);
+            this.label1.Size = new System.Drawing.Size(852, 601);
             this.label1.TabIndex = 144;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtfechainicio
             // 
@@ -368,7 +340,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1385, 658);
+            this.ClientSize = new System.Drawing.Size(860, 658);
             this.ControlBox = false;
             this.Controls.Add(this.btnbuscar);
             this.Controls.Add(this.txtfechafin);
@@ -389,8 +361,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.MaximumSize = new System.Drawing.Size(1401, 697);
-            this.MinimumSize = new System.Drawing.Size(1401, 697);
             this.Name = "frmPedidos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ".: Pedidos :.";
@@ -416,10 +386,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Almacen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Entradas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Salidas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Categoria; 
         private System.Windows.Forms.DataGridViewTextBoxColumn StockActual;
         private System.Windows.Forms.DateTimePicker txtfechainicio;
         private System.Windows.Forms.Label label3;

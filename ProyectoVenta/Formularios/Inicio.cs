@@ -29,11 +29,26 @@ namespace ProyectoVenta.Formularios
         {
 
             InitializeComponent();
- 
+
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                Text = ".:Start:.";
+                label1.Text = "Inventur".ToUpper();
+                btnSalidas.Text = "Warenausgang";
+                btnentradas.Text = "Wareneingang";
+                btnproductos.Text = "Produkten";
+                btnClientes.Text = "Techniker(in)";
+                btnProveedores.Text = "Lieferant(en)";
+                btnInventario.Text = "Bestandsaufnahme";
+                btnConfiguracion.Text = "Konfiguration";
+                btnInfo.Text = "Info";
+                btnsalir.Text = "Beenden";
+            }
+
         }
 
         private bool checkExistData()
-        { 
+        {
             DateTime dt1 = Convert.ToDateTime("01/01/2000");
             DateTime dt2 = Convert.ToDateTime("01/01/2025");
 
@@ -43,11 +58,11 @@ namespace ProyectoVenta.Formularios
             {
                 if (int.Parse(vr.Stock) <= 5)
                 {
-                    return true;                     
-                } 
+                    return true;
+                }
             }
 
-             return false; 
+            return false;
         }
 
 
@@ -61,10 +76,11 @@ namespace ProyectoVenta.Formularios
             if (oPermisos.IdPermisos == 3 && checkExistData())
             {
                 mdAcercade form = new mdAcercade();
-                form.ShowDialog(); 
+                form.ShowDialog();
             }
 
-            if (oPermisos.Salidas == 0) {
+            if (oPermisos.Salidas == 0)
+            {
                 btnsalir.Enabled = false;
                 btnsalir.Cursor = Cursors.No;
             }
@@ -108,8 +124,9 @@ namespace ProyectoVenta.Formularios
         private void btnproductos_Click(object sender, EventArgs e)
         {
 
-            using (var Iform = new IProductos()) {
-                
+            using (var Iform = new IProductos())
+            {
+
                 Iform.BackColor = Color.Teal;
                 var result = Iform.ShowDialog();
                 if (result == DialogResult.OK)
@@ -202,7 +219,7 @@ namespace ProyectoVenta.Formularios
             }
         }
 
-      
+
 
         private void btnsalir_Click(object sender, EventArgs e)
         {
@@ -213,7 +230,7 @@ namespace ProyectoVenta.Formularios
         }
 
         private void btnInfo_Click(object sender, EventArgs e)
-        { 
+        {
             mdAcercade form = new mdAcercade();
             form.ShowDialog();
         }

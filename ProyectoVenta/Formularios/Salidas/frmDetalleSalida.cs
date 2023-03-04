@@ -21,6 +21,27 @@ namespace ProyectoVenta.Formularios.Salidas
         public frmDetalleSalida()
         {
             InitializeComponent();
+
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                Text = ".:Suchen:.";
+                label2.Text = "Neue Suchen";
+                label26.Text = "Antragsnummer";
+                label4.Text = "Datum";
+                label3.Text = "Benutzer";
+                btnsalir.Text = "Beendet";
+                btnborrar.Text = "Reinigen";
+                label5.Text = "Technischer Code";
+                label10.Text = "Name des Technikers";
+                label7.Text = "Produktliste";
+                Codigo.HeaderText = "Code";
+                Descripcion.HeaderText = "Beschreibung";
+                Categoria.HeaderText = "Lange";
+                Almacen.HeaderText = "Lager";
+                Cantidad.HeaderText = "Menge";
+                btndescargarpdf.Text = "herunterladen PDF";
+                lbltextototal.Text = "Gesamt:";
+            }
         }
 
         private void btnsalir_Click(object sender, EventArgs e)
