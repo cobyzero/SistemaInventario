@@ -155,7 +155,6 @@ namespace ProyectoVenta.Logica
         }
 
         public List<VistaSalida> Resumen(string fechainicio = "", string fechafin = "")
-
         {
 
 
@@ -169,7 +168,7 @@ namespace ProyectoVenta.Logica
 
                     query.AppendLine("select e.NumeroDocumento,strftime('%d/%m/%Y', date(e.FechaRegistro))[FechaRegistro],e.UsuarioRegistro,");
                     query.AppendLine("e.DocumentoCliente,e.NombreCliente,");
-                    query.AppendLine("de.CodigoProducto,de.DescripcionProducto,de.CategoriaProducto,de.AlmacenProducto,");
+                    query.AppendLine("de.CodigoProducto,de.DescripcionProducto,de.LongitudProducto,de.AlmacenProducto,");
                     query.AppendLine("de.Cantidad");
                     query.AppendLine("from SALIDA e");
                     query.AppendLine("inner join DETALLE_SALIDA de on e.IdSalida = de.IdSalida");
@@ -193,7 +192,7 @@ namespace ProyectoVenta.Logica
                                 NombreCliente = dr["NombreCliente"].ToString(),
                                 CodigoProducto = dr["CodigoProducto"].ToString(),
                                 DescripcionProducto = dr["DescripcionProducto"].ToString(),
-                                CategoriaProducto = dr["CategoriaProducto"].ToString(),
+                                CategoriaProducto = dr["LongitudProducto"].ToString(),
                                 AlmacenProducto = dr["AlmacenProducto"].ToString(),
                                 Cantidad = dr["Cantidad"].ToString(),
                             });
@@ -205,102 +204,7 @@ namespace ProyectoVenta.Logica
             {
                 oLista = new List<VistaSalida>();
             }
-
-
-
-
-
-
-
-            //List<VistaSalida> oLista = new List<VistaSalida>();
-            //try
-            //{
-            //    using (var db = new BdinventarioContext())
-            //    { 
-            //        var tempdata = db.Salida.Where(t => new DateTime(t.Fech) > fechainicio && Convert.ToDateTime(t.FechaRegistro) < fechafin);
-
-            //        var data = tempdata.ToList();
-
-            //        foreach (var item in data)
-            //        {
-            //            var idSalida =  db.DetalleSalida.First(t => t.IdSalida == item.IdSalida);
-
-            //            oLista.Add(new VistaSalida()
-            //            {
-            //                NumeroDocumento = item.NumeroDocumento,
-            //                FechaRegistro = item.FechaRegistro,
-            //                UsuarioRegistro = item.UsuarioRegistro,
-            //                DocumentoCliente = item.DocumentoCliente,
-            //                NombreCliente = item.NombreCliente,
-            //                CodigoProducto = idSalida.CodigoProducto,
-            //                DescripcionProducto = idSalida.DescripcionProducto,
-            //                CategoriaProducto = idSalida.CategoriaProducto,
-            //                AlmacenProducto = idSalida.AlmacenProducto,
-            //                Cantidad = idSalida.Cantidad.ToString(),
-            //            });
-            //        }
-
-            //    }
-
-            //}
-            //catch (Exception e)
-            //{
-            //    throw e;
-            //    oLista = new List<VistaSalida>();
-            //}
-
-
-
-
-            //try
-            //{
-            //    using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
-            //    {
-            //        conexion.Open();
-            //        StringBuilder query = new StringBuilder();
-
-            //        query.AppendLine("select e.NumeroDocumento,strftime('%d/%m/%Y', date(e.FechaRegistro))[FechaRegistro],e.UsuarioRegistro,");
-            //        query.AppendLine("e.DocumentoCliente,e.NombreCliente,");
-            //        query.AppendLine("de.CodigoProducto,de.DescripcionProducto,de.CategoriaProducto,de.AlmacenProducto,");
-            //        query.AppendLine("de.Cantidad");
-            //        query.AppendLine("from SALIDA e");
-            //        query.AppendLine("inner join DETALLE_SALIDA de on e.IdSalida = de.IdSalida");
-            //        query.AppendLine("where DATE(e.FechaRegistro) BETWEEN DATE(@pfechainicio) AND DATE(@pfechafin)");
-
-            //        SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-            //        cmd.Parameters.Add(new SQLiteParameter("@pfechainicio", fechainicio));
-            //        cmd.Parameters.Add(new SQLiteParameter("@pfechafin", fechafin));
-            //        cmd.CommandType = System.Data.CommandType.Text;
-
-            //        using (SQLiteDataReader dr = cmd.ExecuteReader())
-            //        {
-            //            while (dr.Read())
-            //            {
-            //                oLista.Add(new VistaSalida()
-            //                {
-            //                    NumeroDocumento = dr["NumeroDocumento"].ToString(),
-            //                    FechaRegistro = dr["FechaRegistro"].ToString(),
-            //                    UsuarioRegistro = dr["UsuarioRegistro"].ToString(),
-            //                    DocumentoCliente = dr["DocumentoCliente"].ToString(),
-            //                    NombreCliente = dr["NombreCliente"].ToString(), 
-            //                    CodigoProducto = dr["CodigoProducto"].ToString(),
-            //                    DescripcionProducto = dr["DescripcionProducto"].ToString(),
-            //                    CategoriaProducto = dr["CategoriaProducto"].ToString(),
-            //                    AlmacenProducto = dr["AlmacenProducto"].ToString(), 
-            //                    Cantidad = dr["Cantidad"].ToString(), 
-            //                });
-            //            }
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    oLista = new List<VistaSalida>();
-            //}
-
-
-
-            return oLista;
+             return oLista;
         }
 
 
@@ -358,7 +262,7 @@ namespace ProyectoVenta.Logica
                 {
                     conexion.Open();
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("select CodigoProducto, DescripcionProducto, CategoriaProducto,");
+                    query.AppendLine("select CodigoProducto, DescripcionProducto, LongitudProducto,");
                     query.AppendLine("AlmacenProducto, Cantidad");
                     query.AppendLine("from DETALLE_SALIDA where IdSalida = @pidsalida");
 
@@ -374,7 +278,7 @@ namespace ProyectoVenta.Logica
                             {
                                 CodigoProducto = dr["CodigoProducto"].ToString(),
                                 DescripcionProducto = dr["DescripcionProducto"].ToString(),
-                                CategoriaProducto = dr["CategoriaProducto"].ToString(),
+                                CategoriaProducto = dr["LongitudProducto"].ToString(),
                                 AlmacenProducto = dr["AlmacenProducto"].ToString(), 
                                 Cantidad = Convert.ToInt32(dr["Cantidad"].ToString()), 
                             });

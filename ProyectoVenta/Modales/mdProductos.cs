@@ -91,7 +91,7 @@ namespace ProyectoVenta.Modales
                     _id = Convert.ToInt32(dgvdata.Rows[index].Cells["Id"].Value.ToString());
                     _codigo = dgvdata.Rows[index].Cells["Codigo"].Value.ToString();
                     _descripcion = dgvdata.Rows[index].Cells["Descripcion"].Value.ToString();
-                    _categoria = dgvdata.Rows[index].Cells["Categoria"].Value.ToString();
+                    _categoria = dgvdata.Rows[index].Cells["Longitud"].Value.ToString();
                     _almacen = dgvdata.Rows[index].Cells["Almacen"].Value.ToString();
                     _stock = Convert.ToInt32(dgvdata.Rows[index].Cells["Stock"].Value.ToString());
                     

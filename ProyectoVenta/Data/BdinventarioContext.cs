@@ -25,6 +25,8 @@ public partial class BdinventarioContext : DbContext
 
     public virtual DbSet<Entradum> Entrada { get; set; }
 
+    public virtual DbSet<Pedido> Pedidos { get; set; }
+
     public virtual DbSet<Permiso> Permisos { get; set; }
 
     public virtual DbSet<Producto> Productos { get; set; }
@@ -39,7 +41,7 @@ public partial class BdinventarioContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlite("DataSource=C:\\Users\\edyne\\Desktop\\SistemaInventario\\ProyectoVenta\\bin\\Debug\\net7.0-windows\\BDINVENTARIO.db");
+        => optionsBuilder.UseSqlite("DataSource=C:\\\\Users\\\\edyne\\\\Desktop\\\\SistemaInventario\\\\ProyectoVenta\\\\bin\\\\Debug\\\\net7.0-windows\\\\BDINVENTARIO.db");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -75,9 +77,9 @@ public partial class BdinventarioContext : DbContext
             entity.HasIndex(e => e.IdDetalleEntrada, "IX_DETALLE_ENTRADA_IdDetalleEntrada").IsUnique();
 
             entity.Property(e => e.AlmacenProducto).IsRequired();
-            entity.Property(e => e.CategoriaProducto).IsRequired();
             entity.Property(e => e.CodigoProducto).IsRequired();
             entity.Property(e => e.DescripcionProducto).IsRequired();
+            entity.Property(e => e.LongitudProducto).IsRequired();
 
             entity.HasOne(d => d.IdEntradaNavigation).WithMany(p => p.DetalleEntrada)
                 .HasForeignKey(d => d.IdEntrada)
@@ -93,9 +95,9 @@ public partial class BdinventarioContext : DbContext
             entity.HasIndex(e => e.IdDetalleSalida, "IX_DETALLE_SALIDA_IdDetalleSalida").IsUnique();
 
             entity.Property(e => e.AlmacenProducto).IsRequired();
-            entity.Property(e => e.CategoriaProducto).IsRequired();
             entity.Property(e => e.CodigoProducto).IsRequired();
             entity.Property(e => e.DescripcionProducto).IsRequired();
+            entity.Property(e => e.LongitudProducto).IsRequired();
 
             entity.HasOne(d => d.IdSalidaNavigation).WithMany(p => p.DetalleSalida)
                 .HasForeignKey(d => d.IdSalida)
@@ -118,6 +120,17 @@ public partial class BdinventarioContext : DbContext
             entity.Property(e => e.UsuarioRegistro).IsRequired();
         });
 
+        modelBuilder.Entity<Pedido>(entity =>
+        {
+            entity.HasKey(e => e.IdPedido);
+
+            entity.ToTable("PEDIDOS");
+
+            entity.HasIndex(e => e.IdPedido, "IX_PEDIDOS_IdPedido").IsUnique();
+
+            entity.Property(e => e.IdPedido).ValueGeneratedNever();
+        });
+
         modelBuilder.Entity<Permiso>(entity =>
         {
             entity.HasKey(e => e.IdPermisos);
@@ -137,9 +150,9 @@ public partial class BdinventarioContext : DbContext
             entity.HasIndex(e => e.IdProducto, "IX_PRODUCTO_IdProducto").IsUnique();
 
             entity.Property(e => e.Almacen).HasDefaultValueSql("''");
-            entity.Property(e => e.Categoria).HasDefaultValueSql("''");
             entity.Property(e => e.Codigo).IsRequired();
             entity.Property(e => e.Descripcion).IsRequired();
+            entity.Property(e => e.Longitud).IsRequired();
             entity.Property(e => e.PrecioCompra)
                 .IsRequired()
                 .HasDefaultValueSql("''");

@@ -38,16 +38,16 @@ namespace ProyectoVenta.Logica
                 {
                     conexion.Open();
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("select prod.Codigo,prod.Descripcion,prod.Categoria,prod.Almacen,");
+                    query.AppendLine("select prod.Codigo,prod.Descripcion,prod.Longitud,prod.Almacen,");
                     query.AppendLine("ifnull(ent.Entradas,0)[Entradas],ifnull(sal.Salidas,0)[Salidas],");
                     query.AppendLine("prod.Stock"); 
                     query.AppendLine("from (");
                     query.AppendLine("select DISTINCT * from (");
-                    query.AppendLine("select p.IdProducto,p.Codigo,p.Descripcion,p.Categoria,p.Almacen,p.Stock from DETALLE_ENTRADA de");
+                    query.AppendLine("select p.IdProducto,p.Codigo,p.Descripcion,p.Longitud,p.Almacen,p.Stock from DETALLE_ENTRADA de");
                     query.AppendLine("inner join ENTRADA e on e.IdEntrada = de.IdEntrada");
                     query.AppendLine("inner join PRODUCTO p on p.IdProducto = de.IdProducto where DATE(e.FechaRegistro) BETWEEN DATE(@pfechainicio1) AND DATE(@pfechafin1)");
                     query.AppendLine("UNION ALL");
-                    query.AppendLine("select p.IdProducto,p.Codigo,p.Descripcion,p.Categoria,p.Almacen,p.Stock from DETALLE_SALIDA ds");
+                    query.AppendLine("select p.IdProducto,p.Codigo,p.Descripcion,p.Longitud,p.Almacen,p.Stock from DETALLE_SALIDA ds");
                     query.AppendLine("inner join SALIDA s on s.IdSalida = ds.IdSalida");
                     query.AppendLine("inner join PRODUCTO p on p.IdProducto = ds.IdProducto where DATE(s.FechaRegistro) BETWEEN DATE(@pfechainicio2) AND DATE(@pfechafin2)");
                     query.AppendLine(") temp");
@@ -56,7 +56,7 @@ namespace ProyectoVenta.Logica
                     query.AppendLine("select p.IdProducto,sum(de.Cantidad)[Entradas] from PRODUCTO p");
                     query.AppendLine("inner join DETALLE_ENTRADA de on de.IdProducto = p.IdProducto");
                     query.AppendLine("inner join ENTRADA e on e.IdEntrada = de.IdEntrada where DATE(e.FechaRegistro) BETWEEN DATE(@pfechainicio3) AND DATE(@pfechafin3)");
-                    query.AppendLine("group by p.IdProducto,p.Codigo,p.Descripcion,p.Categoria,p.Almacen");
+                    query.AppendLine("group by p.IdProducto,p.Codigo,p.Descripcion,p.Longitud,p.Almacen");
                     query.AppendLine(") ent on ent.IdProducto = prod.IdProducto");
                     query.AppendLine("left join (");
                     query.AppendLine("select p.IdProducto,sum(ds.Cantidad)[Salidas] from PRODUCTO p");
@@ -85,7 +85,7 @@ namespace ProyectoVenta.Logica
                             {
                                 Codigo = dr["Codigo"].ToString(),
                                 Descripcion = dr["Descripcion"].ToString(),
-                                Categoria = dr["Categoria"].ToString(),
+                                Categoria = dr["Longitud"].ToString(),
                                 Almacen = dr["Almacen"].ToString(),
                                 Entradas = dr["Entradas"].ToString(),
                                 Salidas = dr["Salidas"].ToString(),

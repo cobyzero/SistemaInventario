@@ -19,6 +19,7 @@
           "System.ComponentModel.Annotations": "5.0.0",
           "System.Data.DataSetExtensions": "4.5.0",
           "System.Data.SQLite": "1.0.115",
+          "System.Text.Encoding.CodePages": "7.0.0",
           "itextsharp.xmlworker": "5.5.13.2"
         },
         "runtime": {

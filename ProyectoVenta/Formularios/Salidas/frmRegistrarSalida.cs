@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace ProyectoVenta.Formularios.Salidas
 {
-    public partial class frmRegistrarSalida : Form
+    public partial class frmRegistrarSalidas : Form
     {
         private static int _idproducto = 0;
         private static string _categoria = "";
@@ -24,8 +24,8 @@ namespace ProyectoVenta.Formularios.Salidas
 
         private static string _NombreUsuario = "";
 
-        public frmRegistrarSalida(string _usuario = "")
-        { 
+        public frmRegistrarSalidas(string _usuario = "")
+        {
             _NombreUsuario = _usuario;
             InitializeComponent();
 
@@ -34,7 +34,7 @@ namespace ProyectoVenta.Formularios.Salidas
                 Text = ".:Neuer Ausgang:.";
                 label2.Text = "Neuer Ausgang";
                 btnsalir.Text = "Beendet";
-                label26.Text = "Technischer Code";
+                label26.Text = "Antragsnummer";
                 label27.Text = "Datum der Ausstellung";
                 label3.Text = "Produktcode";
                 label4.Text = "beschreibung";
@@ -44,8 +44,9 @@ namespace ProyectoVenta.Formularios.Salidas
                 Codigo.HeaderText = "Code";
                 Descripcion.HeaderText = "Beschreibung";
                 Cantidad.HeaderText = "Menge";
-
-            } 
+                label5.Text = "Technischer Code";
+                label10.Text = "Name des Technikers";
+            }
         }
 
         private void btnsalir_Click(object sender, EventArgs e)
@@ -309,7 +310,7 @@ namespace ProyectoVenta.Formularios.Salidas
                     IdProducto = Convert.ToInt32(row.Cells["Id"].Value.ToString()),
                     CodigoProducto = row.Cells["Codigo"].Value.ToString(),
                     DescripcionProducto = row.Cells["Descripcion"].Value.ToString(),
-                    CategoriaProducto = row.Cells["Categoria"].Value.ToString(),
+                    LongitudProducto = row.Cells["Longitud"].Value.ToString(),
                     AlmacenProducto = row.Cells["Almacen"].Value.ToString(),
                     Cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()),
                 });

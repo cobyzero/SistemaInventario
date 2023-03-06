@@ -237,7 +237,7 @@ namespace ProyectoVenta.Formularios
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            frmPedidos pedidos = new frmPedidos();
+            frmRegistrarPedidos pedidos = new frmRegistrarPedidos();
             pedidos.ShowDialog();
         }
     }

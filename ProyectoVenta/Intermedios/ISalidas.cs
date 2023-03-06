@@ -41,7 +41,7 @@ namespace ProyectoVenta.Intermedios
 
         private void btnagregar_Click(object sender, EventArgs e)
         {
-            FormularioVista = new frmRegistrarSalida(_NombreUsuario);
+            FormularioVista = new frmRegistrarSalidas(_NombreUsuario);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

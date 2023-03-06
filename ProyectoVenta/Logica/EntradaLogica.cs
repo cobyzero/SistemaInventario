@@ -89,7 +89,7 @@ namespace ProyectoVenta.Logica
 
                     foreach (DetalleEntrada de in obj.olistaDetalle)
                     {
-                        query.AppendLine(string.Format("insert into DETALLE_ENTRADA(IdEntrada,IdProducto,CodigoProducto,DescripcionProducto,CategoriaProducto,AlmacenProducto,Cantidad) values({0},{1},'{2}','{3}','{4}','{5}','{6}');",
+                        query.AppendLine(string.Format("insert into DETALLE_ENTRADA(IdEntrada,IdProducto,CodigoProducto,DescripcionProducto,LongitudProducto,AlmacenProducto,Cantidad) values({0},{1},'{2}','{3}','{4}','{5}','{6}');",
                             "(select id from _TEMP)",
                             de.IdProducto,
                             de.CodigoProducto,
@@ -143,7 +143,7 @@ namespace ProyectoVenta.Logica
 
                     query.AppendLine("select e.NumeroDocumento,strftime('%d/%m/%Y', date(e.FechaRegistro))[FechaRegistro],e.UsuarioRegistro,");
                     query.AppendLine("e.DocumentoProveedor,e.NombreProveedor,");
-                    query.AppendLine("de.CodigoProducto,de.DescripcionProducto,de.CategoriaProducto,de.AlmacenProducto,");
+                    query.AppendLine("de.CodigoProducto,de.DescripcionProducto,de.LongitudProducto,de.AlmacenProducto,");
                     query.AppendLine("de.Cantidad");
                     query.AppendLine("from ENTRADA e");
                     query.AppendLine("inner join DETALLE_ENTRADA de on e.IdEntrada = de.IdEntrada");
@@ -168,7 +168,7 @@ namespace ProyectoVenta.Logica
                                 
                                 CodigoProducto = dr["CodigoProducto"].ToString(),
                                 DescripcionProducto = dr["DescripcionProducto"].ToString(),
-                                CategoriaProducto = dr["CategoriaProducto"].ToString(),
+                                CategoriaProducto = dr["LongitudProducto"].ToString(),
                                 AlmacenProducto = dr["AlmacenProducto"].ToString(), 
                                 Cantidad = dr["Cantidad"].ToString(), 
                             });
@@ -239,7 +239,7 @@ namespace ProyectoVenta.Logica
                 {
                     conexion.Open();
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("select CodigoProducto, DescripcionProducto, CategoriaProducto,");
+                    query.AppendLine("select CodigoProducto, DescripcionProducto, LongitudProducto,");
                     query.AppendLine("AlmacenProducto, Cantidad");
                     query.AppendLine("from DETALLE_ENTRADA where IdEntrada = @pidentrada");
 
@@ -255,7 +255,7 @@ namespace ProyectoVenta.Logica
                             {
                                 CodigoProducto = dr["CodigoProducto"].ToString(),
                                 DescripcionProducto = dr["DescripcionProducto"].ToString(),
-                                CategoriaProducto = dr["CategoriaProducto"].ToString(),
+                                CategoriaProducto = dr["LongitudProducto"].ToString(),
                                 AlmacenProducto = dr["AlmacenProducto"].ToString(), 
                                 Cantidad = Convert.ToInt32(dr["Cantidad"].ToString()), 
                             });

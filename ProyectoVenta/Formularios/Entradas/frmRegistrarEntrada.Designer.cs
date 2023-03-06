@@ -161,8 +161,8 @@
             // 
             // Categoria
             // 
-            this.Categoria.HeaderText = "Categoria";
-            this.Categoria.Name = "Categoria";
+            this.Categoria.HeaderText = "Longitud";
+            this.Categoria.Name = "Longitud";
             this.Categoria.ReadOnly = true;
             this.Categoria.Visible = false;
             // 

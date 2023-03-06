@@ -1,6 +1,6 @@
 ﻿namespace ProyectoVenta.Formularios.Salidas
 {
-    partial class frmRegistrarSalida
+    partial class frmRegistrarSalidas
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRegistrarSalida));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRegistrarSalidas));
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             btnbuscarclientes = new FontAwesome.Sharp.IconButton();
@@ -134,7 +134,7 @@
             // 
             // txtfecharegistro
             // 
-            txtfecharegistro.Location = new System.Drawing.Point(402, 66);
+            txtfecharegistro.Location = new System.Drawing.Point(441, 66);
             txtfecharegistro.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             txtfecharegistro.Name = "txtfecharegistro";
             txtfecharegistro.ReadOnly = true;
@@ -321,8 +321,8 @@
             // 
             // Categoria
             // 
-            Categoria.HeaderText = "Categoria";
-            Categoria.Name = "Categoria";
+            Categoria.HeaderText = "Longitud";
+            Categoria.Name = "Longitud";
             Categoria.ReadOnly = true;
             Categoria.Visible = false;
             // 
@@ -435,10 +435,10 @@
             btnsalir.IconColor = System.Drawing.Color.White;
             btnsalir.IconFont = FontAwesome.Sharp.IconFont.Solid;
             btnsalir.IconSize = 24;
-            btnsalir.Location = new System.Drawing.Point(800, 8);
+            btnsalir.Location = new System.Drawing.Point(785, 8);
             btnsalir.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnsalir.Name = "btnsalir";
-            btnsalir.Size = new System.Drawing.Size(82, 36);
+            btnsalir.Size = new System.Drawing.Size(97, 36);
             btnsalir.TabIndex = 135;
             btnsalir.Text = "Salir";
             btnsalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;

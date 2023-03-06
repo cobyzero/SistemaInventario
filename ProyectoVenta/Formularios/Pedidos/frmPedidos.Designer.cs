@@ -244,7 +244,7 @@
             // Categoria
             // 
             this.Categoria.HeaderText = "Longitud";
-            this.Categoria.Name = "Categoria";
+            this.Categoria.Name = "Longitud";
             this.Categoria.ReadOnly = true;
             this.Categoria.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Categoria.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;

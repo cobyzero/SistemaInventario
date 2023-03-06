@@ -245,7 +245,7 @@ namespace ProyectoVenta.Formularios.Entradas
                     IdProducto = Convert.ToInt32(row.Cells["Id"].Value.ToString()),
                     CodigoProducto = row.Cells["Codigo"].Value.ToString(),
                     DescripcionProducto = row.Cells["Descripcion"].Value.ToString(),
-                    CategoriaProducto = row.Cells["Categoria"].Value.ToString(),
+                    CategoriaProducto = row.Cells["Longitud"].Value.ToString(),
                     AlmacenProducto = row.Cells["Almacen"].Value.ToString(), 
                     Cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()), 
                 });

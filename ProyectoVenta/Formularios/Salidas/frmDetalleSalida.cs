@@ -14,12 +14,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace ProyectoVenta.Formularios.Salidas
 {
     public partial class frmDetalleSalida : Form
     {
         public frmDetalleSalida()
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
             InitializeComponent();
 
             if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
@@ -127,10 +130,14 @@ namespace ProyectoVenta.Formularios.Salidas
             foreach (DataGridViewRow row in dgvdata.Rows)
             {
                 filas += "<tr>";
+
                 filas += "<td>" + row.Cells["Codigo"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["Descripcion"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["Longitud"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["Cantidad"].Value.ToString() + "</td>";
+
+
+
                
                 filas += "</tr>";
             }
