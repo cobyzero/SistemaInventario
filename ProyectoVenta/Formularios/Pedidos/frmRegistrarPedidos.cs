@@ -43,9 +43,7 @@ namespace ProyectoVenta.Formularios.Pedidos
                 btnguardarsalida.Text = "Ausgabe speichern";
                 Codigo.HeaderText = "Code";
                 Descripcion.HeaderText = "Beschreibung";
-                Cantidad.HeaderText = "Menge";
-                label5.Text = "Technischer Code";
-                label10.Text = "Name des Technikers";
+                Cantidad.HeaderText = "Menge"; 
             }
         }
 
@@ -60,19 +58,7 @@ namespace ProyectoVenta.Formularios.Pedidos
             txtfecharegistro.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
 
-        private void btnbuscarclientes_Click(object sender, EventArgs e)
-        {
-            using (var form = new mdClientes())
-            {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    txtdoccliente.Text = form._DocumentoCliente;
-                    txtnomcliente.Text = form._NombreCliente;
-                }
-            }
-        }
-
+ 
         private void btnbuscarproducto_Click(object sender, EventArgs e)
         {
             using (var form = new mdProductos())
@@ -273,16 +259,7 @@ namespace ProyectoVenta.Formularios.Pedidos
 
         private async void btnguardarsalida_Click(object sender, EventArgs e)
         {
-            if (txtdoccliente.Text.Trim() == "")
-            {
-                MessageBox.Show("Debe ingresar el documento del tecnico", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-            if (txtnomcliente.Text.Trim() == "")
-            {
-                MessageBox.Show("Debe ingresar el nombre del tecnico", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
+ 
 
             if (dgvdata.Rows.Count < 1)
             {
@@ -323,19 +300,15 @@ namespace ProyectoVenta.Formularios.Pedidos
                 NumeroDocumento = String.Format("{0:00000}", idcorrelativo),
                 FechaRegistro = DateTime.Now.ToString("yyyy-MM-dd", new CultureInfo("en-US")),
                 UsuarioRegistro = _NombreUsuario,
-                DocumentoCliente = txtdoccliente.Text,
-                NombreCliente = txtnomcliente.Text,
+ 
                 CantidadProductos = cantidad_productos
             };
 
             bool operaciones = await SalidaLogica.Instancia.Registrar(oSalida, olista);
 
             if (operaciones)
-            {
-                txtdoccliente.Text = "";
-                txtnomcliente.Text = "";
-                dgvdata.Rows.Clear();
-                txtdoccliente.Focus();
+            { 
+                dgvdata.Rows.Clear(); 
 
                 mdSalidaExitosa md = new mdSalidaExitosa();
                 md._numerodocumento = String.Format("{0:00000}", idcorrelativo);

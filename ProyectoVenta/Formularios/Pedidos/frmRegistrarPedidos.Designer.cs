@@ -33,16 +33,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRegistrarPedidos));
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
-            btnbuscarclientes = new FontAwesome.Sharp.IconButton();
-            txtdoccliente = new System.Windows.Forms.TextBox();
-            label5 = new System.Windows.Forms.Label();
             txtfecharegistro = new System.Windows.Forms.TextBox();
             label26 = new System.Windows.Forms.Label();
             label27 = new System.Windows.Forms.Label();
             txtnumerodocumento = new System.Windows.Forms.TextBox();
             txtcodigoproducto = new System.Windows.Forms.TextBox();
             label3 = new System.Windows.Forms.Label();
-            groupBox1 = new System.Windows.Forms.GroupBox();
             label4 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
             txtcantidad = new System.Windows.Forms.NumericUpDown();
@@ -60,8 +56,6 @@
             label8 = new System.Windows.Forms.Label();
             btnguardarsalida = new FontAwesome.Sharp.IconButton();
             groupBox2 = new System.Windows.Forms.GroupBox();
-            label10 = new System.Windows.Forms.Label();
-            txtnomcliente = new System.Windows.Forms.TextBox();
             btnsalir = new FontAwesome.Sharp.IconButton();
             txtdescripcionproducto = new System.Windows.Forms.TextBox();
             btnbuscarproducto = new FontAwesome.Sharp.IconButton();
@@ -94,43 +88,6 @@
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(885, 579);
             label1.TabIndex = 106;
-            // 
-            // btnbuscarclientes
-            // 
-            btnbuscarclientes.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnbuscarclientes.IconChar = FontAwesome.Sharp.IconChar.Search;
-            btnbuscarclientes.IconColor = System.Drawing.Color.Black;
-            btnbuscarclientes.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            btnbuscarclientes.IconSize = 16;
-            btnbuscarclientes.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            btnbuscarclientes.Location = new System.Drawing.Point(434, 134);
-            btnbuscarclientes.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            btnbuscarclientes.Name = "btnbuscarclientes";
-            btnbuscarclientes.Size = new System.Drawing.Size(59, 25);
-            btnbuscarclientes.TabIndex = 112;
-            btnbuscarclientes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            btnbuscarclientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            btnbuscarclientes.UseVisualStyleBackColor = true;
-            btnbuscarclientes.Click += btnbuscarclientes_Click;
-            // 
-            // txtdoccliente
-            // 
-            txtdoccliente.Location = new System.Drawing.Point(24, 136);
-            txtdoccliente.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            txtdoccliente.Name = "txtdoccliente";
-            txtdoccliente.Size = new System.Drawing.Size(149, 23);
-            txtdoccliente.TabIndex = 111;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.BackColor = System.Drawing.Color.White;
-            label5.Location = new System.Drawing.Point(24, 114);
-            label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(77, 15);
-            label5.TabIndex = 110;
-            label5.Text = "Doc. Tecnico:";
             // 
             // txtfecharegistro
             // 
@@ -193,17 +150,6 @@
             label3.Size = new System.Drawing.Size(101, 15);
             label3.TabIndex = 118;
             label3.Text = "Codigo Producto:";
-            // 
-            // groupBox1
-            // 
-            groupBox1.BackColor = System.Drawing.Color.White;
-            groupBox1.Location = new System.Drawing.Point(24, 163);
-            groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBox1.Size = new System.Drawing.Size(839, 12);
-            groupBox1.TabIndex = 121;
-            groupBox1.TabStop = false;
             // 
             // label4
             // 
@@ -322,7 +268,7 @@
             // Categoria
             // 
             Categoria.HeaderText = "Longitud";
-            Categoria.Name = "Longitud";
+            Categoria.Name = "Categoria";
             Categoria.ReadOnly = true;
             Categoria.Visible = false;
             // 
@@ -405,25 +351,6 @@
             groupBox2.TabIndex = 122;
             groupBox2.TabStop = false;
             // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.BackColor = System.Drawing.Color.White;
-            label10.Location = new System.Drawing.Point(184, 114);
-            label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            label10.Name = "label10";
-            label10.Size = new System.Drawing.Size(97, 15);
-            label10.TabIndex = 133;
-            label10.Text = "Nombre Tecnico:";
-            // 
-            // txtnomcliente
-            // 
-            txtnomcliente.Location = new System.Drawing.Point(188, 136);
-            txtnomcliente.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            txtnomcliente.Name = "txtnomcliente";
-            txtnomcliente.Size = new System.Drawing.Size(234, 23);
-            txtnomcliente.TabIndex = 134;
-            // 
             // btnsalir
             // 
             btnsalir.BackColor = System.Drawing.Color.DarkSlateGray;
@@ -472,7 +399,7 @@
             btnbuscarproducto.UseVisualStyleBackColor = true;
             btnbuscarproducto.Click += btnbuscarproducto_Click;
             // 
-            // frmRegistrarSalida
+            // frmRegistrarPedidos
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -481,8 +408,6 @@
             Controls.Add(btnbuscarproducto);
             Controls.Add(txtdescripcionproducto);
             Controls.Add(btnsalir);
-            Controls.Add(txtnomcliente);
-            Controls.Add(label10);
             Controls.Add(groupBox2);
             Controls.Add(btnguardarsalida);
             Controls.Add(label8);
@@ -493,16 +418,12 @@
             Controls.Add(txtcantidad);
             Controls.Add(label6);
             Controls.Add(label4);
-            Controls.Add(groupBox1);
             Controls.Add(txtcodigoproducto);
             Controls.Add(label3);
             Controls.Add(txtfecharegistro);
             Controls.Add(label26);
             Controls.Add(label27);
             Controls.Add(txtnumerodocumento);
-            Controls.Add(btnbuscarclientes);
-            Controls.Add(txtdoccliente);
-            Controls.Add(label5);
             Controls.Add(label2);
             Controls.Add(label1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -510,7 +431,7 @@
             Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             MaximumSize = new System.Drawing.Size(903, 669);
             MinimumSize = new System.Drawing.Size(903, 669);
-            Name = "frmRegistrarSalida";
+            Name = "frmRegistrarPedidos";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = ".: Registrar Salida :.";
             Load += frmRegistrarSalida_Load;
@@ -524,16 +445,12 @@
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private FontAwesome.Sharp.IconButton btnbuscarclientes;
-        private System.Windows.Forms.TextBox txtdoccliente;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtfecharegistro;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox txtnumerodocumento;
         private System.Windows.Forms.TextBox txtcodigoproducto;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown txtcantidad;
@@ -544,8 +461,6 @@
         private System.Windows.Forms.Label label8;
         private FontAwesome.Sharp.IconButton btnguardarsalida;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtnomcliente;
         private FontAwesome.Sharp.IconButton btnsalir;
         private System.Windows.Forms.TextBox txtdescripcionproducto;
         private FontAwesome.Sharp.IconButton btnbuscarproducto;
