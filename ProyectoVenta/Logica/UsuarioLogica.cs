@@ -1,7 +1,9 @@
-﻿using ProyectoVenta.Modelo;
+﻿using ProyectoVenta.Data;
+using ProyectoVenta.Modelo;
 using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
+using System.Data.SqlClient;
+
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,12 +33,12 @@ namespace ProyectoVenta.Logica
             int respuesta = 0;
             try
             {
-                using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
                 {
                     conexion.Open();
                     StringBuilder query = new StringBuilder();
                     query.AppendLine("update USUARIO set NombreUsuario = 'Admin', Clave = '123' where IdUsuario = 1;");
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
                     cmd.CommandType = System.Data.CommandType.Text;
 
                     respuesta = cmd.ExecuteNonQuery();
@@ -51,14 +53,15 @@ namespace ProyectoVenta.Logica
         }
 
 
-        public List<Usuario> Listar(out string mensaje)
+        public List<Modelo.Usuario> Listar(out string mensaje)
         {
+
             mensaje = string.Empty;
-            List<Usuario> oLista = new List<Usuario>();
+            List<Modelo.Usuario> oLista = new List<Modelo.Usuario>();
 
             try
             {
-                using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
                 {
                     
 
@@ -67,14 +70,14 @@ namespace ProyectoVenta.Logica
                     query.AppendLine("select u.IdUsuario,u.NombreCompleto,u.NombreUsuario,u.Clave,u.IdPermisos,p.Descripcion from USUARIO u");
                     query.AppendLine("inner join PERMISOS p on p.IdPermisos = u.IdPermisos;");
 
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
                     cmd.CommandType = System.Data.CommandType.Text;
 
-                    using (SQLiteDataReader dr = cmd.ExecuteReader())
+                    using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {
-                            oLista.Add(new Usuario()
+                            oLista.Add(new Modelo.Usuario()
                             {
                                 IdUsuario = int.Parse(dr["IdUsuario"].ToString()),
                                 NombreCompleto = dr["NombreCompleto"].ToString(),
@@ -89,7 +92,7 @@ namespace ProyectoVenta.Logica
             }
             catch (Exception ex)
             {
-                oLista = new List<Usuario>();
+                oLista = new List<Modelo.Usuario>();
                 mensaje = ex.Message;
             }
             return oLista;
@@ -99,7 +102,7 @@ namespace ProyectoVenta.Logica
         {
             mensaje = string.Empty;
             int respuesta = 0;
-            using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+            using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
             {
                 try
                 {
@@ -107,9 +110,9 @@ namespace ProyectoVenta.Logica
                     StringBuilder query = new StringBuilder();
                     query.AppendLine("select count(*)[resultado] from USUARIO where upper(NombreUsuario) = upper(@pnombreusuario) and IdUsuario != @defaultid");
 
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SQLiteParameter("@pnombreusuario", usuario));
-                    cmd.Parameters.Add(new SQLiteParameter("@defaultid", defaultid));
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.Parameters.Add(new SqlParameter("@pnombreusuario", usuario));
+                    cmd.Parameters.Add(new SqlParameter("@defaultid", defaultid));
                     cmd.CommandType = System.Data.CommandType.Text;
 
                     respuesta = Convert.ToInt32(cmd.ExecuteScalar().ToString());
@@ -127,12 +130,12 @@ namespace ProyectoVenta.Logica
             return respuesta;
         }
 
-        public int Guardar(Usuario objeto, out string mensaje)
+        public int Guardar(Modelo.Usuario objeto, out string mensaje)
         {
             mensaje = string.Empty;
             int respuesta = 0;
 
-            using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+            using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
             {
                 try
                 {
@@ -142,11 +145,11 @@ namespace ProyectoVenta.Logica
                     query.AppendLine("insert into USUARIO(NombreCompleto,NombreUsuario,Clave,IdPermisos) values (@pnombrecompleto,@pnombreusuario,@pclave,@pidpermisos);");
                     query.AppendLine("select last_insert_rowid();");
 
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SQLiteParameter("@pnombrecompleto", objeto.NombreCompleto));
-                    cmd.Parameters.Add(new SQLiteParameter("@pnombreusuario", objeto.NombreUsuario));
-                    cmd.Parameters.Add(new SQLiteParameter("@pclave", objeto.Clave));
-                    cmd.Parameters.Add(new SQLiteParameter("@pidpermisos", objeto.IdPermisos));
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.Parameters.Add(new SqlParameter("@pnombrecompleto", objeto.NombreCompleto));
+                    cmd.Parameters.Add(new SqlParameter("@pnombreusuario", objeto.NombreUsuario));
+                    cmd.Parameters.Add(new SqlParameter("@pclave", objeto.Clave));
+                    cmd.Parameters.Add(new SqlParameter("@pidpermisos", objeto.IdPermisos));
                     cmd.CommandType = System.Data.CommandType.Text;
 
                     respuesta = Convert.ToInt32(cmd.ExecuteScalar().ToString());
@@ -163,12 +166,12 @@ namespace ProyectoVenta.Logica
             return respuesta;
         }
 
-        public int Editar(Usuario objeto, out string mensaje)
+        public int Editar(Modelo.Usuario objeto, out string mensaje)
         {
             mensaje = string.Empty;
             int respuesta = 0;
 
-            using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+            using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
             {
                 try
                 {
@@ -176,12 +179,12 @@ namespace ProyectoVenta.Logica
                     StringBuilder query = new StringBuilder();
                     query.AppendLine("update USUARIO set NombreCompleto = @pnombrecompleto,NombreUsuario = @pnombreusuario,Clave = @pclave,IdPermisos = @pidpermisos  where IdUsuario = @pid");
 
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SQLiteParameter("@pnombrecompleto", objeto.NombreCompleto));
-                    cmd.Parameters.Add(new SQLiteParameter("@pnombreusuario", objeto.NombreUsuario));
-                    cmd.Parameters.Add(new SQLiteParameter("@pclave", objeto.Clave));
-                    cmd.Parameters.Add(new SQLiteParameter("@pidpermisos", objeto.IdPermisos));
-                    cmd.Parameters.Add(new SQLiteParameter("@pid", objeto.IdUsuario));
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.Parameters.Add(new SqlParameter("@pnombrecompleto", objeto.NombreCompleto));
+                    cmd.Parameters.Add(new SqlParameter("@pnombreusuario", objeto.NombreUsuario));
+                    cmd.Parameters.Add(new SqlParameter("@pclave", objeto.Clave));
+                    cmd.Parameters.Add(new SqlParameter("@pidpermisos", objeto.IdPermisos));
+                    cmd.Parameters.Add(new SqlParameter("@pid", objeto.IdUsuario));
                     cmd.CommandType = System.Data.CommandType.Text;
 
                     respuesta = cmd.ExecuteNonQuery();
@@ -203,13 +206,13 @@ namespace ProyectoVenta.Logica
             int respuesta = 0;
             try
             {
-                using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
                 {
                     conexion.Open();
                     StringBuilder query = new StringBuilder();
                     query.AppendLine("delete from USUARIO where IdUsuario= @id;");
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SQLiteParameter("@id", id));
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.Parameters.Add(new SqlParameter("@id", id));
                     cmd.CommandType = System.Data.CommandType.Text;
                     respuesta = cmd.ExecuteNonQuery();
                 }
@@ -221,6 +224,24 @@ namespace ProyectoVenta.Logica
             return respuesta;
         }
 
+        public Data.Usuario LoginUsuario(string username, string password)
+        {
+            Data.Usuario user = new();
+
+            try
+            {
+                using (var db = new InventarioAlemanaContext())
+                {
+                    user = db.Usuarios.Where((t) => t.NombreUsuario.Equals(username) && t.Clave.Equals(password)).First();
+
+                    return user;
+                }
+            }
+            catch (Exception)
+            {
+                return user;
+            }
+        }
 
     }
 }

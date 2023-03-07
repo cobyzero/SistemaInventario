@@ -4,8 +4,9 @@ using ProyectoVenta.Data;
 using ProyectoVenta.Modelo;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.SQLite;
+using System.Data.SqlClient;
+ 
+
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -39,7 +40,7 @@ namespace ProyectoVenta.Logica
         { 
             try
             {
-                using (var db = new BdinventarioContext())
+                using (var db = new InventarioAlemanaContext())
                 {
                     var pTemp = db.Productos.Where((t) => t.IdProducto == idproducto).First();
                     pTemp.Stock -= cantidad;
@@ -59,7 +60,7 @@ namespace ProyectoVenta.Logica
         { 
             try
             {
-                using (var db = new BdinventarioContext())
+                using (var db = new InventarioAlemanaContext())
                 {
                     var pTemp = db.Productos.Where((t) => t.IdProducto == idproducto).First();
                     pTemp.Stock += cantidad;
@@ -80,7 +81,7 @@ namespace ProyectoVenta.Logica
             int count = 0;
             try
             {
-                using (var db = new BdinventarioContext())
+                using (var db = new InventarioAlemanaContext())
                 {
                     count = db.Salida.Count() + 1;
                 }
@@ -98,7 +99,7 @@ namespace ProyectoVenta.Logica
         {
             try
             {
-                using (var db = new BdinventarioContext())
+                using (var db = new InventarioAlemanaContext())
                 {
                     db.Salida.Add(salidum);
 
@@ -121,150 +122,85 @@ namespace ProyectoVenta.Logica
             
         }
 
-        public List<VistaSalida> Resumen(string fechainicio = "", string fechafin = "")
+        public List<VistaSalida> Resumen(DateTime fechainicio, DateTime fechafin)
         {
  
             List<VistaSalida> oLista = new List<VistaSalida>();
+             
             try
             {
-                using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+                using (var db = new InventarioAlemanaContext())
                 {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
+                     List<Data.Salidum> listaSalida = db.Salida.Where((t) => t.FechaRegistro > fechainicio && t.FechaRegistro < fechafin).ToList();
 
-                    query.AppendLine("select e.NumeroDocumento,strftime('%d/%m/%Y', date(e.FechaRegistro))[FechaRegistro],e.UsuarioRegistro,");
-                    query.AppendLine("e.DocumentoCliente,e.NombreCliente,");
-                    query.AppendLine("de.CodigoProducto,de.DescripcionProducto,de.LongitudProducto,de.AlmacenProducto,");
-                    query.AppendLine("de.Cantidad");
-                    query.AppendLine("from SALIDA e");
-                    query.AppendLine("inner join DETALLE_SALIDA de on e.IdSalida = de.IdSalida");
-                    query.AppendLine("where DATE(e.FechaRegistro) BETWEEN DATE(@pfechainicio) AND DATE(@pfechafin)");
-
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SQLiteParameter("@pfechainicio", fechainicio));
-                    cmd.Parameters.Add(new SQLiteParameter("@pfechafin", fechafin));
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    using (SQLiteDataReader dr = cmd.ExecuteReader())
+                    for (int i = 0; i < listaSalida.Count(); i++)
                     {
-                        while (dr.Read())
-                        {
-                            oLista.Add(new VistaSalida()
-                            {
-                                NumeroDocumento = dr["NumeroDocumento"].ToString(),
-                                FechaRegistro = dr["FechaRegistro"].ToString(),
-                                UsuarioRegistro = dr["UsuarioRegistro"].ToString(),
-                                DocumentoCliente = dr["DocumentoCliente"].ToString(),
-                                NombreCliente = dr["NombreCliente"].ToString(),
-                                CodigoProducto = dr["CodigoProducto"].ToString(),
-                                DescripcionProducto = dr["DescripcionProducto"].ToString(),
-                                CategoriaProducto = dr["LongitudProducto"].ToString(),
-                                AlmacenProducto = dr["AlmacenProducto"].ToString(),
-                                Cantidad = dr["Cantidad"].ToString(),
-                            });
-                        }
+                        Data.DetalleSalidum detalle = db.DetalleSalida.Where((t) => t.IdSalida == listaSalida[i].IdSalida).First();
+
+                        oLista.Add(new VistaSalida()
+                        { 
+                        NumeroDocumento = listaSalida[i].NumeroDocumento,
+                        FechaRegistro = listaSalida[i].FechaRegistro.ToString(),
+                        UsuarioRegistro = listaSalida[i].UsuarioRegistro,
+                        DocumentoCliente = listaSalida[i].DocumentoCliente,
+                        NombreCliente = listaSalida[i].NombreCliente,
+                        CodigoProducto = detalle.CodigoProducto,
+                        DescripcionProducto = detalle.DescripcionProducto,
+                        CategoriaProducto = detalle.LongitudProducto,
+                        AlmacenProducto = detalle.AlmacenProducto,
+                        Cantidad = detalle.Cantidad.ToString(), 
+                     });
+
                     }
+
+                    return oLista;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                oLista = new List<VistaSalida>();
+                return oLista;
+                throw;
             }
-             return oLista;
-        }
+         }
 
 
-        public Salida Obtener(string numerodocumento)
+        public Data.Salidum Obtener(string numerodocumento)
         {
-            Salida objeto = null;
-
+            Data.Salidum salida = null;
+             
             try
             {
-                using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+                using (var db = new InventarioAlemanaContext())
                 {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("select IdSalida,NumeroDocumento, strftime('%d/%m/%Y', date(FechaRegistro))[FechaRegistro],UsuarioRegistro,DocumentoCliente,");
-                    query.AppendLine("NombreCliente,CantidadProductos from SALIDA");
-                    query.AppendLine("where NumeroDocumento = @pnumero");
+                   salida = db.Salida.Where((t) => t.NumeroDocumento == numerodocumento).First();
 
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SQLiteParameter("@pnumero", numerodocumento));
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    using (SQLiteDataReader dr = cmd.ExecuteReader())
-                    {
-                        while (dr.Read())
-                        {
-                            objeto = new Salida()
-                            {
-                                IdSalida = Convert.ToInt32(dr["IdSalida"].ToString()),
-                                NumeroDocumento = dr["NumeroDocumento"].ToString(),
-                                FechaRegistro = dr["FechaRegistro"].ToString(),
-                                UsuarioRegistro = dr["UsuarioRegistro"].ToString(),
-                                DocumentoCliente = dr["DocumentoCliente"].ToString(),
-                                NombreCliente = dr["NombreCliente"].ToString(),
-                                CantidadProductos = Convert.ToInt32(dr["CantidadProductos"].ToString()), 
-                            };
-                        }
-                    }
+                   return salida;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                objeto = null;
-            }
-            return objeto;
+                return salida; 
+            } 
         }
 
-        public List<DetalleSalida> ListarDetalle(int idsalida)
+        public List<DetalleSalidum> ListarDetalle(int idsalida)
         {
-            List<DetalleSalida> oLista = new List<DetalleSalida>();
+            List<DetalleSalidum> oLista = new List<DetalleSalidum>();
 
             try
             {
-
-                using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+                using (var db = new InventarioAlemanaContext())
                 {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("select CodigoProducto, DescripcionProducto, LongitudProducto,");
-                    query.AppendLine("AlmacenProducto, Cantidad");
-                    query.AppendLine("from DETALLE_SALIDA where IdSalida = @pidsalida");
+                    oLista = db.DetalleSalida.Where((t) => t.IdSalida == idsalida).ToList();
 
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SQLiteParameter("@pidsalida", idsalida));
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    using (SQLiteDataReader dr = cmd.ExecuteReader())
-                    {
-                        while (dr.Read())
-                        {
-                            oLista.Add(new DetalleSalida()
-                            {
-                                CodigoProducto = dr["CodigoProducto"].ToString(),
-                                DescripcionProducto = dr["DescripcionProducto"].ToString(),
-                                CategoriaProducto = dr["LongitudProducto"].ToString(),
-                                AlmacenProducto = dr["AlmacenProducto"].ToString(), 
-                                Cantidad = Convert.ToInt32(dr["Cantidad"].ToString()), 
-                            });
-                        }
-                    }
+                    return oLista;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                oLista = new List<DetalleSalida>();
-            }
-
-
-            return oLista;
+                return oLista;
+                
+            } 
         }
-
-
-
-
-
-
     }
 }

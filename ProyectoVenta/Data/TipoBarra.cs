@@ -5,7 +5,7 @@ namespace ProyectoVenta.Data;
 
 public partial class TipoBarra
 {
-    public long IdTipoBarra { get; set; }
+    public int IdTipoBarra { get; set; }
 
-    public long Value { get; set; }
+    public int Value { get; set; }
 }

@@ -1,7 +1,7 @@
 ﻿using ProyectoVenta.Modelo;
 using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,15 +35,15 @@ namespace ProyectoVenta.Logica
             Permisos obj = new Permisos();
             try
             {
-                using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
                 {
                     conexion.Open();
                     string query = "select IdPermisos,Descripcion,Salidas,Entradas,Productos,Clientes,Proveedores,Inventario,Configuracion from PERMISOS where IdPermisos = @pid";
-                    SQLiteCommand cmd = new SQLiteCommand(query, conexion);
-                    cmd.Parameters.Add(new SQLiteParameter("@pid", idpermisos));
+                    SqlCommand cmd = new SqlCommand(query, conexion);
+                    cmd.Parameters.Add(new SqlParameter("@pid", idpermisos));
                     cmd.CommandType = System.Data.CommandType.Text;
 
-                    using (SQLiteDataReader dr = cmd.ExecuteReader())
+                    using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {
@@ -77,7 +77,7 @@ namespace ProyectoVenta.Logica
             try
             {
 
-                using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
                 {
 
                     conexion.Open();
@@ -92,15 +92,15 @@ namespace ProyectoVenta.Logica
                     query.AppendLine("Configuracion = @pconfiguracion");
                     query.AppendLine("where IdPermisos = @pid;");
 
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SQLiteParameter("@psalida", objeto.Salidas));
-                    cmd.Parameters.Add(new SQLiteParameter("@pentrada", objeto.Entradas));
-                    cmd.Parameters.Add(new SQLiteParameter("@pproducto", objeto.Productos));
-                    cmd.Parameters.Add(new SQLiteParameter("@pcliente", objeto.Clientes));
-                    cmd.Parameters.Add(new SQLiteParameter("@pproveedor", objeto.Proveedores));
-                    cmd.Parameters.Add(new SQLiteParameter("@pinventario", objeto.Inventario));
-                    cmd.Parameters.Add(new SQLiteParameter("@pconfiguracion", objeto.Configuracion));
-                    cmd.Parameters.Add(new SQLiteParameter("@pid", objeto.IdPermisos));
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.Parameters.Add(new SqlParameter("@psalida", objeto.Salidas));
+                    cmd.Parameters.Add(new SqlParameter("@pentrada", objeto.Entradas));
+                    cmd.Parameters.Add(new SqlParameter("@pproducto", objeto.Productos));
+                    cmd.Parameters.Add(new SqlParameter("@pcliente", objeto.Clientes));
+                    cmd.Parameters.Add(new SqlParameter("@pproveedor", objeto.Proveedores));
+                    cmd.Parameters.Add(new SqlParameter("@pinventario", objeto.Inventario));
+                    cmd.Parameters.Add(new SqlParameter("@pconfiguracion", objeto.Configuracion));
+                    cmd.Parameters.Add(new SqlParameter("@pid", objeto.IdPermisos));
                     cmd.CommandType = System.Data.CommandType.Text;
 
                     respuesta = cmd.ExecuteNonQuery();

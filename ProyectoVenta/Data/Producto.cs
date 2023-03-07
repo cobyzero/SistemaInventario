@@ -5,7 +5,7 @@ namespace ProyectoVenta.Data;
 
 public partial class Producto
 {
-    public long IdProducto { get; set; }
+    public int IdProducto { get; set; }
 
     public string Codigo { get; set; }
 
@@ -19,5 +19,5 @@ public partial class Producto
 
     public string PrecioVenta { get; set; }
 
-    public long Stock { get; set; }
+    public int Stock { get; set; }
 }

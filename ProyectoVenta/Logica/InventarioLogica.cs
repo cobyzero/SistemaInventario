@@ -1,7 +1,7 @@
 ﻿using ProyectoVenta.Modelo;
 using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +34,7 @@ namespace ProyectoVenta.Logica
             List<Inventario> oLista = new List<Inventario>();
             try
             {
-                using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
                 {
                     conexion.Open();
                     StringBuilder query = new StringBuilder();
@@ -65,19 +65,19 @@ namespace ProyectoVenta.Logica
                     query.AppendLine("group by p.IdProducto");
                     query.AppendLine(") sal on sal.IdProducto = prod.IdProducto");
 
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SQLiteParameter("@pfechainicio1", fechainicio));
-                    cmd.Parameters.Add(new SQLiteParameter("@pfechafin1", fechafin));
-                    cmd.Parameters.Add(new SQLiteParameter("@pfechainicio2", fechainicio));
-                    cmd.Parameters.Add(new SQLiteParameter("@pfechafin2", fechafin));
-                    cmd.Parameters.Add(new SQLiteParameter("@pfechainicio3", fechainicio));
-                    cmd.Parameters.Add(new SQLiteParameter("@pfechafin3", fechafin));
-                    cmd.Parameters.Add(new SQLiteParameter("@pfechainicio4", fechainicio));
-                    cmd.Parameters.Add(new SQLiteParameter("@pfechafin4", fechafin));
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.Parameters.Add(new SqlParameter("@pfechainicio1", fechainicio));
+                    cmd.Parameters.Add(new SqlParameter("@pfechafin1", fechafin));
+                    cmd.Parameters.Add(new SqlParameter("@pfechainicio2", fechainicio));
+                    cmd.Parameters.Add(new SqlParameter("@pfechafin2", fechafin));
+                    cmd.Parameters.Add(new SqlParameter("@pfechainicio3", fechainicio));
+                    cmd.Parameters.Add(new SqlParameter("@pfechafin3", fechafin));
+                    cmd.Parameters.Add(new SqlParameter("@pfechainicio4", fechainicio));
+                    cmd.Parameters.Add(new SqlParameter("@pfechafin4", fechafin));
                     cmd.CommandType = System.Data.CommandType.Text;
 
 
-                    using (SQLiteDataReader dr = cmd.ExecuteReader())
+                    using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {

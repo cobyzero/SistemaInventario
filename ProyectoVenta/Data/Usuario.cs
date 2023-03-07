@@ -5,7 +5,7 @@ namespace ProyectoVenta.Data;
 
 public partial class Usuario
 {
-    public long IdUsuario { get; set; }
+    public int IdUsuario { get; set; }
 
     public string NombreCompleto { get; set; }
 
@@ -13,5 +13,5 @@ public partial class Usuario
 
     public string Clave { get; set; }
 
-    public long IdPermisos { get; set; }
+    public int IdPermisos { get; set; }
 }

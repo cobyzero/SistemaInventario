@@ -5,11 +5,11 @@ namespace ProyectoVenta.Data;
 
 public partial class DetalleEntradum
 {
-    public long IdDetalleEntrada { get; set; }
+    public int IdDetalleEntrada { get; set; }
 
-    public long IdEntrada { get; set; }
+    public int IdEntrada { get; set; }
 
-    public long IdProducto { get; set; }
+    public int IdProducto { get; set; }
 
     public string CodigoProducto { get; set; }
 
@@ -19,7 +19,7 @@ public partial class DetalleEntradum
 
     public string AlmacenProducto { get; set; }
 
-    public long Cantidad { get; set; }
+    public int Cantidad { get; set; }
 
     public virtual Entradum IdEntradaNavigation { get; set; }
 }

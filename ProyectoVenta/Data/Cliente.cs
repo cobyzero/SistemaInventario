@@ -5,7 +5,7 @@ namespace ProyectoVenta.Data;
 
 public partial class Cliente
 {
-    public long IdCliente { get; set; }
+    public int IdCliente { get; set; }
 
     public string NumeroDocumento { get; set; }
 

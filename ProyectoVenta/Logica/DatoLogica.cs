@@ -1,7 +1,7 @@
 ﻿using ProyectoVenta.Modelo;
 using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,14 +35,14 @@ namespace ProyectoVenta.Logica
             Datos obj = new Datos();
             try
             {
-                using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
                 {
                     conexion.Open();
                     string query = "select IdDato, RazonSocial, RUC, Direccion from DATOS where IdDato = 1";
-                    SQLiteCommand cmd = new SQLiteCommand(query, conexion);
+                    SqlCommand cmd = new SqlCommand(query, conexion);
                     cmd.CommandType = System.Data.CommandType.Text;
 
-                    using (SQLiteDataReader dr = cmd.ExecuteReader())
+                    using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {
@@ -71,7 +71,7 @@ namespace ProyectoVenta.Logica
             try
             {
 
-                using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
                 {
 
                     conexion.Open();
@@ -82,10 +82,10 @@ namespace ProyectoVenta.Logica
                     query.AppendLine("Direccion = @pdireccion");
                     query.AppendLine("where IdDato = 1;");
 
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SQLiteParameter("@prazonsocial", objeto.RazonSocial));
-                    cmd.Parameters.Add(new SQLiteParameter("@pruc", objeto.RUC));
-                    cmd.Parameters.Add(new SQLiteParameter("@pdireccion", objeto.Direccion));
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.Parameters.Add(new SqlParameter("@prazonsocial", objeto.RazonSocial));
+                    cmd.Parameters.Add(new SqlParameter("@pruc", objeto.RUC));
+                    cmd.Parameters.Add(new SqlParameter("@pdireccion", objeto.Direccion));
                     cmd.CommandType = System.Data.CommandType.Text;
 
                     respuesta = cmd.ExecuteNonQuery();
@@ -111,7 +111,7 @@ namespace ProyectoVenta.Logica
             try
             {
 
-                using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
                 {
 
                     conexion.Open();
@@ -120,8 +120,8 @@ namespace ProyectoVenta.Logica
                     query.AppendLine("update DATOS set Logo = @pimagen");
                     query.AppendLine("where IdDato = 1;");
 
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-                    SQLiteParameter parameter = new SQLiteParameter("@pimagen", System.Data.DbType.Binary);
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    SqlParameter parameter = new SqlParameter("@pimagen", System.Data.DbType.Binary);
                     parameter.Value = imagen;
                     cmd.Parameters.Add(parameter);
                     cmd.CommandType = System.Data.CommandType.Text;
@@ -148,14 +148,14 @@ namespace ProyectoVenta.Logica
             byte[] obj = new byte[0];
             try
             {
-                using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
                 {
                     conexion.Open();
                     string query = "select Logo from DATOS where IdDato = 1";
-                    SQLiteCommand cmd = new SQLiteCommand(query, conexion);
+                    SqlCommand cmd = new SqlCommand(query, conexion);
                     cmd.CommandType = System.Data.CommandType.Text;
 
-                    using (SQLiteDataReader dr = cmd.ExecuteReader())
+                    using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {

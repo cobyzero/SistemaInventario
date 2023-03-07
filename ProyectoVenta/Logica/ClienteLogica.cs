@@ -1,7 +1,7 @@
-﻿using ProyectoVenta.Modelo;
+﻿using Microsoft.Data.SqlClient;
+using ProyectoVenta.Modelo;
 using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
+using System.Collections.Generic; 
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,14 +36,14 @@ namespace ProyectoVenta.Logica
 
             try
             {
-                using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
                 {
                     conexion.Open();
                     string query = "select IdCliente,NumeroDocumento,NombreCompleto from CLIENTE;";
-                    SQLiteCommand cmd = new SQLiteCommand(query, conexion);
+                    SqlCommand cmd = new SqlCommand(query, conexion);
                     cmd.CommandType = System.Data.CommandType.Text;
 
-                    using (SQLiteDataReader dr = cmd.ExecuteReader())
+                    using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {
@@ -69,7 +69,7 @@ namespace ProyectoVenta.Logica
         {
             mensaje = string.Empty;
             int respuesta = 0;
-            using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+            using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
             {
                 try
                 {
@@ -77,9 +77,9 @@ namespace ProyectoVenta.Logica
                     StringBuilder query = new StringBuilder();
                     query.AppendLine("select count(*)[resultado] from CLIENTE where upper(NumeroDocumento) = upper(@pnumero) and IdCliente != @defaultid");
 
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SQLiteParameter("@pnumero", numero));
-                    cmd.Parameters.Add(new SQLiteParameter("@defaultid", defaultid));
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.Parameters.Add(new SqlParameter("@pnumero", numero));
+                    cmd.Parameters.Add(new SqlParameter("@defaultid", defaultid));
                     cmd.CommandType = System.Data.CommandType.Text;
 
                     respuesta = Convert.ToInt32(cmd.ExecuteScalar().ToString());
@@ -102,7 +102,7 @@ namespace ProyectoVenta.Logica
             mensaje = string.Empty;
             int respuesta = 0;
 
-            using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+            using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
             {
                 try
                 {
@@ -113,9 +113,9 @@ namespace ProyectoVenta.Logica
                     query.AppendLine("insert into CLIENTE(NumeroDocumento,NombreCompleto) values (@pnumero,@pnombre);");
                     query.AppendLine("select last_insert_rowid();");
 
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SQLiteParameter("@pnumero", objeto.NumeroDocumento));
-                    cmd.Parameters.Add(new SQLiteParameter("@pnombre", objeto.NombreCompleto));
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.Parameters.Add(new SqlParameter("@pnumero", objeto.NumeroDocumento));
+                    cmd.Parameters.Add(new SqlParameter("@pnombre", objeto.NombreCompleto));
                     cmd.CommandType = System.Data.CommandType.Text;
 
                     respuesta = Convert.ToInt32(cmd.ExecuteScalar().ToString());
@@ -137,7 +137,7 @@ namespace ProyectoVenta.Logica
             mensaje = string.Empty;
             int respuesta = 0;
 
-            using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+            using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
             {
                 try
                 {
@@ -145,10 +145,10 @@ namespace ProyectoVenta.Logica
                     StringBuilder query = new StringBuilder();
                     query.AppendLine("update CLIENTE set NumeroDocumento = @pnumero,NombreCompleto = @pnombre where IdCliente = @pidcliente");
 
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SQLiteParameter("@pidcliente", objeto.IdCliente));
-                    cmd.Parameters.Add(new SQLiteParameter("@pnumero", objeto.NumeroDocumento));
-                    cmd.Parameters.Add(new SQLiteParameter("@pnombre", objeto.NombreCompleto));
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.Parameters.Add(new SqlParameter("@pidcliente", objeto.IdCliente));
+                    cmd.Parameters.Add(new SqlParameter("@pnumero", objeto.NumeroDocumento));
+                    cmd.Parameters.Add(new SqlParameter("@pnombre", objeto.NombreCompleto));
                     cmd.CommandType = System.Data.CommandType.Text;
 
                     respuesta = cmd.ExecuteNonQuery();
@@ -171,13 +171,13 @@ namespace ProyectoVenta.Logica
             int respuesta = 0;
             try
             {
-                using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
                 {
                     conexion.Open();
                     StringBuilder query = new StringBuilder();
                     query.AppendLine("delete from CLIENTE where IdCliente= @id;");
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SQLiteParameter("@id", id));
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.Parameters.Add(new SqlParameter("@id", id));
                     cmd.CommandType = System.Data.CommandType.Text;
                     respuesta = cmd.ExecuteNonQuery();
                 }

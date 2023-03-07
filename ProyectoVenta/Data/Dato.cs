@@ -5,7 +5,7 @@ namespace ProyectoVenta.Data;
 
 public partial class Dato
 {
-    public long IdDato { get; set; }
+    public int IdDato { get; set; }
 
     public string RazonSocial { get; set; }
 

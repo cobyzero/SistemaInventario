@@ -57,27 +57,18 @@ namespace ProyectoVenta.Formularios
             txtusuario.Focus();
         }
 
-        private async void btningresar_Click(object sender, EventArgs e)
+        private void btningresar_Click(object sender, EventArgs e)
         {
-            string mensaje = string.Empty;
-            bool encontrado = false;
 
-            HttpClient client = new HttpClient();
+            Data.Usuario objuser = UsuarioLogica.Instancia.LoginUsuario(txtusuario.Text, txtclave.Text);
 
-            var response = await client.GetAsync($"{ConfigGeneral.webDomain}login?username={txtusuario.Text}&password={txtclave.Text}");
 
-            string data = await response.Content.ReadAsStringAsync();
-
-            if (data == string.Empty)
+            if (objuser.NombreCompleto == null)
             {
                 MessageBox.Show("No se econtraron coincidencias del usuario", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-
-             Data.Usuario objuser = JsonSerializer.Deserialize<Data.Usuario>(data);
-
-           
-             
+  
              Inicio frm = new Inicio();
              frm.NombreUsuario = objuser.NombreUsuario;
              frm.Clave = objuser.Clave;

@@ -18,7 +18,7 @@ namespace ProyectoVenta.Logica
             int count = 1;
             try
             {
-                using (var db = new BdinventarioContext())
+                using (var db = new InventarioAlemanaContext())
                 { 
                     foreach (var item in pedido)
                     {
@@ -44,7 +44,7 @@ namespace ProyectoVenta.Logica
             int id = 0;
             try
             {
-                using (var db = new BdinventarioContext())
+                using (var db = new InventarioAlemanaContext())
                 {
                     foreach (var item in db.Pedidos)
                     {

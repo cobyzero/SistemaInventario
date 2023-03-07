@@ -1,6 +1,7 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.tool.xml;
+using ProyectoVenta.Data;
 using ProyectoVenta.Logica;
 using ProyectoVenta.Modelo;
 using System;
@@ -67,21 +68,22 @@ namespace ProyectoVenta.Formularios.Salidas
                 return;
             }
 
-            Salida obj = SalidaLogica.Instancia.Obtener(txtnumerodocumento.Text);
+            Salidum obj = SalidaLogica.Instancia.Obtener(txtnumerodocumento.Text);
 
             if (obj != null)
             {
                 lblnrodocumento.Text = obj.NumeroDocumento;
-                txtfecha.Text = obj.FechaRegistro;
+                txtfecha.Text = obj.FechaRegistro.ToString();
                 txtusuario.Text = obj.UsuarioRegistro;
                 txtdoccliente.Text = obj.DocumentoCliente;
                 txtnomcliente.Text = obj.NombreCliente;
 
-                List<DetalleSalida> olista = SalidaLogica.Instancia.ListarDetalle(obj.IdSalida);
+                List<DetalleSalidum> olista = SalidaLogica.Instancia.ListarDetalle(obj.IdSalida);
                 dgvdata.Rows.Clear();
-                foreach (DetalleSalida de in olista)
+
+                foreach (DetalleSalidum de in olista)
                 {
-                    dgvdata.Rows.Add(new object[] { de.CodigoProducto, de.DescripcionProducto, de.CategoriaProducto, de.AlmacenProducto, de.Cantidad});
+                    dgvdata.Rows.Add(new object[] { de.CodigoProducto, de.DescripcionProducto, de.LongitudProducto, de.AlmacenProducto, de.Cantidad});
                 }
 
                 

@@ -67,18 +67,17 @@ namespace ProyectoVenta.Formularios.Salidas
             cbobuscar.SelectedIndex = 0;
         }
 
-        private async void btnbuscar_Click(object sender, EventArgs e)
+        private   void btnbuscar_Click(object sender, EventArgs e)
         {
             total = 0;
             dgvdata.Rows.Clear();
 
             DateTime dt1 = Convert.ToDateTime(txtfechainicio.Value.ToString("dd/MM/yyyy"));
             DateTime dt2 = Convert.ToDateTime(txtfechafin.Value.ToString("dd/MM/yyyy"));
-            List<VistaSalida> lista = SalidaLogica.Instancia.Resumen(dt1.ToString("yyyy-MM-dd", new CultureInfo("en-US")), dt2.ToString("yyyy-MM-dd", new CultureInfo("en-US")));
+            List<VistaSalida> lista = SalidaLogica.Instancia.Resumen(dt1, dt2);
 
             foreach (VistaSalida vr in lista)
-            {
-
+            { 
                 dgvdata.Rows.Add(new object[] {
                     vr.FechaRegistro,
                     vr.NumeroDocumento,

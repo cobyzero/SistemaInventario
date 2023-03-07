@@ -5,7 +5,7 @@ namespace ProyectoVenta.Data;
 
 public partial class Pedido
 {
-    public long IdPedido { get; set; }
+    public int IdPedido { get; set; }
 
     public string NumeroDocumento { get; set; }
 
@@ -15,11 +15,11 @@ public partial class Pedido
 
     public string Tecnico { get; set; }
 
-    public long? Cantidad { get; set; }
+    public int? Cantidad { get; set; }
 
-    public long? Precio { get; set; }
+    public int? Precio { get; set; }
 
-    public long? SubTotal { get; set; }
+    public int? SubTotal { get; set; }
 
-    public long? Presupuesto { get; set; }
+    public int? Presupuesto { get; set; }
 }

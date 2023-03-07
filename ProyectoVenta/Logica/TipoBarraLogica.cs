@@ -1,7 +1,8 @@
 ﻿using ProyectoVenta.Modelo;
 using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
+using System.Data.SqlClient;
+
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,14 +34,14 @@ namespace ProyectoVenta.Logica
             TipoBarra obj = new TipoBarra();
             try
             {
-                using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
                 {
                     conexion.Open();
                     string query = "select IdTipoBarra,Value from TIPO_BARRA where IdTipoBarra = 1";
-                    SQLiteCommand cmd = new SQLiteCommand(query, conexion);
+                    SqlCommand cmd = new SqlCommand(query, conexion);
                     cmd.CommandType = System.Data.CommandType.Text;
 
-                    using (SQLiteDataReader dr = cmd.ExecuteReader())
+                    using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {
@@ -67,7 +68,7 @@ namespace ProyectoVenta.Logica
             try
             {
 
-                using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
                 {
                     conexion.Open();
                     StringBuilder query = new StringBuilder();
@@ -75,8 +76,8 @@ namespace ProyectoVenta.Logica
                     query.AppendLine("update TIPO_BARRA set Value = @pvalue");
                     query.AppendLine("where IdTipoBarra = 1;");
 
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SQLiteParameter("@pvalue", valor));
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.Parameters.Add(new SqlParameter("@pvalue", valor));
                     cmd.CommandType = System.Data.CommandType.Text;
 
                     respuesta = cmd.ExecuteNonQuery();

@@ -10,6 +10,6 @@ namespace ProyectoVenta.Logica
 {
     public class Conexion
     {
-        public static string cadena =  "Data Source=BDINVENTARIO.db";
+        public static string cadena = "Server=(local);Database=InventarioAlemana;Trusted_Connection=True;Encrypt=false";
     }
 }

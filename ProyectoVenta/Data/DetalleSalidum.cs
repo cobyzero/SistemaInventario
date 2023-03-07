@@ -5,11 +5,11 @@ namespace ProyectoVenta.Data;
 
 public partial class DetalleSalidum
 {
-    public long IdDetalleSalida { get; set; }
+    public int IdDetalleSalida { get; set; }
 
-    public long IdSalida { get; set; }
+    public int IdSalida { get; set; }
 
-    public long IdProducto { get; set; }
+    public int IdProducto { get; set; }
 
     public string CodigoProducto { get; set; }
 
@@ -19,7 +19,7 @@ public partial class DetalleSalidum
 
     public string AlmacenProducto { get; set; }
 
-    public long Cantidad { get; set; }
+    public int Cantidad { get; set; }
 
     public virtual Salidum IdSalidaNavigation { get; set; }
 }

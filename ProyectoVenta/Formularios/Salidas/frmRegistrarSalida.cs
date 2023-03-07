@@ -298,7 +298,7 @@ namespace ProyectoVenta.Formularios.Salidas
             Salidum oSalida = new Salidum()
             {
                 NumeroDocumento = String.Format("{0:00000}", idcorrelativo),
-                FechaRegistro = DateTime.Now.ToString("yyyy-MM-dd", new CultureInfo("en-US")),
+                FechaRegistro = DateTime.Today,
                 UsuarioRegistro = _NombreUsuario,
                 DocumentoCliente = txtdoccliente.Text,
                 NombreCliente = txtnomcliente.Text,

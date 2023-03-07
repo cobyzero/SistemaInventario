@@ -5,7 +5,7 @@ namespace ProyectoVenta.Data;
 
 public partial class Entradum
 {
-    public long IdEntrada { get; set; }
+    public int IdEntrada { get; set; }
 
     public string NumeroDocumento { get; set; }
 
