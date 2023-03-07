@@ -35,95 +35,62 @@ namespace ProyectoVenta.Logica
         }
 
 
-        public int reducirStock(int idproducto,int cantidad, out string mensaje)
-        {
-            mensaje = string.Empty;
-            int respuesta = 0;
+        public async Task<bool> reducirStock(int idproducto,int cantidad)
+        { 
             try
             {
-                using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+                using (var db = new BdinventarioContext())
                 {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("update PRODUCTO set Stock = Stock - @pcantidad where IdProducto = @pidproducto");
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SQLiteParameter("@pcantidad", cantidad));
-                    cmd.Parameters.Add(new SQLiteParameter("@pidproducto", idproducto));
-                    cmd.CommandType = System.Data.CommandType.Text;
-                    respuesta = cmd.ExecuteNonQuery();
-                    if (respuesta < 1) {
-                        mensaje = "no se puede reducir stock";
-                    }
+                    var pTemp = db.Productos.Where((t) => t.IdProducto == idproducto).First();
+                    pTemp.Stock -= cantidad;
+
+                    await db.SaveChangesAsync();
+                     
+                    return true;
                 }
             }
-            catch (Exception ex)
-            {
-                respuesta = 0;
-                mensaje = ex.Message;
-            }
-
-            return respuesta;
+            catch (Exception e)
+            { 
+                return false;
+            } 
         }
 
-        public int aumentarStock(int idproducto, int cantidad, out string mensaje)
-        {
-            mensaje = string.Empty;
-            int respuesta = 0;
+        public async Task<bool> aumentarStock(int idproducto, int cantidad)
+        { 
             try
             {
-                using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+                using (var db = new BdinventarioContext())
                 {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("update PRODUCTO set Stock = Stock + @pcantidad where IdProducto = @pidproducto");
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SQLiteParameter("@pcantidad", cantidad));
-                    cmd.Parameters.Add(new SQLiteParameter("@pidproducto", idproducto));
-                    cmd.CommandType = System.Data.CommandType.Text;
-                    respuesta = cmd.ExecuteNonQuery();
-                    if (respuesta < 1)
-                    {
-                        mensaje = "no se puede aumentar stock";
-                    }
+                    var pTemp = db.Productos.Where((t) => t.IdProducto == idproducto).First();
+                    pTemp.Stock += cantidad;
+
+                    await db.SaveChangesAsync();
+
+                    return true;
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                respuesta = 0;
-                mensaje = ex.Message;
-            }
-
-            return respuesta;
+                return false;
+            } 
         }
-
-
-        public int ObtenerCorrelativo(out string mensaje)
+         
+        public int ObtenerCorrelativo()
         {
-            mensaje = string.Empty;
-            int respuesta = 0;
+            int count = 0;
             try
             {
-                using (SQLiteConnection conexion = new SQLiteConnection(Conexion.cadena))
+                using (var db = new BdinventarioContext())
                 {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("select count(*) + 1 from SALIDA");
-                    SQLiteCommand cmd = new SQLiteCommand(query.ToString(), conexion);
-                    cmd.CommandType = System.Data.CommandType.Text;
-                    respuesta = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-
-                    if (respuesta < 1) {
-                        mensaje = "No se pudo generar el correlativo";
-                    }
+                    count = db.Salida.Count() + 1;
                 }
-            }
-            catch (Exception ex)
-            {
-                respuesta = 0;
-                mensaje = "No se pudo generar el correlativo\nMayor Detalle:\n" + ex.Message;
-            }
 
-            return respuesta;
+                return count;
+            }
+            catch (Exception)
+            {
+                return count; 
+            }  
         }
 
 
@@ -156,8 +123,7 @@ namespace ProyectoVenta.Logica
 
         public List<VistaSalida> Resumen(string fechainicio = "", string fechafin = "")
         {
-
-
+ 
             List<VistaSalida> oLista = new List<VistaSalida>();
             try
             {

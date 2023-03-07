@@ -161,7 +161,7 @@ namespace ProyectoVenta.Formularios.Salidas
             return respuesta;
         }
 
-        private void btnagregar_Click(object sender, EventArgs e)
+        private async void btnagregar_Click(object sender, EventArgs e)
         {
             if (txtcodigoproducto.Text.Trim() == "")
             {
@@ -186,14 +186,9 @@ namespace ProyectoVenta.Formularios.Salidas
                 MessageBox.Show("La cantidad no puede ser mayor al stock", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-
-
-
-
-            string mensaje = string.Empty;
-            int operaciones = SalidaLogica.Instancia.reducirStock(_idproducto, Convert.ToInt32(txtcantidad.Value.ToString()), out mensaje);
-
-            if (operaciones > 0)
+             
+             
+            if (await SalidaLogica.Instancia.reducirStock(_idproducto, Convert.ToInt32(txtcantidad.Value.ToString())))
             {
                 dgvdata.Rows.Add(new object[] {"",
                     _idproducto.ToString(),
@@ -203,8 +198,7 @@ namespace ProyectoVenta.Formularios.Salidas
                     _almacen,
                     txtcantidad.Value.ToString(),
                 });
-
-
+ 
                 _idproducto = 0;
                 txtcodigoproducto.Text = "";
                 txtcodigoproducto.BackColor = Color.White;
@@ -215,13 +209,7 @@ namespace ProyectoVenta.Formularios.Salidas
                 _stock = 0;
                 txtcantidad.Value = 1;
                 txtcodigoproducto.Focus();
-
-            }
-            else
-            {
-                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-
+            } 
         }
 
 
@@ -244,28 +232,20 @@ namespace ProyectoVenta.Formularios.Salidas
             }
         }
 
-        private void dgvdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgvdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int index = e.RowIndex;
             if (index >= 0)
             {
                 if (dgvdata.Columns[e.ColumnIndex].Name == "btneliminar")
                 {
-                    string mensaje = string.Empty;
                     int idproducto = Convert.ToInt32(dgvdata.Rows[index].Cells["Id"].Value.ToString());
                     int cantidad = Convert.ToInt32(dgvdata.Rows[index].Cells["Cantidad"].Value.ToString());
-                    int operaciones = SalidaLogica.Instancia.aumentarStock(idproducto, cantidad, out mensaje);
-
-                    if (operaciones > 0)
+                   
+                    if (await SalidaLogica.Instancia.aumentarStock(idproducto, cantidad))
                     {
                         dgvdata.Rows.RemoveAt(index);
-
-                    }
-                    else
-                    {
-                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-
+                    } 
 
                 }
             }
@@ -289,17 +269,14 @@ namespace ProyectoVenta.Formularios.Salidas
                 MessageBox.Show("Debe ingresar productos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-
-
-            string mensaje = string.Empty;
+             
             int cantidad_productos = 0;
-            int idcorrelativo = SalidaLogica.Instancia.ObtenerCorrelativo(out mensaje);
+            int idcorrelativo = SalidaLogica.Instancia.ObtenerCorrelativo();
 
             List<DetalleSalidum> olista = new List<DetalleSalidum>();
 
             if (idcorrelativo < 1)
-            {
-                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            { 
                 return;
             }
 
@@ -341,10 +318,7 @@ namespace ProyectoVenta.Formularios.Salidas
                 md._numerodocumento = String.Format("{0:00000}", idcorrelativo);
                 md.ShowDialog();
             }
-            else
-            {
-                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
+           
 
 
         }

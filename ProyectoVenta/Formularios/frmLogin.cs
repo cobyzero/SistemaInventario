@@ -6,7 +6,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static NPOI.HSSF.Util.HSSFColor;
@@ -55,52 +57,38 @@ namespace ProyectoVenta.Formularios
             txtusuario.Focus();
         }
 
-        private void btningresar_Click(object sender, EventArgs e)
+        private async void btningresar_Click(object sender, EventArgs e)
         {
             string mensaje = string.Empty;
             bool encontrado = false;
 
-            if (txtusuario.Text == "administrador" && txtclave.Text == "13579123")
+            HttpClient client = new HttpClient();
+
+            var response = await client.GetAsync($"{ConfigGeneral.webDomain}login?username={txtusuario.Text}&password={txtclave.Text}");
+
+            string data = await response.Content.ReadAsStringAsync();
+
+            if (data == string.Empty)
             {
-                int respuesta = UsuarioLogica.Instancia.resetear();
-                if (respuesta > 0)
-                {
-                    MessageBox.Show("La cuenta fue restablecida", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                MessageBox.Show("No se econtraron coincidencias del usuario", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
             }
-            else
-            {
 
-                List<Usuario> ouser = UsuarioLogica.Instancia.Listar(out mensaje);
-                encontrado = ouser.Any(u => u.NombreUsuario == txtusuario.Text && u.Clave == txtclave.Text);
+             Data.Usuario objuser = JsonSerializer.Deserialize<Data.Usuario>(data);
 
-                if (encontrado)
-                {
-                    Usuario objuser = ouser.Where(u => u.NombreUsuario == txtusuario.Text && u.Clave == txtclave.Text).FirstOrDefault();
-
-                    Inicio frm = new Inicio();
-                    frm.NombreUsuario = objuser.NombreUsuario;
-                    frm.Clave = objuser.Clave;
-                    frm.NombreCompleto = objuser.NombreCompleto;
-                    frm.FechaHora = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
-                    frm.oPermisos = PermisosLogica.Instancia.Obtener(objuser.IdPermisos);
-                    frm.Show();
-                    this.Hide();
-                    frm.FormClosing += Frm_Closing;
-                }
-                else
-                {
-                    if (string.IsNullOrEmpty(mensaje))
-                    {
-                        MessageBox.Show("No se econtraron coincidencias del usuario", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                    else
-                    {
-                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-
-                }
-            }
+           
+             
+             Inicio frm = new Inicio();
+             frm.NombreUsuario = objuser.NombreUsuario;
+             frm.Clave = objuser.Clave;
+             frm.NombreCompleto = objuser.NombreCompleto;
+             frm.FechaHora = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
+             frm.oPermisos = PermisosLogica.Instancia.Obtener((int)objuser.IdPermisos);
+             frm.Show();
+             this.Hide();
+             frm.FormClosing += Frm_Closing;
+           
+            
         }
 
         private void iconPictureBox1_MouseHover(object sender, EventArgs e)

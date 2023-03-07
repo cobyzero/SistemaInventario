@@ -222,29 +222,20 @@ namespace ProyectoVenta.Formularios.Pedidos
             }
         }
 
-        private void dgvdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgvdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int index = e.RowIndex;
             if (index >= 0)
             {
                 if (dgvdata.Columns[e.ColumnIndex].Name == "btneliminar")
                 {
-                    string mensaje = string.Empty;
-                    int idproducto = Convert.ToInt32(dgvdata.Rows[index].Cells["Id"].Value.ToString());
+                     int idproducto = Convert.ToInt32(dgvdata.Rows[index].Cells["Id"].Value.ToString());
                     int cantidad = Convert.ToInt32(dgvdata.Rows[index].Cells["Cantidad"].Value.ToString());
-                    int operaciones = SalidaLogica.Instancia.aumentarStock(idproducto, cantidad, out mensaje);
-
-                    if (operaciones > 0)
+                     
+                    if (await SalidaLogica.Instancia.aumentarStock(idproducto, cantidad))
                     {
-                        dgvdata.Rows.RemoveAt(index);
-
-                    }
-                    else
-                    {
-                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-
-
+                        dgvdata.Rows.RemoveAt(index); 
+                    } 
                 }
             }
         }

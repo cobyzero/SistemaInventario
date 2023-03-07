@@ -20,6 +20,6 @@ namespace ProyectoVenta
             return type_languaje;
         }
 
-
+        public static string webDomain = "http://ealemana.somee.com/";
     }
 }

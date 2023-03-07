@@ -119,5 +119,9 @@ namespace ProyectoVenta.Logica
             return respuesta;
         }
 
+        internal Permisos Obtener(long idPermisos)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
