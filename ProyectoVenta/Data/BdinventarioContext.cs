@@ -41,7 +41,7 @@ public partial class BdinventarioContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlite("DataSource=C:\\\\Users\\\\edyne\\\\Desktop\\\\SistemaInventario\\\\ProyectoVenta\\\\bin\\\\Debug\\\\net7.0-windows\\\\BDINVENTARIO.db");
+        => optionsBuilder.UseSqlite("DataSource=C:\\\\\\\\Users\\\\\\\\edyne\\\\\\\\Desktop\\\\\\\\SistemaInventario\\\\\\\\ProyectoVenta\\\\\\\\bin\\\\\\\\Debug\\\\\\\\net7.0-windows\\\\\\\\BDINVENTARIO.db");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -126,9 +126,8 @@ public partial class BdinventarioContext : DbContext
 
             entity.ToTable("PEDIDOS");
 
-            entity.HasIndex(e => e.IdPedido, "IX_PEDIDOS_IdPedido").IsUnique();
-
             entity.Property(e => e.IdPedido).ValueGeneratedNever();
+            entity.Property(e => e.NumeroDocumento).IsRequired();
         });
 
         modelBuilder.Entity<Permiso>(entity =>
@@ -152,7 +151,6 @@ public partial class BdinventarioContext : DbContext
             entity.Property(e => e.Almacen).HasDefaultValueSql("''");
             entity.Property(e => e.Codigo).IsRequired();
             entity.Property(e => e.Descripcion).IsRequired();
-            entity.Property(e => e.Longitud).IsRequired();
             entity.Property(e => e.PrecioCompra)
                 .IsRequired()
                 .HasDefaultValueSql("''");

@@ -18,12 +18,8 @@ namespace ProyectoVenta.Formularios.Pedidos
     public partial class frmRegistrarPedidos : Form
     {
         private static int _idproducto = 0;
-        private static string _categoria = "";
-        private static string _almacen = "";
-        private static int _stock = 0;
-
         private static string _NombreUsuario = "";
-
+        decimal total = 0;
         public frmRegistrarPedidos(string _usuario = "")
         {
             _NombreUsuario = _usuario;
@@ -31,7 +27,7 @@ namespace ProyectoVenta.Formularios.Pedidos
 
             if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
             {
-                Text = ".:Neuer Ausgang:.";
+                Text = ".:Neue Bestellung:.";
                 label2.Text = "Neuer Ausgang";
                 btnsalir.Text = "Beendet";
                 label26.Text = "Antragsnummer";
@@ -43,7 +39,15 @@ namespace ProyectoVenta.Formularios.Pedidos
                 btnguardarsalida.Text = "Ausgabe speichern";
                 Codigo.HeaderText = "Code";
                 Descripcion.HeaderText = "Beschreibung";
-                Cantidad.HeaderText = "Menge"; 
+                Cantidad.HeaderText = "Menge";
+                label5.Text = "Technischer Code";
+                label10.Text = "Name des Technikers";
+            }
+            int precio = 10000;
+            for (int i = 0; i < 30; i++)
+            {
+                comboBox1.Items.Add(precio);
+                precio += 5000;
             }
         }
 
@@ -58,7 +62,19 @@ namespace ProyectoVenta.Formularios.Pedidos
             txtfecharegistro.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
 
- 
+        private void btnbuscarclientes_Click(object sender, EventArgs e)
+        {
+            using (var form = new mdClientes())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    txtdoccliente.Text = form._DocumentoCliente;
+                    txtnomcliente.Text = form._NombreCliente;
+                }
+            }
+        }
+
         private void btnbuscarproducto_Click(object sender, EventArgs e)
         {
             using (var form = new mdProductos())
@@ -70,10 +86,6 @@ namespace ProyectoVenta.Formularios.Pedidos
                     _idproducto = form._id;
                     txtcodigoproducto.Text = form._codigo;
                     txtdescripcionproducto.Text = form._descripcion;
-                    txtstock.Text = form._stock.ToString();
-                    _categoria = form._categoria;
-                    _almacen = form._almacen;
-                    _stock = form._stock;
 
                     txtcantidad.Value = 1;
                     txtcantidad.Focus();
@@ -111,12 +123,7 @@ namespace ProyectoVenta.Formularios.Pedidos
                     txtcodigoproducto.BackColor = Color.Honeydew;
                     txtcodigoproducto.Text = pr.Codigo;
                     txtdescripcionproducto.Text = pr.Descripcion;
-                    txtstock.Text = pr.Stock.ToString();
                     _idproducto = Convert.ToInt32(pr.IdProducto.ToString());
-                    _categoria = pr.Categoria;
-                    _almacen = pr.Almacen;
-                    _stock = pr.Stock;
-
                     txtcantidad.Value = 1;
                     txtcantidad.Focus();
                 }
@@ -167,46 +174,31 @@ namespace ProyectoVenta.Formularios.Pedidos
                 return;
             }
 
-            if (txtcantidad.Value > _stock)
-            {
-                MessageBox.Show("La cantidad no puede ser mayor al stock", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
+            decimal subtotal = txtcantidad.Value * int.Parse(txtprecio.Text);
 
-
-
-
-            string mensaje = string.Empty;
-            int operaciones = SalidaLogica.Instancia.reducirStock(_idproducto, Convert.ToInt32(txtcantidad.Value.ToString()), out mensaje);
-
-            if (operaciones > 0)
-            {
-                dgvdata.Rows.Add(new object[] {"",
+            dgvdata.Rows.Add(new object[] {"",
                     _idproducto.ToString(),
                     txtcodigoproducto.Text,
                     txtdescripcionproducto.Text,
-                    _categoria,
-                    _almacen,
-                    txtcantidad.Value.ToString(),
+                    txtnomcliente.Text,
+                    txtcantidad.Text,
+                    txtprecio.Text,
+                    subtotal.ToString(),
+                    comboBox1.Text.ToString(),
                 });
 
 
-                _idproducto = 0;
-                txtcodigoproducto.Text = "";
-                txtcodigoproducto.BackColor = Color.White;
-                txtdescripcionproducto.Text = "";
-                txtstock.Text = "";
-                _categoria = "";
-                _almacen = "";
-                _stock = 0;
-                txtcantidad.Value = 1;
-                txtcodigoproducto.Focus();
+            _idproducto = 0;
+            txtcodigoproducto.Text = "";
+            txtcodigoproducto.BackColor = Color.White;
+            txtdescripcionproducto.Text = ""; 
+            txtcantidad.Value = 1;
+            txtprecio.Text = "";
 
-            }
-            else
-            {
-                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
+            txtcodigoproducto.Focus();
+
+            total += subtotal;
+            label11.Text = total.ToString();
 
         }
 
@@ -259,7 +251,16 @@ namespace ProyectoVenta.Formularios.Pedidos
 
         private async void btnguardarsalida_Click(object sender, EventArgs e)
         {
- 
+            if (txtdoccliente.Text.Trim() == "")
+            {
+                MessageBox.Show("Debe ingresar el documento del tecnico", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (txtnomcliente.Text.Trim() == "")
+            {
+                MessageBox.Show("Debe ingresar el nombre del tecnico", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
             if (dgvdata.Rows.Count < 1)
             {
@@ -267,56 +268,42 @@ namespace ProyectoVenta.Formularios.Pedidos
                 return;
             }
 
-
-            string mensaje = string.Empty;
-            int cantidad_productos = 0;
-            int idcorrelativo = SalidaLogica.Instancia.ObtenerCorrelativo(out mensaje);
-
-            List<DetalleSalidum> olista = new List<DetalleSalidum>();
-
-            if (idcorrelativo < 1)
-            {
-                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
+            var olista = new List<Pedido>();
             foreach (DataGridViewRow row in dgvdata.Rows)
             {
-                olista.Add(new DetalleSalidum()
+                olista.Add(new Pedido()
                 {
-                    IdProducto = Convert.ToInt32(row.Cells["Id"].Value.ToString()),
+
+                    NumeroDocumento = txtnumerodocumento.Text.Trim(),
                     CodigoProducto = row.Cells["Codigo"].Value.ToString(),
                     DescripcionProducto = row.Cells["Descripcion"].Value.ToString(),
-                    LongitudProducto = row.Cells["Longitud"].Value.ToString(),
-                    AlmacenProducto = row.Cells["Almacen"].Value.ToString(),
-                    Cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()),
-                });
-
-                cantidad_productos += Convert.ToInt32(row.Cells["Cantidad"].Value.ToString());
-            }
-
-            Salidum oSalida = new Salidum()
-            {
-                NumeroDocumento = String.Format("{0:00000}", idcorrelativo),
-                FechaRegistro = DateTime.Now.ToString("yyyy-MM-dd", new CultureInfo("en-US")),
-                UsuarioRegistro = _NombreUsuario,
+                    Tecnico = row.Cells["Tecnico"].Value.ToString(),
+                    Cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()), 
+                     Precio = Convert.ToInt32(row.Cells["Precio"].Value.ToString()),
+                    SubTotal = Convert.ToInt32(row.Cells["SubTotal"].Value.ToString()),
+                    Presupuesto = Convert.ToInt32(row.Cells["Presupuesto"].Value.ToString()),
  
-                CantidadProductos = cantidad_productos
-            };
+                });             }
 
-            bool operaciones = await SalidaLogica.Instancia.Registrar(oSalida, olista);
+            
+            bool operaciones = await PedidoLogica.Instancia.Registrar(olista);
 
             if (operaciones)
-            { 
-                dgvdata.Rows.Clear(); 
-
-                mdSalidaExitosa md = new mdSalidaExitosa();
-                md._numerodocumento = String.Format("{0:00000}", idcorrelativo);
+            {
+                txtdoccliente.Text = "";
+                txtnomcliente.Text = "";
+                dgvdata.Rows.Clear();
+                txtdoccliente.Focus();
+                total = 0;
+                mdPedidos md = new mdPedidos();
+                md._numerodocumento = String.Format("{0:00000}", txtnumerodocumento.Text.Trim());
                 md.ShowDialog();
+                txtnumerodocumento.Text = string.Empty;
+
             }
             else
             {
-                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Error", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
 

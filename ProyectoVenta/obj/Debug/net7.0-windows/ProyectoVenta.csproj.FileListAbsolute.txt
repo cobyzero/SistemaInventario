@@ -187,3 +187,4 @@ C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ref\Proyecto Inventario.dll
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Formularios.Salidas.frmRegistrarSalidas.resources
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Formularios.Pedidos.frmRegistrarPedidos.resources
+C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Modales.mdPedidos.resources
