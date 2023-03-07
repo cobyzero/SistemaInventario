@@ -1,4 +1,5 @@
-﻿using ProyectoVenta.Logica;
+﻿using ProyectoVenta.Data;
+using ProyectoVenta.Logica;
 using ProyectoVenta.Modales;
 using ProyectoVenta.Modelo;
 using System;
@@ -95,7 +96,7 @@ namespace ProyectoVenta.Formularios.Entradas
             string mensaje = string.Empty;
             if (e.KeyData == Keys.Enter)
             {
-                Producto pr = ProductoLogica.Instancia.Listar(out mensaje).Where(p => p.Codigo.ToUpper() == txtcodigoproducto.Text.Trim().ToUpper()).FirstOrDefault();
+                Modelo.Producto pr = ProductoLogica.Instancia.Listar(out mensaje).Where(p => p.Codigo.ToUpper() == txtcodigoproducto.Text.Trim().ToUpper()).FirstOrDefault();
                 if (pr != null)
                 {
                     txtcodigoproducto.BackColor = Color.Honeydew;
@@ -204,7 +205,7 @@ namespace ProyectoVenta.Formularios.Entradas
             }
         }
 
-        private void btnguardarentrada_Click(object sender, EventArgs e)
+        private async void btnguardarentrada_Click(object sender, EventArgs e)
         {
             if (txtnumerodocumento.Text.Trim() == "") {
                 MessageBox.Show("Debe ingresar el numero de documento", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -225,27 +226,25 @@ namespace ProyectoVenta.Formularios.Entradas
                 MessageBox.Show("Debe ingresar productos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-
-            string mensaje = string.Empty;
+             
             int cantidad_productos = 0;
 
-            List<DetalleEntrada> olista = new List<DetalleEntrada>();
-
-            int encontrado = EntradaLogica.Instancia.Existe(txtnumerodocumento.Text, out mensaje);
-            if (encontrado > 0) {
-                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+             
+            if (EntradaLogica.Instancia.Existe(txtnumerodocumento.Text) != null) {
+                MessageBox.Show("Numero de documento ya existe", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            
+
+            List<Data.DetalleEntradum> olista = new List<DetalleEntradum>();
 
             foreach (DataGridViewRow row in dgvdata.Rows)
             {
-                olista.Add(new DetalleEntrada() {
+                olista.Add(new DetalleEntradum() {
                     IdProducto = Convert.ToInt32(row.Cells["Id"].Value.ToString()),
                     CodigoProducto = row.Cells["Codigo"].Value.ToString(),
                     DescripcionProducto = row.Cells["Descripcion"].Value.ToString(),
-                    CategoriaProducto = row.Cells["Longitud"].Value.ToString(),
+                    LongitudProducto = row.Cells["Longitud"].Value.ToString(),
                     AlmacenProducto = row.Cells["Almacen"].Value.ToString(), 
                     Cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()), 
                 });
@@ -253,34 +252,26 @@ namespace ProyectoVenta.Formularios.Entradas
                 cantidad_productos += Convert.ToInt32(row.Cells["Cantidad"].Value.ToString());
             }
 
-            Entrada oEntrada = new Entrada() {
+            Entradum oEntrada = new Entradum() {
                 NumeroDocumento = txtnumerodocumento.Text,
-                FechaRegistro = DateTime.Now.ToString("yyyy-MM-dd", new CultureInfo("en-US")),
+                FechaRegistro = DateTime.Now,
                 UsuarioRegistro = _NombreUsuario,
                 DocumentoProveedor = txtdocproveedor.Text,
                 NombreProveedor = txtnomproveedor.Text,
-                CantidadProductos = cantidad_productos,
-                
-                olistaDetalle = olista
+                CantidadProductos = cantidad_productos.ToString(), 
             };
-           
-            int operaciones = EntradaLogica.Instancia.Registrar(oEntrada, out mensaje);
-
-            if (operaciones < 1)
+            
+            if (await EntradaLogica.Instancia.Registrar(oEntrada, olista))
             {
-                
-                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else {
                 txtnumerodocumento.Text = "";
                 txtdocproveedor.Text = "";
                 txtnomproveedor.Text = "";
                 dgvdata.Rows.Clear();
-               
+
                 txtnumerodocumento.Focus();
 
-                MessageBox.Show("Entrada registrada!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+                MessageBox.Show("Entrada registrada!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+            } 
 
 
         }

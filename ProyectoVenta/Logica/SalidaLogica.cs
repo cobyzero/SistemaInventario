@@ -123,8 +123,7 @@ namespace ProyectoVenta.Logica
         }
 
         public List<VistaSalida> Resumen(DateTime fechainicio, DateTime fechafin)
-        {
- 
+        { 
             List<VistaSalida> oLista = new List<VistaSalida>();
              
             try
@@ -158,8 +157,7 @@ namespace ProyectoVenta.Logica
             }
             catch (Exception)
             {
-                return oLista;
-                throw;
+                return oLista; 
             }
          }
 

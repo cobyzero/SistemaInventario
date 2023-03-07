@@ -49,7 +49,7 @@ namespace ProyectoVenta.Formularios.Entradas
 
             DateTime dt1 = Convert.ToDateTime(txtfechainicio.Value.ToString("dd/MM/yyyy"));
             DateTime dt2 = Convert.ToDateTime(txtfechafin.Value.ToString("dd/MM/yyyy"));
-            List<VistaEntradas> lista = EntradaLogica.Instancia.Resumen(dt1.ToString("yyyy-MM-dd", new CultureInfo("en-US")), dt2.ToString("yyyy-MM-dd", new CultureInfo("en-US")));
+            List<VistaEntradas> lista = EntradaLogica.Instancia.Resumen(dt1, dt2);
 
             foreach (VistaEntradas vr in lista)
             {

@@ -40,12 +40,12 @@ namespace ProyectoVenta.Formularios.Entradas
                 return;
             }
 
-            Entrada obj = EntradaLogica.Instancia.Obtener(txtnumerodocumento.Text);
+            Data.Entradum obj = EntradaLogica.Instancia.Obtener(txtnumerodocumento.Text);
 
             if (obj != null)
             {
                 lblnrodocumento.Text = obj.NumeroDocumento;
-                txtfecha.Text = obj.FechaRegistro;
+                txtfecha.Text = obj.FechaRegistro.ToString();
                 txtusuario.Text = obj.UsuarioRegistro;
                 txtdocumentoproveedor.Text = obj.DocumentoProveedor;
                 txtnombreproveedor.Text = obj.NombreProveedor;

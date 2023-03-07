@@ -9,7 +9,7 @@ public partial class Entradum
 
     public string NumeroDocumento { get; set; }
 
-    public string FechaRegistro { get; set; }
+    public DateTime FechaRegistro { get; set; }
 
     public string UsuarioRegistro { get; set; }
 
