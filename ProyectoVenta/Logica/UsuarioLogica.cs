@@ -33,7 +33,7 @@ namespace ProyectoVenta.Logica
             int respuesta = 0;
             try
             {
-                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
                 {
                     conexion.Open();
                     StringBuilder query = new StringBuilder();
@@ -61,7 +61,7 @@ namespace ProyectoVenta.Logica
 
             try
             {
-                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
                 {
                     
 
@@ -102,7 +102,7 @@ namespace ProyectoVenta.Logica
         {
             mensaje = string.Empty;
             int respuesta = 0;
-            using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
+            using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
             {
                 try
                 {
@@ -135,7 +135,7 @@ namespace ProyectoVenta.Logica
             mensaje = string.Empty;
             int respuesta = 0;
 
-            using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
+            using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
             {
                 try
                 {
@@ -171,7 +171,7 @@ namespace ProyectoVenta.Logica
             mensaje = string.Empty;
             int respuesta = 0;
 
-            using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
+            using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
             {
                 try
                 {
@@ -206,7 +206,7 @@ namespace ProyectoVenta.Logica
             int respuesta = 0;
             try
             {
-                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
                 {
                     conexion.Open();
                     StringBuilder query = new StringBuilder();

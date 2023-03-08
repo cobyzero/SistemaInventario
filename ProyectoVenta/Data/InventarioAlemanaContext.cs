@@ -19,10 +19,6 @@ public partial class InventarioAlemanaContext : DbContext
 
     public virtual DbSet<Dato> Datos { get; set; }
 
-    public virtual DbSet<DetalleEntradum> DetalleEntrada { get; set; }
-
-    public virtual DbSet<DetalleSalidum> DetalleSalida { get; set; }
-
     public virtual DbSet<Entradum> Entrada { get; set; }
 
     public virtual DbSet<Pedido> Pedidos { get; set; }
@@ -41,10 +37,12 @@ public partial class InventarioAlemanaContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=(local);Database=InventarioAlemana;Trusted_Connection=True;Encrypt=false");
+        => optionsBuilder.UseSqlServer("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.UseCollation("Modern_Spanish_CI_AS");
+
         modelBuilder.Entity<Cliente>(entity =>
         {
             entity.HasKey(e => e.IdCliente).HasName("PK__CLIENTE__D5946642886498FE");
@@ -84,68 +82,6 @@ public partial class InventarioAlemanaContext : DbContext
                 .IsUnicode(false);
         });
 
-        modelBuilder.Entity<DetalleEntradum>(entity =>
-        {
-            entity.HasKey(e => e.IdDetalleEntrada).HasName("PK__DETALLE___B9C7D26513FA827F");
-
-            entity.ToTable("DETALLE_ENTRADA");
-
-            entity.HasIndex(e => e.IdDetalleEntrada, "UQ__DETALLE___B9C7D264C8CBD35D").IsUnique();
-
-            entity.Property(e => e.AlmacenProducto)
-                .IsRequired()
-                .HasMaxLength(50)
-                .IsUnicode(false);
-            entity.Property(e => e.CodigoProducto)
-                .IsRequired()
-                .HasMaxLength(50)
-                .IsUnicode(false);
-            entity.Property(e => e.DescripcionProducto)
-                .IsRequired()
-                .HasMaxLength(50)
-                .IsUnicode(false);
-            entity.Property(e => e.LongitudProducto)
-                .IsRequired()
-                .HasMaxLength(50)
-                .IsUnicode(false);
-
-            entity.HasOne(d => d.IdEntradaNavigation).WithMany(p => p.DetalleEntrada)
-                .HasForeignKey(d => d.IdEntrada)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__DETALLE_E__IdEnt__4CA06362");
-        });
-
-        modelBuilder.Entity<DetalleSalidum>(entity =>
-        {
-            entity.HasKey(e => e.IdDetalleSalida).HasName("PK__DETALLE___B5F901B23ACDF867");
-
-            entity.ToTable("DETALLE_SALIDA");
-
-            entity.HasIndex(e => e.IdDetalleSalida, "UQ__DETALLE___B5F901B3B4199DED").IsUnique();
-
-            entity.Property(e => e.AlmacenProducto)
-                .IsRequired()
-                .HasMaxLength(50)
-                .IsUnicode(false);
-            entity.Property(e => e.CodigoProducto)
-                .IsRequired()
-                .HasMaxLength(50)
-                .IsUnicode(false);
-            entity.Property(e => e.DescripcionProducto)
-                .IsRequired()
-                .HasMaxLength(50)
-                .IsUnicode(false);
-            entity.Property(e => e.LongitudProducto)
-                .IsRequired()
-                .HasMaxLength(50)
-                .IsUnicode(false);
-
-            entity.HasOne(d => d.IdSalidaNavigation).WithMany(p => p.DetalleSalida)
-                .HasForeignKey(d => d.IdSalida)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__DETALLE_S__IdSal__66603565");
-        });
-
         modelBuilder.Entity<Entradum>(entity =>
         {
             entity.HasKey(e => e.IdEntrada).HasName("PK__ENTRADA__BB164DEA7267F0DA");
@@ -154,7 +90,15 @@ public partial class InventarioAlemanaContext : DbContext
 
             entity.HasIndex(e => e.IdEntrada, "UQ__ENTRADA__BB164DEB6F0EA979").IsUnique();
 
-            entity.Property(e => e.CantidadProductos)
+            entity.Property(e => e.AlmacenProducto)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.CodigoProducto)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.DescripcionProducto)
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -162,7 +106,8 @@ public partial class InventarioAlemanaContext : DbContext
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
-            entity.Property(e => e.FechaRegistro)
+            entity.Property(e => e.FechaRegistro).HasColumnType("date");
+            entity.Property(e => e.LongitudProducto)
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -274,11 +219,27 @@ public partial class InventarioAlemanaContext : DbContext
 
             entity.HasIndex(e => e.IdSalida, "UQ__SALIDA__5D69EC73F7D9B1B1").IsUnique();
 
+            entity.Property(e => e.AlmacenProducto)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.CodigoProducto)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.DescripcionProducto)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false);
             entity.Property(e => e.DocumentoCliente)
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.FechaRegistro).HasColumnType("date");
+            entity.Property(e => e.LongitudProducto)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false);
             entity.Property(e => e.NombreCliente)
                 .IsRequired()
                 .HasMaxLength(50)

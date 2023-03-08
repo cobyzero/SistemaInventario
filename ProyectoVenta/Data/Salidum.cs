@@ -19,5 +19,13 @@ public partial class Salidum
 
     public int CantidadProductos { get; set; }
 
-    public virtual ICollection<DetalleSalidum> DetalleSalida { get; } = new List<DetalleSalidum>();
+    public int IdProducto { get; set; }
+
+    public string CodigoProducto { get; set; }
+
+    public string DescripcionProducto { get; set; }
+
+    public string LongitudProducto { get; set; }
+
+    public string AlmacenProducto { get; set; }
 }

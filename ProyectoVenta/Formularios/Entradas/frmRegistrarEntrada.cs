@@ -236,32 +236,30 @@ namespace ProyectoVenta.Formularios.Entradas
             }
 
 
-            List<Data.DetalleEntradum> olista = new List<DetalleEntradum>();
+            List<Data.Entradum> olista = new List<Entradum>();
 
             foreach (DataGridViewRow row in dgvdata.Rows)
             {
-                olista.Add(new DetalleEntradum() {
+                olista.Add(new Entradum() {
                     IdProducto = Convert.ToInt32(row.Cells["Id"].Value.ToString()),
                     CodigoProducto = row.Cells["Codigo"].Value.ToString(),
                     DescripcionProducto = row.Cells["Descripcion"].Value.ToString(),
                     LongitudProducto = row.Cells["Longitud"].Value.ToString(),
                     AlmacenProducto = row.Cells["Almacen"].Value.ToString(), 
-                    Cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()), 
+                    CantidadProductos = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()),
+                    NumeroDocumento = txtnumerodocumento.Text,
+                    FechaRegistro = DateTime.Now,
+                    UsuarioRegistro = _NombreUsuario,
+                    DocumentoProveedor = txtdocproveedor.Text,
+                    NombreProveedor = txtnomproveedor.Text,
                 });
                  
                 cantidad_productos += Convert.ToInt32(row.Cells["Cantidad"].Value.ToString());
             }
 
-            Entradum oEntrada = new Entradum() {
-                NumeroDocumento = txtnumerodocumento.Text,
-                FechaRegistro = DateTime.Now,
-                UsuarioRegistro = _NombreUsuario,
-                DocumentoProveedor = txtdocproveedor.Text,
-                NombreProveedor = txtnomproveedor.Text,
-                CantidadProductos = cantidad_productos.ToString(), 
-            };
+             
             
-            if (await EntradaLogica.Instancia.Registrar(oEntrada, olista))
+            if (await EntradaLogica.Instancia.Registrar(olista))
             {
                 txtnumerodocumento.Text = "";
                 txtdocproveedor.Text = "";

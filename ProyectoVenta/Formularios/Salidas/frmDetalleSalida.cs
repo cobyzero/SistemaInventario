@@ -78,12 +78,12 @@ namespace ProyectoVenta.Formularios.Salidas
                 txtdoccliente.Text = obj.DocumentoCliente;
                 txtnomcliente.Text = obj.NombreCliente;
 
-                List<DetalleSalidum> olista = SalidaLogica.Instancia.ListarDetalle(obj.IdSalida);
+                List<Salidum> olista = SalidaLogica.Instancia.ListarDetalle(obj.IdSalida);
                 dgvdata.Rows.Clear();
 
-                foreach (DetalleSalidum de in olista)
+                foreach (Salidum de in olista)
                 {
-                    dgvdata.Rows.Add(new object[] { de.CodigoProducto, de.DescripcionProducto, de.LongitudProducto, de.AlmacenProducto, de.Cantidad});
+                    dgvdata.Rows.Add(new object[] { de.CodigoProducto, de.DescripcionProducto, de.LongitudProducto, de.AlmacenProducto, de.CantidadProductos });
                 }
 
                 

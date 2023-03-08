@@ -34,11 +34,18 @@ namespace ProyectoVenta.Logica
         {
             List<Inventario> oLista = new List<Inventario>();
             try
-            { 
+            {
+
+                using (var db = new InventarioAlemanaContext())
+                {
 
 
 
-                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
+
+
+                }
+
+                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
                 {
                     conexion.Open();
                     StringBuilder query = new StringBuilder();

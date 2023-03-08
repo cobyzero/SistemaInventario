@@ -1,4 +1,3 @@
-C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Debug\net7.0-windows\BDINVENTARIO.db
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Debug\net7.0-windows\Proyecto Inventario.exe
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Debug\net7.0-windows\Proyecto Inventario.dll.config
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Debug\net7.0-windows\Proyecto Inventario.deps.json

@@ -95,19 +95,15 @@ namespace ProyectoVenta.Logica
         }
 
 
-        public async Task<bool> Registrar(Salidum salidum, List<DetalleSalidum> detalleSalidum)
+        public async Task<bool> Registrar(List<Salidum> detalleSalidum)
         {
             try
             {
                 using (var db = new InventarioAlemanaContext())
-                {
-                    db.Salida.Add(salidum);
-
+                { 
                     foreach (var item in detalleSalidum)
-                    {
-                        item.IdSalida = salidum.IdSalida;
-                        item.IdSalidaNavigation = salidum;
-                        db.DetalleSalida.Add(item);
+                    { 
+                        db.Salida.Add(item);
                     }
 
                     await db.SaveChangesAsync();
@@ -134,7 +130,7 @@ namespace ProyectoVenta.Logica
 
                     for (int i = 0; i < listaSalida.Count(); i++)
                     {
-                        Data.DetalleSalidum detalle = db.DetalleSalida.Where((t) => t.IdSalida == listaSalida[i].IdSalida).First();
+                        Data.Salidum detalle = db.Salida.Where((t) => t.IdSalida == listaSalida[i].IdSalida).First();
 
                         oLista.Add(new VistaSalida()
                         { 
@@ -147,7 +143,7 @@ namespace ProyectoVenta.Logica
                         DescripcionProducto = detalle.DescripcionProducto,
                         CategoriaProducto = detalle.LongitudProducto,
                         AlmacenProducto = detalle.AlmacenProducto,
-                        Cantidad = detalle.Cantidad.ToString(), 
+                        Cantidad = detalle.CantidadProductos.ToString(), 
                      });
 
                     }
@@ -181,15 +177,15 @@ namespace ProyectoVenta.Logica
             } 
         }
 
-        public List<DetalleSalidum> ListarDetalle(int idsalida)
+        public List<Salidum> ListarDetalle(int idsalida)
         {
-            List<DetalleSalidum> oLista = new List<DetalleSalidum>();
+            List<Salidum> oLista = new List<Salidum>();
 
             try
             {
                 using (var db = new InventarioAlemanaContext())
                 {
-                    oLista = db.DetalleSalida.Where((t) => t.IdSalida == idsalida).ToList();
+                    oLista = db.Salida.Where((t) => t.IdSalida == idsalida).ToList();
 
                     return oLista;
                 }

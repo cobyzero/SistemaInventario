@@ -35,7 +35,7 @@ namespace ProyectoVenta.Logica
             Datos obj = new Datos();
             try
             {
-                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
                 {
                     conexion.Open();
                     string query = "select IdDato, RazonSocial, RUC, Direccion from DATOS where IdDato = 1";
@@ -71,7 +71,7 @@ namespace ProyectoVenta.Logica
             try
             {
 
-                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
                 {
 
                     conexion.Open();
@@ -111,7 +111,7 @@ namespace ProyectoVenta.Logica
             try
             {
 
-                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
                 {
 
                     conexion.Open();
@@ -148,7 +148,7 @@ namespace ProyectoVenta.Logica
             byte[] obj = new byte[0];
             try
             {
-                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
                 {
                     conexion.Open();
                     string query = "select Logo from DATOS where IdDato = 1";

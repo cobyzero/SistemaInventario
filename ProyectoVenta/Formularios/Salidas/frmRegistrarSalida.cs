@@ -273,7 +273,7 @@ namespace ProyectoVenta.Formularios.Salidas
             int cantidad_productos = 0;
             int idcorrelativo = SalidaLogica.Instancia.ObtenerCorrelativo();
 
-            List<DetalleSalidum> olista = new List<DetalleSalidum>();
+            List<Salidum> olista = new List<Salidum>();
 
             if (idcorrelativo < 1)
             { 
@@ -282,30 +282,26 @@ namespace ProyectoVenta.Formularios.Salidas
 
             foreach (DataGridViewRow row in dgvdata.Rows)
             {
-                olista.Add(new DetalleSalidum()
+                olista.Add(new Salidum()
                 {
                     IdProducto = Convert.ToInt32(row.Cells["Id"].Value.ToString()),
                     CodigoProducto = row.Cells["Codigo"].Value.ToString(),
                     DescripcionProducto = row.Cells["Descripcion"].Value.ToString(),
                     LongitudProducto = row.Cells["Longitud"].Value.ToString(),
                     AlmacenProducto = row.Cells["Almacen"].Value.ToString(),
-                    Cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()),
+                    CantidadProductos = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()),
+                    NumeroDocumento = String.Format("{0:00000}", idcorrelativo),
+                    FechaRegistro = DateTime.Now,
+                    UsuarioRegistro = _NombreUsuario,
+                    DocumentoCliente = txtdoccliente.Text,
+                    NombreCliente = txtnomcliente.Text,
                 });
 
                 cantidad_productos += Convert.ToInt32(row.Cells["Cantidad"].Value.ToString());
             }
+ 
 
-            Salidum oSalida = new Salidum()
-            {
-                NumeroDocumento = String.Format("{0:00000}", idcorrelativo),
-                FechaRegistro = DateTime.Now,
-                UsuarioRegistro = _NombreUsuario,
-                DocumentoCliente = txtdoccliente.Text,
-                NombreCliente = txtnomcliente.Text,
-                CantidadProductos = cantidad_productos
-            };
-
-            bool operaciones = await SalidaLogica.Instancia.Registrar(oSalida, olista);
+            bool operaciones = await SalidaLogica.Instancia.Registrar(olista);
 
             if (operaciones)
             {

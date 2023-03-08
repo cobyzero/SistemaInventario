@@ -55,7 +55,7 @@ namespace ProyectoVenta.Formularios
             DateTime dt1 = Convert.ToDateTime("01/01/2000");
             DateTime dt2 = Convert.ToDateTime("01/01/2025");
 
-            List<ProyectoVenta.Modelo.Inventario> lista = InventarioLogica.Instancia.Resumen(dt1.ToString("yyyy-MM-dd", new CultureInfo("en-US")), dt2.ToString("yyyy-MM-dd", new CultureInfo("en-US")));
+            List<ProyectoVenta.Modelo.Inventario> lista = InventarioLogica.Instancia.Resumen(dt1, dt2);
 
             foreach (ProyectoVenta.Modelo.Inventario vr in lista)
             {

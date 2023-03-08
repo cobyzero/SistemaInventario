@@ -40,7 +40,7 @@ namespace ProyectoVenta.Modales
             foreach (Data.Producto pr in lista)
             {
                 dgvdata.Rows.Add(new object[] {
-                    pr.IdProducto,
+                    pr.IdProducto, 
                     "",
                     pr.Codigo,
                     pr.Descripcion,

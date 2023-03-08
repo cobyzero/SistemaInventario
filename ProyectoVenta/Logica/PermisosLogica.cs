@@ -35,7 +35,7 @@ namespace ProyectoVenta.Logica
             Permisos obj = new Permisos();
             try
             {
-                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
                 {
                     conexion.Open();
                     string query = "select IdPermisos,Descripcion,Salidas,Entradas,Productos,Clientes,Proveedores,Inventario,Configuracion from PERMISOS where IdPermisos = @pid";
@@ -77,7 +77,7 @@ namespace ProyectoVenta.Logica
             try
             {
 
-                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
                 {
 
                     conexion.Open();

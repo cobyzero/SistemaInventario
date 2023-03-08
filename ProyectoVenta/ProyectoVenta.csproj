@@ -13,9 +13,6 @@
   <ItemGroup>
     <Content Include="1522018_dropbox_box_droplet_network_social_icon.ico" />
     <Content Include="appsettings.json" />
-    <Content Include="BDINVENTARIO.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

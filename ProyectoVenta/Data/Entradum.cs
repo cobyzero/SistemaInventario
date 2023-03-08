@@ -17,7 +17,15 @@ public partial class Entradum
 
     public string NombreProveedor { get; set; }
 
-    public string CantidadProductos { get; set; }
+    public int CantidadProductos { get; set; }
 
-    public virtual ICollection<DetalleEntradum> DetalleEntrada { get; } = new List<DetalleEntradum>();
+    public int IdProducto { get; set; }
+
+    public string CodigoProducto { get; set; }
+
+    public string DescripcionProducto { get; set; }
+
+    public string LongitudProducto { get; set; }
+
+    public string AlmacenProducto { get; set; }
 }

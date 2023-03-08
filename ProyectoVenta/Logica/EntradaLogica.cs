@@ -50,19 +50,20 @@ namespace ProyectoVenta.Logica
         }
 
 
-        public async Task<bool> Registrar(Entradum entrada, List<DetalleEntradum> detalleEntrada)
+        public async Task<bool> Registrar(List<Entradum> detalleEntrada)
         {
             try
             {
                 using (var db = new InventarioAlemanaContext())
                 {
-                    db.Entrada.Add(entrada);
-
+ 
                     foreach (var item in detalleEntrada)
                     {
-                        item.IdEntrada = entrada.IdEntrada;
-                        item.IdEntradaNavigation = entrada;
-                        db.Entrada.Add(entrada);
+                        Data.Producto producto = db.Productos.Where((t) => t.IdProducto == item.IdProducto).First();
+
+                        producto.Stock += item.CantidadProductos;
+                          
+                        db.Entrada.Add(item);
                     }
 
                     await db.SaveChangesAsync();
@@ -87,7 +88,7 @@ namespace ProyectoVenta.Logica
 
                     for (int i = 0; i < listaEntrada.Count(); i++)
                     {
-                        Data.DetalleEntradum detalle = db.DetalleEntrada.Where((t) => t.IdEntrada == listaEntrada[i].IdEntrada).First();
+                        Data.Entradum detalle = db.Entrada.Where((t) => t.IdEntrada == listaEntrada[i].IdEntrada).First();
 
                         oLista.Add(new VistaEntradas()
                         {
@@ -100,7 +101,7 @@ namespace ProyectoVenta.Logica
                             DescripcionProducto = detalle.DescripcionProducto,
                             CategoriaProducto = detalle.LongitudProducto,
                             AlmacenProducto = detalle.AlmacenProducto,
-                            Cantidad = detalle.Cantidad.ToString(),
+                            Cantidad = detalle.CantidadProductos.ToString(),
                         });
 
                     }
@@ -141,7 +142,7 @@ namespace ProyectoVenta.Logica
             try
             {
 
-                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
+                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
                 {
                     conexion.Open();
                     StringBuilder query = new StringBuilder();
