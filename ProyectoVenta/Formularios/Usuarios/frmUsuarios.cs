@@ -31,9 +31,9 @@ namespace ProyectoVenta.Formularios.Usuarios
         private void frmUsuarios_Load(object sender, EventArgs e)
         {
             string mensaje = string.Empty;
-            List<Usuario> lista = UsuarioLogica.Instancia.Listar(out mensaje);
+            List<Data.Usuario> lista = UsuarioLogica.Instancia.Listar();
 
-            foreach (Usuario us in lista)
+            foreach (Data.Usuario us in lista)
             {
                 dgvdata.Rows.Add(new object[] {
                     us.IdUsuario,
@@ -41,7 +41,7 @@ namespace ProyectoVenta.Formularios.Usuarios
                     us.NombreCompleto,
                     us.NombreUsuario,
                     us.IdPermisos,
-                    us.Descripcion,
+                    "",
                     us.Clave
                 });
             }
@@ -155,7 +155,7 @@ namespace ProyectoVenta.Formularios.Usuarios
             Limpiar();
         }
 
-        private void btnguardar_Click(object sender, EventArgs e)
+        private async void btnguardar_Click(object sender, EventArgs e)
         {
             string mensaje = string.Empty;
 
@@ -186,48 +186,47 @@ namespace ProyectoVenta.Formularios.Usuarios
                 return;
             }
 
-            Usuario obj = new Modelo.Usuario() {
+            Data.Usuario obj = new Data.Usuario() {
                 IdUsuario = _id,
                 NombreCompleto = txtnombre.Text,
                 NombreUsuario = txtusuario.Text,
-                IdPermisos = Convert.ToInt32(((OpcionCombo)cborol.SelectedItem).Valor.ToString()),
-                Descripcion = ((OpcionCombo)cborol.SelectedItem).Texto.ToString(),
+                IdPermisos = Convert.ToInt32(((OpcionCombo)cborol.SelectedItem).Valor.ToString()), 
                 Clave = txtclave.Text
             };
 
-            int existe = UsuarioLogica.Instancia.Existe(obj.NombreUsuario, _id, out mensaje);
-            if (existe > 0)
+            
+            if (UsuarioLogica.Instancia.Existe(obj.NombreUsuario, _id))
             {
-                lblresultado.Text = mensaje;
+                lblresultado.Text = "El usuario ya existe";
                 lblresultado.ForeColor = Color.Red;
                 return;
             }
 
             if (_id == 0)
             {
-                int idgenerado = UsuarioLogica.Instancia.Guardar(obj, out mensaje);
+                int idgenerado = await UsuarioLogica.Instancia.Guardar(obj);
                 if (idgenerado > 0)
                 {
                     Limpiar();
-                    dgvdata.Rows.Add(new object[] { idgenerado, "", obj.NombreCompleto, obj.NombreUsuario,obj.IdPermisos,obj.Descripcion,obj.Clave });
+                    dgvdata.Rows.Add(new object[] { idgenerado, "", obj.NombreCompleto, obj.NombreUsuario,obj.IdPermisos,"",obj.Clave });
                     lblresultado.Text = "Registro Correcto";
                     lblresultado.ForeColor = Color.Green;
                 }
                 else
                 {
-                    lblresultado.Text = mensaje;
+                    lblresultado.Text = "No se pudo registrar el usuario";
                     lblresultado.ForeColor = Color.Red;
                 }
             }
             else
             {
-                int afectados = UsuarioLogica.Instancia.Editar(obj, out mensaje);
-                if (afectados > 0)
+                
+                if (await UsuarioLogica.Instancia.Editar(obj))
                 {
                     dgvdata.Rows[_indice].Cells["NombreCompleto"].Value = obj.NombreCompleto;
                     dgvdata.Rows[_indice].Cells["Usuario"].Value = obj.NombreUsuario;
                     dgvdata.Rows[_indice].Cells["IdRol"].Value = obj.IdPermisos;
-                    dgvdata.Rows[_indice].Cells["Rol"].Value = obj.Descripcion;
+                    dgvdata.Rows[_indice].Cells["Rol"].Value = "";
                     dgvdata.Rows[_indice].Cells["Clave"].Value = obj.Clave;
                     Limpiar();
                     lblresultado.Text = "Modificación Correcta";
@@ -235,7 +234,7 @@ namespace ProyectoVenta.Formularios.Usuarios
                 }
                 else
                 {
-                    lblresultado.Text = mensaje;
+                    lblresultado.Text = "No se pudo editar el usuario";
                     lblresultado.ForeColor = Color.Red;
                 }
 
@@ -248,8 +247,8 @@ namespace ProyectoVenta.Formularios.Usuarios
             {
                 if (MessageBox.Show("¿Desea eliminar el usuario?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    int respuesta = UsuarioLogica.Instancia.Eliminar(_id);
-                    if (respuesta > 0)
+                    
+                    if (UsuarioLogica.Instancia.Eliminar(_id))
                     {
                         dgvdata.Rows.RemoveAt(_indice);
                         Limpiar(false);

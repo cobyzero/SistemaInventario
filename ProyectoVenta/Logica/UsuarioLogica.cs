@@ -28,200 +28,95 @@ namespace ProyectoVenta.Logica
             }
         }
 
-        public int resetear()
-        {
-            int respuesta = 0;
-            try
-            {
-                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
-                {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("update USUARIO set NombreUsuario = 'Admin', Clave = '123' where IdUsuario = 1;");
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    respuesta = cmd.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                respuesta = 0;
-            }
-
-            return respuesta;
-        }
-
-
-        public List<Modelo.Usuario> Listar(out string mensaje)
-        {
-
-            mensaje = string.Empty;
-            List<Modelo.Usuario> oLista = new List<Modelo.Usuario>();
+    
+        public List<Data.Usuario> Listar()
+        { 
+            List<Data.Usuario> oLista = new List<Data.Usuario>();
 
             try
             {
-                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
+                using (var db = new InventarioAlemanaContext())
                 {
-                    
-
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("select u.IdUsuario,u.NombreCompleto,u.NombreUsuario,u.Clave,u.IdPermisos,p.Descripcion from USUARIO u");
-                    query.AppendLine("inner join PERMISOS p on p.IdPermisos = u.IdPermisos;");
-
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    using (SqlDataReader dr = cmd.ExecuteReader())
-                    {
-                        while (dr.Read())
-                        {
-                            oLista.Add(new Modelo.Usuario()
-                            {
-                                IdUsuario = int.Parse(dr["IdUsuario"].ToString()),
-                                NombreCompleto = dr["NombreCompleto"].ToString(),
-                                NombreUsuario = dr["NombreUsuario"].ToString(),
-                                Clave = dr["Clave"].ToString(),
-                                IdPermisos = Convert.ToInt32(dr["IdPermisos"].ToString()),
-                                Descripcion = dr["Descripcion"].ToString(),
-                            });
-                        }
-                    }
+                    oLista = db.Usuarios.ToList();
+                    return oLista;
                 }
             }
             catch (Exception ex)
-            {
-                oLista = new List<Modelo.Usuario>();
-                mensaje = ex.Message;
-            }
-            return oLista;
+            { 
+                return oLista;
+            } 
         }
 
-        public int Existe(string usuario, int defaultid, out string mensaje)
-        {
-            mensaje = string.Empty;
-            int respuesta = 0;
-            using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
-            {
-                try
-                {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("select count(*)[resultado] from USUARIO where upper(NombreUsuario) = upper(@pnombreusuario) and IdUsuario != @defaultid");
-
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SqlParameter("@pnombreusuario", usuario));
-                    cmd.Parameters.Add(new SqlParameter("@defaultid", defaultid));
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    respuesta = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-                    if (respuesta > 0)
-                        mensaje = "El usuario ya existe";
-
-                }
-                catch (Exception ex)
-                {
-                    respuesta = 0;
-                    mensaje = ex.Message;
-                }
-
-            }
-            return respuesta;
-        }
-
-        public int Guardar(Modelo.Usuario objeto, out string mensaje)
-        {
-            mensaje = string.Empty;
-            int respuesta = 0;
-
-            using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
-            {
-                try
-                {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-
-                    query.AppendLine("insert into USUARIO(NombreCompleto,NombreUsuario,Clave,IdPermisos) values (@pnombrecompleto,@pnombreusuario,@pclave,@pidpermisos);");
-                    query.AppendLine("select last_insert_rowid();");
-
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SqlParameter("@pnombrecompleto", objeto.NombreCompleto));
-                    cmd.Parameters.Add(new SqlParameter("@pnombreusuario", objeto.NombreUsuario));
-                    cmd.Parameters.Add(new SqlParameter("@pclave", objeto.Clave));
-                    cmd.Parameters.Add(new SqlParameter("@pidpermisos", objeto.IdPermisos));
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    respuesta = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-                    if (respuesta < 1)
-                        mensaje = "No se pudo registrar el usuario";
-                }
-                catch (Exception ex)
-                {
-                    respuesta = 0;
-                    mensaje = ex.Message;
-                }
-            }
-
-            return respuesta;
-        }
-
-        public int Editar(Modelo.Usuario objeto, out string mensaje)
-        {
-            mensaje = string.Empty;
-            int respuesta = 0;
-
-            using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
-            {
-                try
-                {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("update USUARIO set NombreCompleto = @pnombrecompleto,NombreUsuario = @pnombreusuario,Clave = @pclave,IdPermisos = @pidpermisos  where IdUsuario = @pid");
-
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SqlParameter("@pnombrecompleto", objeto.NombreCompleto));
-                    cmd.Parameters.Add(new SqlParameter("@pnombreusuario", objeto.NombreUsuario));
-                    cmd.Parameters.Add(new SqlParameter("@pclave", objeto.Clave));
-                    cmd.Parameters.Add(new SqlParameter("@pidpermisos", objeto.IdPermisos));
-                    cmd.Parameters.Add(new SqlParameter("@pid", objeto.IdUsuario));
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    respuesta = cmd.ExecuteNonQuery();
-                    if (respuesta < 1)
-                        mensaje = "No se pudo editar el usuario";
-                }
-                catch (Exception ex)
-                {
-                    respuesta = 0;
-                    mensaje = ex.Message;
-                }
-            }
-            return respuesta;
-        }
-
-
-        public int Eliminar(int id)
-        {
-            int respuesta = 0;
+        public bool Existe(string usuario, int defaultid)
+        {  
             try
             {
-                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
+                using (var db = new InventarioAlemanaContext())
                 {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("delete from USUARIO where IdUsuario= @id;");
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SqlParameter("@id", id));
-                    cmd.CommandType = System.Data.CommandType.Text;
-                    respuesta = cmd.ExecuteNonQuery();
+                    Data.Usuario usuarioTemp = db.Usuarios.Where((t)=> t.NombreUsuario == usuario && t.IdUsuario != defaultid).First();
+
+                    return true;
                 }
             }
-            catch (Exception ex)
+             catch (Exception ex)
+             {
+                 return false;
+             } 
+        }
+
+        public async Task<int> Guardar(Data.Usuario objeto)
+        { 
+            try
             {
-                respuesta = 0;
+                using (var db = new InventarioAlemanaContext())
+                {
+                    db.Usuarios.Add(objeto);
+                    await db.SaveChangesAsync();
+                    return objeto.IdUsuario;
+                }
+
             }
-            return respuesta;
+            catch (Exception)
+            {
+                return 0;
+            } 
+        }
+
+        public async Task<bool> Editar(Data.Usuario objeto)
+        { 
+            try
+            {
+                using (var db = new InventarioAlemanaContext())
+                {
+                    Data.Usuario usuario = db.Usuarios.Where((t) => t.IdUsuario == objeto.IdUsuario).First();
+                    usuario = objeto;
+
+                    await db.SaveChangesAsync();
+                    return true;
+                } 
+            }
+            catch (Exception)
+            {
+                return false;
+            } 
+        }
+
+
+        public bool Eliminar(int id)
+        {
+            try
+            {
+                using (var db = new InventarioAlemanaContext())
+                {
+                    db.Usuarios.Remove(db.Usuarios.Where((t) => t.IdUsuario == id).First());
+                    return true;
+                }
+
+            }
+            catch (Exception)
+            {
+                return false;
+            } 
         }
 
         public Data.Usuario LoginUsuario(string username, string password)
