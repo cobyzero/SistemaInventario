@@ -18,6 +18,14 @@ namespace ProyectoVenta.Intermedios
         public IEntradas()
         {
             InitializeComponent();
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                label7.Text = "Eintrittskarten".ToUpper();
+                btnagregar.Text = "Neu";
+                btnlistar.Text = "Bericht";
+                btnbuscar.Text = "Suchen";
+                btncerrar.Text = "Schließen";
+            }
         }
 
         private void IEntradas_Load(object sender, EventArgs e)

@@ -21,8 +21,23 @@ namespace ProyectoVenta.Formularios.Proveedores
         public frmProveedores()
         {
             InitializeComponent();
-        }
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                Text = ".: Anbieter :.";
+                label2.Text = "Anbieter";
+                label6.Text = "Lieferantendetails".ToUpper();
+                label9.Text = "Dokumentnummer";
+                label3.Text = "vollständiger Name";
+                btnguadar.Text = "halten";
+                btneliminar.Text = "beseitigen";
+                btnlimpiar.Text = "sauber";
+                NumeroDocumento.HeaderText = "Dokumentnummer";
+                NombreCompleto.HeaderText = "vollständiger Name";
+                label7.Text = "Liste der Lieferanten".ToUpper();
+                label12.Text = "zu suchen";
 
+            }
+        }
         private void btnsalir_Click(object sender, EventArgs e)
         {
             this.Close();

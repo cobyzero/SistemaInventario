@@ -20,8 +20,26 @@ namespace ProyectoVenta.Formularios.Inventario
         public frmInventario()
         {
             InitializeComponent();
-        }
 
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                Text = ".: Inventar :.";
+                label2.Text = "Inventar";
+                btnsalir.Text = "hinausgehen";
+                label4.Text = "Startdatum";
+                label3.Text = "Endtermin";
+                btnbuscar.Text = "Suche";
+                btnexportar.Text = "Excel herunterladen";
+                label12.Text = "zu suchen";
+                CodigoProducto.HeaderText = "Produktcode";
+                Descripcion.HeaderText = "Beschreibung";
+                Categoria.HeaderText = "Länge";
+                Almacen.HeaderText = "speichern";
+                Entradas.HeaderText = "Eintrittskarten";
+                Salidas.HeaderText = "Abflüge";
+                StockActual.HeaderText = "Aktueller Lagerbestand";
+            }
+        }
         private void frmInventario_Load(object sender, EventArgs e)
         {
             foreach (DataGridViewColumn cl in dgvdata.Columns)

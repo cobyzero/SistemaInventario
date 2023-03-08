@@ -19,8 +19,17 @@ namespace ProyectoVenta.Intermedios
         public IConfiguracion()
         {
             InitializeComponent();
-        }
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                label7.Text = "Einstellung".ToUpper();
+                btnusuarios.Text = "Benutzer";
+                btnpermisos.Text = "Berechtigungen";
+                btnotros.Text = "Andere";
+                btncerrar.Text = "schließen";
 
+
+            }
+        }
         private void IConfiguracion_Load(object sender, EventArgs e)
         {
 

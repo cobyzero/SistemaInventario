@@ -18,7 +18,18 @@ namespace ProyectoVenta.Modales
         public mdAcercade()
         {
             InitializeComponent();
-
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                label1.Text = "Produktliste";
+                CodigoProducto.HeaderText = "Produktcode";
+                Descripcion.HeaderText = "Beschreibung";
+                Categoria.HeaderText = "Länge";
+                Almacen.HeaderText = "speichern";
+                Entradas.HeaderText = "Eintrittskarten";
+                Salidas.HeaderText = "Abflüge";
+                StockActual.HeaderText = "Aktueller Lagerbestand";
+                button3.Text = "hinausgehen";
+            }
         }
 
         private void dgvdata_CellContentClick(object sender, DataGridViewCellEventArgs e)

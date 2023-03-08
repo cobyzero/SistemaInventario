@@ -29,6 +29,7 @@ namespace ProyectoVenta.Formularios
                 label3.Text = "Pasword";
                 btningresar.Text = "Eingehen";
                 btnSalir.Text = "Beendet";
+                label4.Text = "Alle Rechte vorbehalten Ⓒ";
 
             }
         }

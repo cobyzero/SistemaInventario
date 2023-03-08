@@ -18,6 +18,13 @@ namespace ProyectoVenta.Intermedios
         public IProductos()
         {
             InitializeComponent();
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                label7.Text = "Produkte".ToUpper();
+                btnagregarproductos.Text = "Neu";
+                btncargar.Text = "tragen"; 
+                btnvolver.Text = "Schließen";
+            }
         }
 
         private void IProductos_Load(object sender, EventArgs e)

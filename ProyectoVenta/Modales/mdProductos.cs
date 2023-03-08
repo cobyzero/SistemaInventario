@@ -25,6 +25,20 @@ namespace ProyectoVenta.Modales
         public mdProductos()
         {
             InitializeComponent();
+
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                Text = ".: Produkte :.";
+                label2.Text = "Produkte";
+                btnsalir.Text = "hinausgehen";
+                label12.Text = "zu suchen";
+                Codigo.HeaderText = "Code";
+                Descripcion.HeaderText = "Beschreibung";
+                Categoria.HeaderText = "Länge";
+                Almacen.HeaderText = "speichern";
+
+            }
+
         }
 
         private void btnsalir_Click(object sender, EventArgs e)

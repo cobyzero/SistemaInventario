@@ -22,6 +22,16 @@ namespace ProyectoVenta.Modales
         public mdClientes()
         {
             InitializeComponent();
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                Text = ".: technisch :.";
+                label2.Text = "technisch";
+                btnsalir.Text = "hinausgehen";
+                label12.Text = "zu suchen";
+                NumeroDocumento.HeaderText = "Dokumentnummer";
+                NombreCompleto.HeaderText = "vollständiger Name";
+
+            }
         }
 
         private void btnsalir_Click(object sender, EventArgs e)

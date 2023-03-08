@@ -21,8 +21,25 @@ namespace ProyectoVenta.Formularios.Clientes
         public frmClientes()
         {
             InitializeComponent();
-        }
 
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                Text = ".: Technisch :.";
+                label2.Text = "Technisch";
+                btnsalir.Text = "hinausgehen";
+                label6.Text = "technische Details".ToUpper();
+                label9.Text = "Dokumentnummer";
+                label3.Text = "vollständiger Name";
+                btnguardar.Text = "halten";
+                btneliminar.Text = "beseitigen";
+                btnlimpiar.Text = "sauber";
+                label7.Text = "Liste der Techniker".ToUpper();
+                label12.Text = "zu suchen";
+                NumeroDocumento.HeaderText = "Dokumentnummer";
+                NombreCompleto.HeaderText = "vollständiger Name";
+
+            }
+        }
         private void btnsalir_Click(object sender, EventArgs e)
         {
             this.Close();

@@ -20,8 +20,22 @@ namespace ProyectoVenta.Formularios.Configuracion
         public frmConfiguracion()
         {
             InitializeComponent();
-        }
 
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                Text = ".: Andere :.";
+                label3.Text = "Andere"; 
+                btnsalir.Text = "hinausgehen";
+                groupBox2.Text = "Geschäftsinformationen";
+                label1.Text = "Firmenname";
+                label5.Text = "Adresse";
+                btnguardarcambios.Text = "Änderungen speichern";
+                groupBox3.Text = "Barcode-Informationen";
+                label12.Text = "Kerl";
+                btnguardartipocodigo.Text = "Änderungen speichern";
+
+            }
+        }
         private void frmConfiguracion_Load(object sender, EventArgs e)
         {
           

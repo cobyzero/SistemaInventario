@@ -21,6 +21,17 @@ namespace ProyectoVenta.Modales
         public mdProveedores()
         {
             InitializeComponent();
+
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                Text = ".: Lieferanten :.";
+                label2.Text = "Lieferanten";
+                btnsalir.Text = "hinausgehen";
+                label12.Text = "zu suchen";
+                NumeroDocumento.HeaderText = "Dokumentnummer";
+                NombreCompleto.HeaderText = "vollständiger Name";
+            }
+
         }
 
         private void btnsalir_Click(object sender, EventArgs e)
