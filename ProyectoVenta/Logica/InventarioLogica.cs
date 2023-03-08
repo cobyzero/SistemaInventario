@@ -34,85 +34,41 @@ namespace ProyectoVenta.Logica
         {
             List<Inventario> oLista = new List<Inventario>();
             try
-            {
-
+            { 
                 using (var db = new InventarioAlemanaContext())
                 {
+                    var listaProductos = db.Productos.Where((t)=> t.Stock > 0).ToList();
 
-
-
-
-
-                }
-
-                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
-                {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("select prod.Codigo,prod.Descripcion,prod.Longitud,prod.Almacen,");
-                    query.AppendLine("ifnull(ent.Entradas,0)[Entradas],ifnull(sal.Salidas,0)[Salidas],");
-                    query.AppendLine("prod.Stock"); 
-                    query.AppendLine("from (");
-                    query.AppendLine("select DISTINCT * from (");
-                    query.AppendLine("select p.IdProducto,p.Codigo,p.Descripcion,p.Longitud,p.Almacen,p.Stock from DETALLE_ENTRADA de");
-                    query.AppendLine("inner join ENTRADA e on e.IdEntrada = de.IdEntrada");
-                    query.AppendLine("inner join PRODUCTO p on p.IdProducto = de.IdProducto where DATE(e.FechaRegistro) BETWEEN DATE(@pfechainicio1) AND DATE(@pfechafin1)");
-                    query.AppendLine("UNION ALL");
-                    query.AppendLine("select p.IdProducto,p.Codigo,p.Descripcion,p.Longitud,p.Almacen,p.Stock from DETALLE_SALIDA ds");
-                    query.AppendLine("inner join SALIDA s on s.IdSalida = ds.IdSalida");
-                    query.AppendLine("inner join PRODUCTO p on p.IdProducto = ds.IdProducto where DATE(s.FechaRegistro) BETWEEN DATE(@pfechainicio2) AND DATE(@pfechafin2)");
-                    query.AppendLine(") temp");
-                    query.AppendLine(") prod");
-                    query.AppendLine("left join (");
-                    query.AppendLine("select p.IdProducto,sum(de.Cantidad)[Entradas] from PRODUCTO p");
-                    query.AppendLine("inner join DETALLE_ENTRADA de on de.IdProducto = p.IdProducto");
-                    query.AppendLine("inner join ENTRADA e on e.IdEntrada = de.IdEntrada where DATE(e.FechaRegistro) BETWEEN DATE(@pfechainicio3) AND DATE(@pfechafin3)");
-                    query.AppendLine("group by p.IdProducto,p.Codigo,p.Descripcion,p.Longitud,p.Almacen");
-                    query.AppendLine(") ent on ent.IdProducto = prod.IdProducto");
-                    query.AppendLine("left join (");
-                    query.AppendLine("select p.IdProducto,sum(ds.Cantidad)[Salidas] from PRODUCTO p");
-                    query.AppendLine("inner join DETALLE_SALIDA ds on ds.IdProducto = p.IdProducto");
-                    query.AppendLine("inner join SALIDA s on s.IdSalida = ds.IdSalida where DATE(s.FechaRegistro) BETWEEN DATE(@pfechainicio4) AND DATE(@pfechafin4)");
-                    query.AppendLine("group by p.IdProducto");
-                    query.AppendLine(") sal on sal.IdProducto = prod.IdProducto");
-
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SqlParameter("@pfechainicio1", fechainicio));
-                    cmd.Parameters.Add(new SqlParameter("@pfechafin1", fechafin));
-                    cmd.Parameters.Add(new SqlParameter("@pfechainicio2", fechainicio));
-                    cmd.Parameters.Add(new SqlParameter("@pfechafin2", fechafin));
-                    cmd.Parameters.Add(new SqlParameter("@pfechainicio3", fechainicio));
-                    cmd.Parameters.Add(new SqlParameter("@pfechafin3", fechafin));
-                    cmd.Parameters.Add(new SqlParameter("@pfechainicio4", fechainicio));
-                    cmd.Parameters.Add(new SqlParameter("@pfechafin4", fechafin));
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-
-                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    foreach (var item in listaProductos)
                     {
-                        while (dr.Read())
+                        var entradaDT = db.Entrada.Where((t) => t.IdProducto == item.IdProducto && t.FechaRegistro > fechainicio && t.FechaRegistro < fechafin).ToList().Count();
+                        var salidaDT = db.Salida.Where((t) => t.IdProducto == item.IdProducto && t.FechaRegistro > fechainicio && t.FechaRegistro < fechafin).ToList().Count();
+
+
+                        if (entradaDT > 0 && salidaDT > 0)
                         {
                             oLista.Add(new Inventario()
                             {
-                                Codigo = dr["Codigo"].ToString(),
-                                Descripcion = dr["Descripcion"].ToString(),
-                                Categoria = dr["Longitud"].ToString(),
-                                Almacen = dr["Almacen"].ToString(),
-                                Entradas = dr["Entradas"].ToString(),
-                                Salidas = dr["Salidas"].ToString(),
-                                Stock = dr["Stock"].ToString(), 
+                                Codigo = item.Codigo,
+                                Descripcion = item.Descripcion,
+                                Categoria = item.Longitud,
+                                Almacen = item.Almacen,
+                                Entradas = entradaDT.ToString(),
+                                Salidas = salidaDT.ToString(),
+                                Stock = item.Stock.ToString(),
                             });
                         }
+
+                       
                     }
-                }
-            }
-            catch (Exception ex)
+
+                    return oLista;
+                } 
+            }catch(Exception e)
             {
-                oLista = new List<Inventario>();
+                return oLista;
             }
-            return oLista;
+
         }
-
-
     }
 }

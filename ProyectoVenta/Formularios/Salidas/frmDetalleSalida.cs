@@ -114,11 +114,11 @@ namespace ProyectoVenta.Formularios.Salidas
             string Texto_Html = string.Empty;
              
             Texto_Html = Properties.Resources.PlantillaSalidaSinPrecio.ToString();
-             
-            Datos odatos = DatoLogica.Instancia.Obtener();
+
+            Data.Dato odatos = DatoLogica.Instancia.Obtener();
 
             Texto_Html = Texto_Html.Replace("@nombrenegocio", odatos.RazonSocial.ToUpper());
-            Texto_Html = Texto_Html.Replace("@docnegocio", odatos.RUC);
+            Texto_Html = Texto_Html.Replace("@docnegocio", odatos.Ruc);
             Texto_Html = Texto_Html.Replace("@direcnegocio", odatos.Direccion);
 
             Texto_Html = Texto_Html.Replace("@numerodocumento", lblnrodocumento.Text);

@@ -30,9 +30,9 @@ namespace ProyectoVenta.Formularios.Configuracion
                 picLogo.Image = ByteToImage(byteimage);
 
 
-            Datos da = DatoLogica.Instancia.Obtener();
+            Data.Dato da = DatoLogica.Instancia.Obtener();
             txtrazonsocial.Text = da.RazonSocial;
-            txtruc.Text = da.RUC;
+            txtruc.Text = da.Ruc;
             txtdireccion.Text = da.Direccion;
 
 
@@ -113,9 +113,8 @@ namespace ProyectoVenta.Formularios.Configuracion
             this.Close();
         }
 
-        private void btnguardarcambios_Click(object sender, EventArgs e)
-        {
-            string mensaje = string.Empty;
+        private async void btnguardarcambios_Click(object sender, EventArgs e)
+        { 
 
             if (txtrazonsocial.Text == "") {
                 MessageBox.Show("Debe ingresar Razon Social", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -133,20 +132,18 @@ namespace ProyectoVenta.Formularios.Configuracion
             }
 
 
-            int nrooperacion = DatoLogica.Instancia.Guardar(new Datos()
+            if (await DatoLogica.Instancia.Guardar(new Data.Dato()
             {
                 RazonSocial = txtrazonsocial.Text,
-                RUC = txtruc.Text,
+                Ruc = txtruc.Text,
                 Direccion = txtdireccion.Text
-            }, out mensaje);
-
-            if (nrooperacion < 1)
-            {
-                MessageBox.Show("No se pudo guardar los cambios, intente más tarde", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }))
+            { 
+                MessageBox.Show("Los cambios fueron guardados", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Los cambios fueron guardados", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No se pudo guardar los cambios, intente más tarde", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 

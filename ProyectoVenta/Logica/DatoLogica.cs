@@ -1,4 +1,5 @@
-﻿using ProyectoVenta.Modelo;
+﻿using ProyectoVenta.Data;
+using ProyectoVenta.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -30,78 +31,44 @@ namespace ProyectoVenta.Logica
 
    
 
-        public Datos Obtener()
+        public Data.Dato Obtener()
         {
-            Datos obj = new Datos();
+            Data.Dato obj = new Data.Dato();
+
             try
             {
-                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
+                using (var db = new InventarioAlemanaContext())
                 {
-                    conexion.Open();
-                    string query = "select IdDato, RazonSocial, RUC, Direccion from DATOS where IdDato = 1";
-                    SqlCommand cmd = new SqlCommand(query, conexion);
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    using (SqlDataReader dr = cmd.ExecuteReader())
-                    {
-                        while (dr.Read())
-                        {
-                            obj = new Datos()
-                            {
-                                IdDato = int.Parse(dr["IdDato"].ToString()),
-                                RazonSocial = dr["RazonSocial"].ToString(),
-                                RUC = dr["RUC"].ToString(),
-                                Direccion = dr["Direccion"].ToString()
-                            };
-                        }
-                    }
+                    obj = db.Datos.Where((t) => t.IdDato == 1).First();
                 }
             }
             catch (Exception ex)
             {
-                obj = new Datos();
+                obj = new Data.Dato();
             }
             return obj;
         }
 
-        public int Guardar(Datos objeto, out string mensaje)
-        {
-            mensaje = string.Empty;
-            int respuesta = 0;
+        public async Task<bool> Guardar(Data.Dato objeto)
+        { 
             try
             {
+                 using(var db = new InventarioAlemanaContext())
+                 {
+                    Data.Dato dato = db.Datos.Where((t) => t.IdDato == 1).First();
 
-                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
-                {
+                    dato = objeto;
 
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
+                    await db.SaveChangesAsync();
 
-                    query.AppendLine("update DATOS set RazonSocial = @prazonsocial,");
-                    query.AppendLine("RUC = @pruc,");
-                    query.AppendLine("Direccion = @pdireccion");
-                    query.AppendLine("where IdDato = 1;");
-
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SqlParameter("@prazonsocial", objeto.RazonSocial));
-                    cmd.Parameters.Add(new SqlParameter("@pruc", objeto.RUC));
-                    cmd.Parameters.Add(new SqlParameter("@pdireccion", objeto.Direccion));
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    respuesta = cmd.ExecuteNonQuery();
-                    if (respuesta < 1)
-                        mensaje = "No se pudo actualizar los datos";
-
+                    return true;
                 }
             }
             catch (Exception ex)
             {
-
-                respuesta = 0;
-                mensaje = ex.Message;
+                return false;
             }
-
-            return respuesta;
+             
         }
 
         public int ActualizarLogo(byte[] imagen, out string mensaje)
