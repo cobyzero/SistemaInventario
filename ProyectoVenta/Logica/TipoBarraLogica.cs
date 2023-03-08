@@ -1,4 +1,5 @@
-﻿using ProyectoVenta.Modelo;
+﻿using ProyectoVenta.Data;
+using ProyectoVenta.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -29,71 +30,41 @@ namespace ProyectoVenta.Logica
             }
         }
 
-        public TipoBarra ObtenerTipoBarra()
+        public Data.TipoBarra ObtenerTipoBarra()
         {
-            TipoBarra obj = new TipoBarra();
+            Data.TipoBarra obj = new Data.TipoBarra();
             try
             {
-                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
+                using (var db = new InventarioAlemanaContext())
                 {
-                    conexion.Open();
-                    string query = "select IdTipoBarra,Value from TIPO_BARRA where IdTipoBarra = 1";
-                    SqlCommand cmd = new SqlCommand(query, conexion);
-                    cmd.CommandType = System.Data.CommandType.Text;
+                    obj = db.TipoBarras.Where((t) => t.IdTipoBarra == 1).First();
 
-                    using (SqlDataReader dr = cmd.ExecuteReader())
-                    {
-                        while (dr.Read())
-                        {
-                            obj = new TipoBarra()
-                            {
-                                IdTipoBarra = int.Parse(dr["IdTipoBarra"].ToString()),
-                                Value = int.Parse(dr["Value"].ToString())
-                            };
-                        }
-                    }
-                }
+                    return obj;
+                } 
             }
             catch (Exception ex)
             {
-                obj = new TipoBarra();
-            }
-            return obj;
+                return obj;
+            } 
         }
 
-        public int Guardar(int valor, out string mensaje)
-        {
-            mensaje = string.Empty;
-            int respuesta = 0;
+        public async Task<bool> Guardar(int valor)
+        { 
             try
             {
-
-                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
+                using (var db = new InventarioAlemanaContext())
                 {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
+                    Data.TipoBarra tipoBarra = db.TipoBarras.Where((t) => t.IdTipoBarra == 1).First();
+                    tipoBarra.Value = valor;
 
-                    query.AppendLine("update TIPO_BARRA set Value = @pvalue");
-                    query.AppendLine("where IdTipoBarra = 1;");
-
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SqlParameter("@pvalue", valor));
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    respuesta = cmd.ExecuteNonQuery();
-                    if (respuesta < 1)
-                        mensaje = "No se pudo actualizar el tipo de barra";
-
+                    await db.SaveChangesAsync();
+                    return true;
                 }
             }
             catch (Exception ex)
             {
-
-                respuesta = 0;
-                mensaje = ex.Message;
-            }
-
-            return respuesta;
+                return false;
+            } 
         }
 
     }

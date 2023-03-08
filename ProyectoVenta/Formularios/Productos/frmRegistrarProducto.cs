@@ -61,7 +61,7 @@ namespace ProyectoVenta.Formularios
             cbobuscar.SelectedIndex = 0;
 
 
-            TipoBarra objtipobarra = TipoBarraLogica.Instancia.ObtenerTipoBarra();
+            Data.TipoBarra objtipobarra = TipoBarraLogica.Instancia.ObtenerTipoBarra();
             if (objtipobarra.IdTipoBarra != 0) {
                 TipoBarraCodigo.TipoCodigo = (Enum.IsDefined(typeof(BarcodeLib.TYPE), objtipobarra.Value)) ? ((BarcodeLib.TYPE)objtipobarra.Value) : ((BarcodeLib.TYPE)0);
             }

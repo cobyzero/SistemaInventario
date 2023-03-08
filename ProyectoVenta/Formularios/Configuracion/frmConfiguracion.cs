@@ -75,7 +75,7 @@ namespace ProyectoVenta.Formularios.Configuracion
 
 
 
-            TipoBarra objtipobarra = TipoBarraLogica.Instancia.ObtenerTipoBarra();
+            Data.TipoBarra objtipobarra = TipoBarraLogica.Instancia.ObtenerTipoBarra();
             int indexcombo = 0;
             if (objtipobarra.IdTipoBarra != 0)
             {
@@ -144,18 +144,17 @@ namespace ProyectoVenta.Formularios.Configuracion
         }
 
         
-        private void btnguardartipocodigo_Click(object sender, EventArgs e)
+        private async void btnguardartipocodigo_Click(object sender, EventArgs e)
         {
             try
             {
                 string mensaje = string.Empty;
                 int valor = Convert.ToInt32(((OpcionCombo)cbotipobarra.SelectedItem).Valor.ToString());
 
-                int respuesta = TipoBarraLogica.Instancia.Guardar(valor, out mensaje);
-
-                if (respuesta < 1)
+                 
+                if (!await TipoBarraLogica.Instancia.Guardar(valor))
                 {
-                    MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("No se pudo actualizar el tipo de barra", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
