@@ -1,4 +1,5 @@
-﻿using ProyectoVenta.Modelo;
+﻿using ProyectoVenta.Data;
+using ProyectoVenta.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -29,11 +30,14 @@ namespace ProyectoVenta.Logica
 
 
 
-        public List<Inventario> Resumen(string fechainicio = "", string fechafin = "")
+        public List<Inventario> Resumen(DateTime fechainicio, DateTime fechafin)
         {
             List<Inventario> oLista = new List<Inventario>();
             try
-            {
+            { 
+
+
+
                 using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
                 {
                     conexion.Open();

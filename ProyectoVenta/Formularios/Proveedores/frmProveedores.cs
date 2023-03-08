@@ -30,11 +30,10 @@ namespace ProyectoVenta.Formularios.Proveedores
 
         private void frmProveedores_Load(object sender, EventArgs e)
         {
+             
+            List<Data.Proveedor> lista = ProveedorLogica.Instancia.Listar();
 
-            string mensaje = string.Empty;
-            List<Proveedor> lista = ProveedorLogica.Instancia.Listar(out mensaje);
-
-            foreach (Proveedor pr in lista)
+            foreach (Data.Proveedor pr in lista)
             {
                 dgvdata.Rows.Add(new object[] {
                     pr.IdProveedor,
@@ -123,7 +122,7 @@ namespace ProyectoVenta.Formularios.Proveedores
             Limpiar();
         }
 
-        private void btnguadar_Click(object sender, EventArgs e)
+        private async void btnguadar_Click(object sender, EventArgs e)
         {
             string mensaje = string.Empty;
 
@@ -140,19 +139,19 @@ namespace ProyectoVenta.Formularios.Proveedores
                 return;
             }
 
-            Proveedor obj = new Proveedor() { IdProveedor = _id, NumeroDocumento = txtnumero.Text, NombreCompleto = txtnombre.Text };
+            Data.Proveedor obj = new Data.Proveedor() { IdProveedor = _id, NumeroDocumento = txtnumero.Text, NombreCompleto = txtnombre.Text };
 
-            int existe = ProveedorLogica.Instancia.Existe(obj.NumeroDocumento, _id, out mensaje);
-            if (existe > 0)
+             
+            if (ProveedorLogica.Instancia.Existe(obj.NumeroDocumento, _id))
             {
-                lblresultado.Text = mensaje;
+                lblresultado.Text = "El numero de documento ya existe";
                 lblresultado.ForeColor = Color.Red;
                 return;
             }
 
             if (_id == 0)
             {
-                int idgenerado = ProveedorLogica.Instancia.Guardar(obj, out mensaje);
+                int idgenerado = await ProveedorLogica.Instancia.Guardar(obj);
                 if (idgenerado > 0)
                 {
                     Limpiar();
@@ -162,14 +161,14 @@ namespace ProyectoVenta.Formularios.Proveedores
                 }
                 else
                 {
-                    lblresultado.Text = mensaje;
+                    lblresultado.Text = "No se pudo registrar el proveedor";
                     lblresultado.ForeColor = Color.Red;
                 }
             }
             else
             {
-                int afectados = ProveedorLogica.Instancia.Editar(obj, out mensaje);
-                if (afectados > 0)
+                 
+                if (await ProveedorLogica.Instancia.Editar(obj))
                 {
                     dgvdata.Rows[_indice].Cells["NumeroDocumento"].Value = obj.NumeroDocumento;
                     dgvdata.Rows[_indice].Cells["NombreCompleto"].Value = obj.NombreCompleto;
@@ -179,27 +178,30 @@ namespace ProyectoVenta.Formularios.Proveedores
                 }
                 else
                 {
-                    lblresultado.Text = mensaje;
+                    lblresultado.Text = "No se pudo editar el producto";
                     lblresultado.ForeColor = Color.Red;
                 }
 
             }
         }
 
-        private void btneliminar_Click(object sender, EventArgs e)
+        private async void btneliminar_Click(object sender, EventArgs e)
         {
             if (_id != 0)
             {
                 if (MessageBox.Show("¿Desea eliminar el proveedor?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    int respuesta = ProveedorLogica.Instancia.Eliminar(_id);
-                    if (respuesta > 0)
+                     
+                    if (await ProveedorLogica.Instancia.Eliminar(_id))
                     {
                         dgvdata.Rows.RemoveAt(_indice);
                         Limpiar(false);
                     }
                     else
+                    {
                         MessageBox.Show("No se pudo eliminar el proveedor", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                        
                 }
             }
             else

@@ -29,11 +29,10 @@ namespace ProyectoVenta.Modales
         }
 
         private void mdProveedores_Load(object sender, EventArgs e)
-        {
-            string mensaje = string.Empty;
-            List<Proveedor> lista = ProveedorLogica.Instancia.Listar(out mensaje);
+        { 
+            List<Data.Proveedor> lista = ProveedorLogica.Instancia.Listar();
 
-            foreach (Proveedor pr in lista)
+            foreach (Data.Proveedor pr in lista)
             {
                 dgvdata.Rows.Add(new object[] {
                     pr.IdProveedor,

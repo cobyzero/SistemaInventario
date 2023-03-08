@@ -1,4 +1,5 @@
-﻿using ProyectoVenta.Modelo;
+﻿using ProyectoVenta.Data;
+using ProyectoVenta.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -30,164 +31,101 @@ namespace ProyectoVenta.Logica
         }
 
 
-        public List<Proveedor> Listar(out string mensaje)
+        public List<Data.Proveedor> Listar()
         {
-            mensaje = string.Empty;
-            List<Proveedor> oLista = new List<Proveedor>();
+            List<Data.Proveedor> oLista = null;
 
             try
             {
-                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
+                using (var db = new InventarioAlemanaContext())
                 {
-                    conexion.Open();
-                    string query = "select IdProveedor,NumeroDocumento,NombreCompleto from PROVEEDOR;";
-                    SqlCommand cmd = new SqlCommand(query, conexion);
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    using (SqlDataReader dr = cmd.ExecuteReader())
-                    {
-                        while (dr.Read())
-                        {
-                            oLista.Add(new Proveedor()
-                            {
-                                IdProveedor = int.Parse(dr["IdProveedor"].ToString()),
-                                NumeroDocumento = dr["NumeroDocumento"].ToString(),
-                                NombreCompleto = dr["NombreCompleto"].ToString()
-                            });
-                        }
-                    }
+                    oLista = db.Proveedors.ToList();
+                    return oLista;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                oLista = new List<Proveedor>();
-                mensaje = ex.Message;
+                return oLista;
             }
-            return oLista;
+
         }
 
-        public int Existe(string numero, int defaultid, out string mensaje)
+        public bool Existe(string numero, int defaultid)
         {
-            mensaje = string.Empty;
-            int respuesta = 0;
-            using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
-            {
-                try
-                {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("select count(*)[resultado] from PROVEEDOR where upper(NumeroDocumento) = upper(@pnumero) and IdProveedor != @defaultid");
-
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SqlParameter("@pnumero", numero));
-                    cmd.Parameters.Add(new SqlParameter("@defaultid", defaultid));
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    respuesta = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-                    if (respuesta > 0)
-                        mensaje = "El numero de documento ya existe";
-
-                }
-                catch (Exception ex)
-                {
-                    respuesta = 0;
-                    mensaje = ex.Message;
-                }
-
-            }
-            return respuesta;
-        }
-
-        public int Guardar(Proveedor objeto, out string mensaje)
-        {
-            mensaje = string.Empty;
-            int respuesta = 0;
-
-            using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
-            {
-                try
-                {
-
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-
-                    query.AppendLine("insert into PROVEEDOR(NumeroDocumento,NombreCompleto) values (@pnumero,@pnombre);");
-                    query.AppendLine("select last_insert_rowid();");
-
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SqlParameter("@pnumero", objeto.NumeroDocumento));
-                    cmd.Parameters.Add(new SqlParameter("@pnombre", objeto.NombreCompleto));
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    respuesta = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-                    if (respuesta < 1)
-                        mensaje = "No se pudo registrar el proveedor";
-                }
-                catch (Exception ex)
-                {
-                    respuesta = 0;
-                    mensaje = ex.Message;
-                }
-            }
-
-            return respuesta;
-        }
-
-        public int Editar(Proveedor objeto, out string mensaje)
-        {
-            mensaje = string.Empty;
-            int respuesta = 0;
-
-            using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
-            {
-                try
-                {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("update PROVEEDOR set NumeroDocumento = @pnumero,NombreCompleto = @pnombre where IdProveedor = @pidproveedor");
-
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SqlParameter("@pidproveedor", objeto.IdProveedor));
-                    cmd.Parameters.Add(new SqlParameter("@pnumero", objeto.NumeroDocumento));
-                    cmd.Parameters.Add(new SqlParameter("@pnombre", objeto.NombreCompleto));
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    respuesta = cmd.ExecuteNonQuery();
-                    if (respuesta < 1)
-                        mensaje = "No se pudo editar el producto";
-                }
-                catch (Exception ex)
-                {
-                    respuesta = 0;
-                    mensaje = ex.Message;
-                }
-            }
-
-            return respuesta;
-        }
-
-
-        public int Eliminar(int id)
-        {
-            int respuesta = 0;
             try
             {
-                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
+                using (var db = new InventarioAlemanaContext())
                 {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("delete from PROVEEDOR where IdProveedor = @id;");
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SqlParameter("@id", id));
-                    cmd.CommandType = System.Data.CommandType.Text;
-                    respuesta = cmd.ExecuteNonQuery();
+                    Data.Proveedor cliente = db.Proveedors.Where((t) => t.IdProveedor != defaultid && t.NumeroDocumento == numero).First(); 
+                    return true;
                 }
             }
-            catch (Exception ex)
-            {
-                respuesta = 0;
+            catch (Exception e)
+            { 
+                return false;
             }
-            return respuesta;
+
+        }
+
+        public async Task<int> Guardar(Data.Proveedor objeto)
+        {
+            try
+            {
+                using (var db = new InventarioAlemanaContext())
+                {
+                    await db.Proveedors.AddAsync(objeto);
+                    await db.SaveChangesAsync();
+                    return objeto.IdProveedor;
+                }
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+
+        }
+
+        public async Task<bool> Editar(Data.Proveedor objeto)
+        {
+            try
+            {
+                using (var db = new InventarioAlemanaContext())
+                {
+                    Data.Proveedor proveedor = db.Proveedors.Where((t) => t.IdProveedor == objeto.IdProveedor).First();
+
+                    proveedor = objeto;
+
+                    await db.SaveChangesAsync();
+
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
+
+
+        public async Task<bool> Eliminar(int id)
+        {
+            try
+            {
+                using (var db = new InventarioAlemanaContext())
+                {
+                    Data.Proveedor proveedor = db.Proveedors.Where((t) => t.IdProveedor == id).First();
+                    db.Proveedors.Remove(proveedor);
+
+                    await db.SaveChangesAsync();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
 
     }
