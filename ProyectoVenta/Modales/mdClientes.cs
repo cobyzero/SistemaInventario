@@ -32,9 +32,9 @@ namespace ProyectoVenta.Modales
         private void mdClientes_Load(object sender, EventArgs e)
         {
             string mensaje = string.Empty;
-            List<Cliente> lista = ClienteLogica.Instancia.Listar(out mensaje);
+            List<Data.Cliente> lista = ClienteLogica.Instancia.Listar();
 
-            foreach (Cliente pr in lista)
+            foreach (Data.Cliente pr in lista)
             {
                 dgvdata.Rows.Add(new object[] {
                     pr.IdCliente,

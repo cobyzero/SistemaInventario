@@ -31,9 +31,9 @@ namespace ProyectoVenta.Formularios.Clientes
         private void frmClientes_Load(object sender, EventArgs e)
         {
             string mensaje = string.Empty;
-            List<Cliente> lista = ClienteLogica.Instancia.Listar(out mensaje);
+            List<Data.Cliente> lista = ClienteLogica.Instancia.Listar();
 
-            foreach (Cliente pr in lista)
+            foreach (Data.Cliente pr in lista)
             {
                 dgvdata.Rows.Add(new object[] {
                     pr.IdCliente,
@@ -121,7 +121,7 @@ namespace ProyectoVenta.Formularios.Clientes
             Limpiar();
         }
 
-        private void btnguardar_Click(object sender, EventArgs e)
+        private async void btnguardar_Click(object sender, EventArgs e)
         {
             string mensaje = string.Empty;
 
@@ -138,7 +138,7 @@ namespace ProyectoVenta.Formularios.Clientes
                 return;
             }
 
-            Cliente obj = new Cliente(){ IdCliente = _id, NumeroDocumento = txtnumero.Text, NombreCompleto = txtnombre.Text};
+            Data.Cliente obj = new Data.Cliente(){ IdCliente = _id, NumeroDocumento = txtnumero.Text, NombreCompleto = txtnombre.Text};
 
             int existe = ClienteLogica.Instancia.Existe(obj.NumeroDocumento, _id, out mensaje);
             if (existe > 0)
@@ -150,7 +150,7 @@ namespace ProyectoVenta.Formularios.Clientes
 
             if (_id == 0)
             {
-                int idgenerado = ClienteLogica.Instancia.Guardar(obj, out mensaje);
+                int idgenerado = await ClienteLogica.Instancia.Guardar(obj);
                 if (idgenerado > 0)
                 {
                     Limpiar();
@@ -160,14 +160,14 @@ namespace ProyectoVenta.Formularios.Clientes
                 }
                 else
                 {
-                    lblresultado.Text = mensaje;
+                    lblresultado.Text = "No se pudo registrar el tecnico";
                     lblresultado.ForeColor = Color.Red;
                 }
             }
             else
             {
-                int afectados = ClienteLogica.Instancia.Editar(obj, out mensaje);
-                if (afectados > 0)
+                
+                if (await ClienteLogica.Instancia.Editar(obj))
                 {
                     dgvdata.Rows[_indice].Cells["NumeroDocumento"].Value = obj.NumeroDocumento;
                     dgvdata.Rows[_indice].Cells["NombreCompleto"].Value = obj.NombreCompleto;
@@ -177,21 +177,21 @@ namespace ProyectoVenta.Formularios.Clientes
                 }
                 else
                 {
-                    lblresultado.Text = mensaje;
+                    lblresultado.Text = "No se pudo editar el tecnico";
                     lblresultado.ForeColor = Color.Red;
                 }
 
             }
         }
 
-        private void btneliminar_Click(object sender, EventArgs e)
+        private async void btneliminar_Click(object sender, EventArgs e)
         {
             if (_id != 0)
             {
                 if (MessageBox.Show("¿Desea eliminar el cliente?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    int respuesta = ClienteLogica.Instancia.Eliminar(_id);
-                    if (respuesta > 0)
+                    
+                    if (await ClienteLogica.Instancia.Eliminar(_id))
                     {
                         dgvdata.Rows.RemoveAt(_indice);
                         Limpiar(false);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using ProyectoVenta.Data;
 using ProyectoVenta.Modelo;
 using System;
 using System.Collections.Generic; 
@@ -29,169 +30,98 @@ namespace ProyectoVenta.Logica
         }
 
 
-        public List<Cliente> Listar(out string mensaje)
-        {
-            mensaje = string.Empty;
-            List<Cliente> oLista = new List<Cliente>();
+        public List<Data.Cliente> Listar()
+        { 
+            List<Data.Cliente> oLista = null;
 
             try
             {
-                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
+                using (var db = new InventarioAlemanaContext())
                 {
-                    conexion.Open();
-                    string query = "select IdCliente,NumeroDocumento,NombreCompleto from CLIENTE;";
-                    SqlCommand cmd = new SqlCommand(query, conexion);
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    using (SqlDataReader dr = cmd.ExecuteReader())
-                    {
-                        while (dr.Read())
-                        {
-                            oLista.Add(new Cliente()
-                            {
-                                IdCliente = int.Parse(dr["IdCliente"].ToString()),
-                                NumeroDocumento = dr["NumeroDocumento"].ToString(),
-                                NombreCompleto = dr["NombreCompleto"].ToString()
-                            });
-                        }
-                    }
+                    oLista = db.Clientes.ToList();
+                    return oLista;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                oLista = new List<Cliente>();
-                mensaje = ex.Message;
-            }
-            return oLista;
+                return oLista;
+            } 
         }
 
         public int Existe(string numero, int defaultid, out string mensaje)
-        {
-            mensaje = string.Empty;
-            int respuesta = 0;
-            using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
-            {
-                try
-                {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("select count(*)[resultado] from CLIENTE where upper(NumeroDocumento) = upper(@pnumero) and IdCliente != @defaultid");
-
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SqlParameter("@pnumero", numero));
-                    cmd.Parameters.Add(new SqlParameter("@defaultid", defaultid));
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    respuesta = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-                    if (respuesta > 0)
-                        mensaje = "El numero de documento ya existe";
-
-                }
-                catch (Exception ex)
-                {
-                    respuesta = 0;
-                    mensaje = ex.Message;
-                }
-
-            }
-            return respuesta;
-        }
-
-        public int Guardar(Cliente objeto, out string mensaje)
-        {
-            mensaje = string.Empty;
-            int respuesta = 0;
-
-            using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
-            {
-                try
-                {
-
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-
-                    query.AppendLine("insert into CLIENTE(NumeroDocumento,NombreCompleto) values (@pnumero,@pnombre);");
-                    query.AppendLine("select last_insert_rowid();");
-
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SqlParameter("@pnumero", objeto.NumeroDocumento));
-                    cmd.Parameters.Add(new SqlParameter("@pnombre", objeto.NombreCompleto));
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    respuesta = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-                    if (respuesta < 1)
-                        mensaje = "No se pudo registrar el tecnico";
-                }
-                catch (Exception ex)
-                {
-                    respuesta = 0;
-                    mensaje = ex.Message;
-                }
-            }
-
-            return respuesta;
-        }
-
-        public int Editar(Cliente objeto, out string mensaje)
-        {
-            mensaje = string.Empty;
-            int respuesta = 0;
-
-            using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
-            {
-                try
-                {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("update CLIENTE set NumeroDocumento = @pnumero,NombreCompleto = @pnombre where IdCliente = @pidcliente");
-
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SqlParameter("@pidcliente", objeto.IdCliente));
-                    cmd.Parameters.Add(new SqlParameter("@pnumero", objeto.NumeroDocumento));
-                    cmd.Parameters.Add(new SqlParameter("@pnombre", objeto.NombreCompleto));
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    respuesta = cmd.ExecuteNonQuery();
-                    if (respuesta < 1)
-                        mensaje = "No se pudo editar el tecnico";
-                }
-                catch (Exception ex)
-                {
-                    respuesta = 0;
-                    mensaje = ex.Message;
-                }
-            }
-
-            return respuesta;
-        }
-
-
-        public int Eliminar(int id)
-        {
-            int respuesta = 0;
+        { 
             try
             {
-                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
+                using (var db = new InventarioAlemanaContext())
                 {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("delete from CLIENTE where IdCliente= @id;");
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SqlParameter("@id", id));
-                    cmd.CommandType = System.Data.CommandType.Text;
-                    respuesta = cmd.ExecuteNonQuery();
+                    Data.Cliente cliente = db.Clientes.Where((t) => t.NumeroDocumento == numero && t.IdCliente != defaultid).First();
+                    mensaje = "El numero de documento ya existe";
+                    return cliente.IdCliente;
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
+                mensaje = e.Message;
+                return 0;
+            } 
+        }
 
-                respuesta = 0;
+        public async Task<int> Guardar(Data.Cliente objeto)
+        {  
+            try
+            {
+                using (var db = new InventarioAlemanaContext())
+                { 
+                    await db.Clientes.AddAsync(objeto); 
+                    await db.SaveChangesAsync();
+                    return objeto.IdCliente; 
+                }
             }
+            catch (Exception)
+            { 
+                return 0;
+            } 
+        }
 
-            return respuesta;
+        public async Task<bool> Editar(Data.Cliente objeto)
+        { 
+            try
+            {
+                using (var db = new InventarioAlemanaContext())
+                {
+                    Data.Cliente cliente = db.Clientes.Where((t) => t.IdCliente == objeto.IdCliente).First();
+
+                    cliente = objeto;
+
+                    await db.SaveChangesAsync();
+
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false; 
+            } 
         }
 
 
+        public async Task<bool> Eliminar(int id)
+        { 
+            try
+            {
+                using (var db = new InventarioAlemanaContext())
+                {
+                    Data.Cliente cliente = db.Clientes.Where((t) => t.IdCliente == id).First();
+                    db.Clientes.Remove(cliente);
 
+                    await db.SaveChangesAsync();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            } 
+        } 
     }
 }
