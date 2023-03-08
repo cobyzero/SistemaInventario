@@ -39,9 +39,6 @@
     <PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Formularios\Pedidos\frmPedidos.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Formularios\Pedidos\frmRegistrarPedidos.cs">
       <SubType>Form</SubType>
     </Compile>

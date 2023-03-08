@@ -84,9 +84,6 @@
     <EmbeddedResource Update="Formularios\Entradas\frmRegistrarEntrada.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Update="Formularios\Pedidos\frmPedidos.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Update="Formularios\Pedidos\frmRegistrarPedidos.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>

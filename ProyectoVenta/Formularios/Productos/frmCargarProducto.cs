@@ -26,7 +26,24 @@ namespace ProyectoVenta.Formularios.Productos
         public frmCargarProducto()
         {
             InitializeComponent();
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                Text = ".: Produkt laden :.";
+                label2.Text = "Produkt laden";
+                btnsalir.Text = "hinausgehen";
+                label9.Text = "Datei aussuchen";
+                btncargar.Text = "Zunahme";
+                btnprocesar.Text = "Verfahren";
+                label3.Text = "Zusammenfassung";
+                label7.Text = "Ergebnisse".ToUpper();
+                btndescargar.Text = "Vorlage herunterladen";
+                NroFila.HeaderText = "Zeilennummer";
+                Codigo.HeaderText = "Code";
+                Mensaje.HeaderText = "Nachricht";
+
+            }
         }
+
         private void frmCargarProducto_Load(object sender, EventArgs e)
         {
             lblresumen.Text = "";

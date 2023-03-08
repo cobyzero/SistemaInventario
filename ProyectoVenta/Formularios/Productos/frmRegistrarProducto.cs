@@ -24,8 +24,31 @@ namespace ProyectoVenta.Formularios
         public frmRegistrarProducto()
         {
             InitializeComponent();
-        }
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                Text = ".: Produkt :.";
+                label2.Text = "Produkt";
+                btnsalir.Text = "hinausgehen";
+                label6.Text = "Produktdetail".ToUpper();
+                label7.Text = "Produktliste".ToUpper();
+                label9.Text = "Code";
+                label3.Text = "Beschreibung";
+                label4.Text = "Länge";
+                label5.Text = "speichern";
+                btngenerarcodigo.Text = "Code generieren";
+                chkmostraretiqueta.Text = "Tag-Code anzeigen";
+                btnguardar.Text = "halten";
+                btneliminar.Text = "beseitigen";
+                btnlimpiar.Text = "sauber";
+                label12.Text = "zu suchen";
+                Codigo.HeaderText = "Code";
+                Descripcion.HeaderText = "Beschreibung";
+                Categoria.HeaderText = "Länge";
+                Almacen.HeaderText = "speichern";
 
+
+            }
+        }
         private void btnsalir_Click(object sender, EventArgs e)
         {
             this.Close();

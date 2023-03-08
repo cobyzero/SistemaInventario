@@ -46,6 +46,7 @@ namespace ProyectoVenta.Formularios.Salidas
                 Cantidad.HeaderText = "Menge";
                 label5.Text = "Technischer Code";
                 label10.Text = "Name des Technikers";
+                txtnumerodocumento.Text = "automatisch generiert";
             }
         }
 

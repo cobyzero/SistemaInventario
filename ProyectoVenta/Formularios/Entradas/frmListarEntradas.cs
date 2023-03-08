@@ -21,6 +21,29 @@ namespace ProyectoVenta.Formularios.Entradas
         public frmListarEntradas()
         {
             InitializeComponent();
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                Text = ".: Einträge auflisten :.";
+                label2.Text = "Einträge auflisten";
+                btnsalir.Text = "hinausgehen";
+                label4.Text = "Startdatum";
+                label3.Text = "Endtermin";
+                btnbuscar.Text = "Suche";
+                btnexportar.Text = "Excel herunterladen";
+                label12.Text = "zu suchen:";
+                FechaRegistro.HeaderText = "Registrierungsdatum";
+                NroDocumento.HeaderText = "Dokumentnummer";
+                UsuarioRegistro.HeaderText = "Benutzerdatensatz";
+                Proveedor.HeaderText = "Anbieter";
+                CodigoProducto.HeaderText = "Produktcode";
+                DescripcionProducto.HeaderText = "Produktbeschreibung";
+                LongitudProducto.HeaderText = "Produktlänge";
+                AlmacenProducto.HeaderText = "Lagerprodukt";
+                Cantidad.HeaderText = "Menge";
+                label5.Text = "gesamt:";
+
+
+            }
         }
 
         private void btnsalir_Click(object sender, EventArgs e)

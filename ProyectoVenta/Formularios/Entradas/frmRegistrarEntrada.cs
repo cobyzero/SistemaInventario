@@ -26,6 +26,24 @@ namespace ProyectoVenta.Formularios.Entradas
         {
             _NombreUsuario = _usuario;
             InitializeComponent();
+
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                Text = ".: Neuer Eintrag :.";
+                label2.Text = "Neuer Eintrag";
+                btnsalir.Text = "hinausgehen";
+                label26.Text = "Dokumentnummer";
+                label27.Text = "Registrierungsdatum";
+                label5.Text = "Lieferantendokument";
+                label10.Text = "Anbietername";
+                label3.Text = "Produktcode";
+                label4.Text = "Produktbeschreibung";
+                label6.Text = "Menge";
+                Codigo.HeaderText = "Code";
+                Descripcion.HeaderText = "Beschreibung";
+                Cantidad.HeaderText = "Menge";
+                btnguardarentrada.Text = "Eintrag speichern";
+            }
         }
 
         private void btnsalir_Click(object sender, EventArgs e)

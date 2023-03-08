@@ -21,8 +21,29 @@ namespace ProyectoVenta.Formularios.Entradas
         public frmDetalleEntrada()
         {
             InitializeComponent();
-        }
 
+            if (ConfigGeneral.getType() == ConfigGeneral.TYPE_LANGUAGE.ALEMAN)
+            {
+                Text = ".: Sucheingabe :.";
+                label2.Text = "Sucheingabe";
+                btnsalir.Text = "hinausgehen";
+                label26.Text = "Dokumentnummer";
+                btnbuscar.Text = "Suche";
+                btnborrar.Text = "sauber";
+                label4.Text = "Datum";
+                label3.Text = "Benutzer";
+                label5.Text = "Lieferantendokument";
+                label10.Text = "Anbietername";
+                label7.Text = "Produktliste".ToUpper();
+                Codigo.HeaderText = "Code";
+                Descripcion.HeaderText = "Beschreibung";
+                Categoria.HeaderText = "Länge";
+                Almacen.HeaderText = "speichern";
+                Cantidad.HeaderText = "Menge";
+                btndescargarpdf.Text = "PDF Herunterladen";
+
+            }
+        }
         private void btnsalir_Click(object sender, EventArgs e)
         {
             this.Close();

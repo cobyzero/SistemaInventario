@@ -121,7 +121,6 @@ C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Formularios.frmLogin.resources
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Formularios.Inicio.resources
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Formularios.Inventario.frmInventario.resources
-C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Formularios.Pedidos.frmPedidos.resources
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Formularios.Permisos.frmPermisos.resources
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Formularios.Productos.frmCargarProducto.resources
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Formularios.frmRegistrarProducto.resources
