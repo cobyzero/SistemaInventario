@@ -23,13 +23,9 @@ namespace ProyectoVenta.Formularios.Configuracion
         }
 
         private void frmConfiguracion_Load(object sender, EventArgs e)
-        {
-            bool obtenido = true;
-            byte[] byteimage = DatoLogica.Instancia.ObtenerLogo(out obtenido);
-            if (obtenido)
-                picLogo.Image = ByteToImage(byteimage);
-
-
+        {  
+            picLogo.Image = ByteToImage(DatoLogica.Instancia.ObtenerLogo());
+             
             Data.Dato da = DatoLogica.Instancia.Obtener();
             txtrazonsocial.Text = da.RazonSocial;
             txtruc.Text = da.Ruc;
@@ -147,24 +143,22 @@ namespace ProyectoVenta.Formularios.Configuracion
             }
         }
 
-        private void btnsubir_Click(object sender, EventArgs e)
-        {
-            string mensaje = string.Empty;
+        private async void btnsubir_Click(object sender, EventArgs e)
+        { 
             OpenFileDialog oOpenFileDialog = new OpenFileDialog();
             oOpenFileDialog.Filter = "Files|*.jpg;*.jpeg;*.png";
 
             if (oOpenFileDialog.ShowDialog() == DialogResult.OK)
             {
                 byte[] byteImagen = File.ReadAllBytes(oOpenFileDialog.FileName);
-                int numerooperacion = DatoLogica.Instancia.ActualizarLogo(byteImagen, out mensaje);
-
-                if (numerooperacion < 1)
-                {
-                    MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else
+              
+                if (await DatoLogica.Instancia.ActualizarLogo(byteImagen))
                 {
                     picLogo.Image = ByteToImage(byteImagen);
+                }
+                else
+                { 
+                    MessageBox.Show("No se pudo actualizar el logo", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
         }

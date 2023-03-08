@@ -71,74 +71,46 @@ namespace ProyectoVenta.Logica
              
         }
 
-        public int ActualizarLogo(byte[] imagen, out string mensaje)
-        {
-            mensaje = string.Empty;
-            int respuesta = 0;
+        public async Task<bool> ActualizarLogo(byte[] imagen)
+        {  
             try
-            {
-
-                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
+            { 
+                using (var db = new InventarioAlemanaContext())
                 {
 
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
+                    Data.Dato dato = db.Datos.Where((t) => t.IdDato == 1).First();
 
-                    query.AppendLine("update DATOS set Logo = @pimagen");
-                    query.AppendLine("where IdDato = 1;");
+                    dato.Logo = imagen;
 
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    SqlParameter parameter = new SqlParameter("@pimagen", System.Data.DbType.Binary);
-                    parameter.Value = imagen;
-                    cmd.Parameters.Add(parameter);
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    respuesta = cmd.ExecuteNonQuery();
-                    if (respuesta < 1)
-                        mensaje = "No se pudo actualizar el logo";
-
+                    await db.SaveChangesAsync(); 
+                    
+                    return true;
                 }
             }
             catch (Exception ex)
-            {
-
-                respuesta = 0;
-                mensaje = ex.Message;
-            }
-
-            return respuesta;
+            { 
+                return false;
+            } 
         }
 
-        public byte[] ObtenerLogo(out bool obtenido)
-        {
-            obtenido = true;
+        public byte[] ObtenerLogo()
+        { 
             byte[] obj = new byte[0];
             try
             {
-                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
+                using (var db = new InventarioAlemanaContext())
                 {
-                    conexion.Open();
-                    string query = "select Logo from DATOS where IdDato = 1";
-                    SqlCommand cmd = new SqlCommand(query, conexion);
-                    cmd.CommandType = System.Data.CommandType.Text;
+                    Data.Dato dato = db.Datos.Where((t) => t.IdDato == 1).First();
 
-                    using (SqlDataReader dr = cmd.ExecuteReader())
-                    {
-                        while (dr.Read())
-                        {
-                            obj = (byte[])dr["Logo"];
-                        }
-                    }
+                    obj = dato.Logo;
+
+                    return obj;
                 }
             }
             catch (Exception ex)
             {
-                obtenido = false;
-                obj = new byte[0];
-            }
-            return obj;
-        }
-
-
+                return obj;
+            } 
+        } 
     }
 }
