@@ -117,7 +117,7 @@ namespace ProyectoVenta.Formularios.Pedidos
             string mensaje = string.Empty;
             if (e.KeyData == Keys.Enter)
             {
-                Modelo.Producto pr = ProductoLogica.Instancia.Listar(out mensaje).Where(p => p.Codigo.ToUpper() == txtcodigoproducto.Text.Trim().ToUpper()).FirstOrDefault();
+                Data.Producto pr = ProductoLogica.Instancia.Listar().Where(p => p.Codigo.ToUpper() == txtcodigoproducto.Text.Trim().ToUpper()).FirstOrDefault();
                 if (pr != null)
                 {
                     txtcodigoproducto.BackColor = Color.Honeydew;

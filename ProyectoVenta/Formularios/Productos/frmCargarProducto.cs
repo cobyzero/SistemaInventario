@@ -177,12 +177,12 @@ namespace ProyectoVenta.Formularios.Productos
             }
         }
 
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        private  void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             if (permitir_carga)
             {
                 if (txtarchivo.Text.Trim() != "") {
-                    List<Producto> oListaProducto = new List<Producto>();
+                    List<Data.Producto> oListaProducto = new List<Data.Producto>();
                     IWorkbook MiExcel = null;
                     FileStream fs = new FileStream(txtarchivo.Text, FileMode.Open, FileAccess.Read);
                     MiExcel = new XSSFWorkbook(fs);
@@ -191,18 +191,17 @@ namespace ProyectoVenta.Formularios.Productos
                     for (int row = 1; row <= hoja.LastRowNum; row++)
                     {
                         if (hoja.GetRow(row) != null)
-                        {
-                            string msjExiste = string.Empty;
+                        { 
                             string msjGuardar = string.Empty;
                             IRow fila = hoja.GetRow(row);
-                            Producto oProducto = new Producto();
+                            Data.Producto oProducto = new Data.Producto();
                             try
                             {
-                                oProducto = new Producto()
+                                oProducto = new Data.Producto()
                                 {
                                     Codigo = fila.GetCell(0, MissingCellPolicy.RETURN_NULL_AND_BLANK) != null ? fila.GetCell(0).StringCellValue.ToString() : "",
                                     Descripcion = fila.GetCell(1, MissingCellPolicy.RETURN_NULL_AND_BLANK) != null ? fila.GetCell(1).StringCellValue.ToString() : "",
-                                    Categoria = fila.GetCell(2, MissingCellPolicy.RETURN_NULL_AND_BLANK) != null ? fila.GetCell(2).StringCellValue.ToString() : "",
+                                    Longitud = fila.GetCell(2, MissingCellPolicy.RETURN_NULL_AND_BLANK) != null ? fila.GetCell(2).StringCellValue.ToString() : "",
                                     Almacen = fila.GetCell(3, MissingCellPolicy.RETURN_NULL_AND_BLANK) != null ? fila.GetCell(3).StringCellValue.ToString() : "",
                                 };
                             }
@@ -212,22 +211,21 @@ namespace ProyectoVenta.Formularios.Productos
                             }
 
                             if (oProducto != null)
-                            {
-                                int existe = ProductoLogica.Instancia.Existe(oProducto.Codigo, 0, out msjExiste);
-                                if (existe > 0)
+                            { 
+                                if (ProductoLogica.Instancia.Existe(oProducto.Codigo, 0))
                                 {
-                                    table.Rows.Add(row.ToString(), oProducto.Codigo, msjExiste, "x");
+                                    table.Rows.Add(row.ToString(), oProducto.Codigo, "El codigo de producto ya existe", "x");
                                 }
                                 else
                                 {
-                                    int idgenerado = ProductoLogica.Instancia.Guardar(oProducto, out msjGuardar);
-                                    if (idgenerado < 1)
-                                    {
-                                        table.Rows.Add(row.ToString(), oProducto.Codigo, msjGuardar, "x");
-                                    }
-                                    else
+                                     
+                                    if (  ProductoLogica.Instancia.Guardar(oProducto) > 0)
                                     {
                                         table.Rows.Add(row.ToString(), oProducto.Codigo, "Registrado Correctamente", "");
+                                    }
+                                    else
+                                    { 
+                                        table.Rows.Add(row.ToString(), oProducto.Codigo, msjGuardar, "x");
                                     }
                                 }
 

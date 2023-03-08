@@ -1,4 +1,4 @@
-﻿using ProyectoVenta.Modelo;
+﻿using ProyectoVenta.Data;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -29,183 +29,96 @@ namespace ProyectoVenta.Logica
         }
 
 
-        public List<Producto> Listar(out string mensaje)
-        {
-            mensaje = string.Empty;
+        public List<Producto> Listar()
+        { 
             List<Producto> oLista = new List<Producto>();
-
+             
             try
             {
-
-                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
+                using (var db = new InventarioAlemanaContext())
                 {
-                    conexion.Open();
-
-                    string query = "select IdProducto,Codigo,Descripcion,Longitud,Almacen,Stock from PRODUCTO;";
-                    SqlCommand cmd = new SqlCommand(query, conexion);
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    using (SqlDataReader dr = cmd.ExecuteReader())
-                    {
-                        while (dr.Read())
-                        {
-                            oLista.Add(new Producto()
-                            {
-                                IdProducto = int.Parse(dr["IdProducto"].ToString()),
-                                Codigo = dr["Codigo"].ToString(),
-                                Descripcion = dr["Descripcion"].ToString(),
-                                Categoria = dr["Longitud"].ToString(),
-                                Almacen = dr["Almacen"].ToString(),
-                                Stock = Convert.ToInt32(dr["Stock"].ToString()), 
-                            });
-                        }
-                    }
+                    oLista = db.Productos.ToList();
+                    return oLista;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                oLista = new List<Producto>();
-                mensaje = ex.Message;
+                return oLista;
             }
-
-
-            return oLista;
         }
 
-        public int Existe(string codigo, int defaultid, out string mensaje)
-        {
-            mensaje = string.Empty;
-            int respuesta = 0;
-            using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
+        public bool Existe(string codigo, int defaultid)
+        { 
+            try
             {
-                try
+                using (var db = new InventarioAlemanaContext())
                 {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("select count(*)[resultado] from PRODUCTO where upper(Codigo) = upper(@pcodigo) and IdProducto != @defaultid");
-
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SqlParameter("@pcodigo", codigo));
-                    cmd.Parameters.Add(new SqlParameter("@defaultid", defaultid));
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    respuesta = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-                    if (respuesta > 0)
-                        mensaje = "El codigo de producto ya existe";
-
+                    Data.Producto producto = db.Productos.Where((t) => t.Codigo == codigo || t.IdProducto == defaultid).First();
+                    return true;
                 }
-                catch (Exception ex)
-                {
-                    respuesta = 0;
-                    mensaje = ex.Message;
-                }
-
             }
-            return respuesta;
+            catch (Exception)
+            {
+               return false;
+            } 
         }
 
-        public int Guardar(Producto objeto, out string mensaje)
+        public  int Guardar(Data.Producto objeto)
+        { 
+            try
+            {
+                using (var db = new InventarioAlemanaContext())
+                {
+                    db.Productos.Add(objeto);
+
+                     db.SaveChanges();
+
+                    return objeto.IdProducto;
+                }
+            }
+            catch (Exception)
+            {
+                return 0;
+            } 
+        }
+
+        public async Task<bool> Editar(Data.Producto objeto)
+        { 
+            try
+            {
+                using (var db = new InventarioAlemanaContext())
+                {
+                    var producto = db.Productos.Where((t) => t.IdProducto == objeto.IdProducto).First();
+                    producto = objeto;
+
+                    await db.SaveChangesAsync();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            } 
+        }
+
+
+        public bool Eliminar(int id)
         {
-            mensaje = string.Empty;
-            int respuesta = 0;
+             
+            try
+            {
+                using (var db = new InventarioAlemanaContext())
+                {
+                    db.Productos.Remove(db.Productos.Where((t) => t.IdProducto == id).First());
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+
+                return false;   
+            } 
             
-            using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
-            {
-                try
-                {
-
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-
-                    query.AppendLine("insert into PRODUCTO(Codigo,Descripcion,Longitud,Almacen) values (@pcodigo,@pdescripcion,@plongitud,@palmacen);");
-                    query.AppendLine("select last_insert_rowid();");
-
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SqlParameter("@pcodigo", objeto.Codigo));
-                    cmd.Parameters.Add(new SqlParameter("@pdescripcion", objeto.Descripcion));
-                    cmd.Parameters.Add(new SqlParameter("@plongitud", objeto.Categoria));
-                    cmd.Parameters.Add(new SqlParameter("@palmacen", objeto.Almacen));
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    respuesta = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-                    if (respuesta < 1)
-                        mensaje = "No se pudo registrar el producto";
-                }
-                catch (Exception ex)
-                {
-                    respuesta = 0;
-                    mensaje = ex.Message;
-                }
-            }
-
-            return respuesta;
-        }
-
-        public int Editar(Producto objeto, out string mensaje)
-        {
-            mensaje = string.Empty;
-            int respuesta = 0;
-
-            using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
-            {
-                try
-                {
-
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-
-                    query.AppendLine("update PRODUCTO set Codigo = @pcodigo,Descripcion = @pdescripcion,Longitud =@plongitud ,Almacen = @palmacen where IdProducto = @pidproducto");
-
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SqlParameter("@pidproducto", objeto.IdProducto));
-                    cmd.Parameters.Add(new SqlParameter("@pcodigo", objeto.Codigo));
-                    cmd.Parameters.Add(new SqlParameter("@pdescripcion", objeto.Descripcion));
-                    cmd.Parameters.Add(new SqlParameter("@plongitud", objeto.Categoria));
-                    cmd.Parameters.Add(new SqlParameter("@palmacen", objeto.Almacen));
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    respuesta = cmd.ExecuteNonQuery();
-                    if (respuesta < 1)
-                        mensaje = "No se pudo editar el producto";
-                }
-                catch (Exception ex)
-                {
-                    respuesta = 0;
-                    mensaje = ex.Message;
-                }
-            }
-
-            return respuesta;
-        }
-
-
-        public int Eliminar(int id)
-        {
-            int respuesta = 0;
-            try
-            {
-                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
-                {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("delete from PRODUCTO where IdProducto= @id;");
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SqlParameter("@id", id));
-                    cmd.CommandType = System.Data.CommandType.Text;
-                    respuesta = cmd.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-
-                respuesta = 0;
-            }
-
-            return respuesta;
-        }
-
-
-
-
+        } 
     }
 }

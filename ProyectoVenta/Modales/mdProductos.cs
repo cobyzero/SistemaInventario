@@ -35,16 +35,16 @@ namespace ProyectoVenta.Modales
         private void mdProductos_Load(object sender, EventArgs e)
         {
             string mensaje = string.Empty;
-            List<Producto> lista = ProductoLogica.Instancia.Listar(out mensaje);
+            List<Data.Producto> lista = ProductoLogica.Instancia.Listar();
 
-            foreach (Producto pr in lista)
+            foreach (Data.Producto pr in lista)
             {
                 dgvdata.Rows.Add(new object[] {
                     pr.IdProducto,
                     "",
                     pr.Codigo,
                     pr.Descripcion,
-                    pr.Categoria,
+                    pr.Longitud,
                     pr.Almacen,
                     pr.Stock, 
                 });

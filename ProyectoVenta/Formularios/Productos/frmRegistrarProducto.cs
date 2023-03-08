@@ -34,16 +34,16 @@ namespace ProyectoVenta.Formularios
         private void frmRegistrarProducto_Load(object sender, EventArgs e)
         {
             string mensaje = string.Empty;
-            List<Producto> lista = ProductoLogica.Instancia.Listar(out mensaje);
+            List<Data.Producto> lista = ProductoLogica.Instancia.Listar();
 
-            foreach (Producto pr in lista)
+            foreach (Data.Producto pr in lista)
             {
                 dgvdata.Rows.Add(new object[] {
                     pr.IdProducto,
                     "",
                     pr.Codigo,
                     pr.Descripcion,
-                    pr.Categoria,
+                    pr.Longitud,
                     pr.Almacen
                 });
             }
@@ -142,7 +142,7 @@ namespace ProyectoVenta.Formularios
             Limpiar();
         }
 
-        private void btnguardar_Click(object sender, EventArgs e)
+        private async void btnguardar_Click(object sender, EventArgs e)
         {
             string mensaje = string.Empty;
 
@@ -159,32 +159,27 @@ namespace ProyectoVenta.Formularios
                 return;
             }
 
-            Producto obj = new Producto()
+            Data.Producto obj = new Data.Producto()
             {
                 IdProducto = _id,
                 Codigo = txtcodigo.Text,
                 Descripcion = txtdescripcion.Text,
-                Categoria = txtcategoria.Text,
+                Longitud = txtcategoria.Text,
                 Almacen = txtalmacen.Text
             };
 
 
-            int existe = ProductoLogica.Instancia.Existe(obj.Codigo, _id, out mensaje);
-            if (existe > 0)
-            {
-                lblresultado.Text = mensaje;
-                lblresultado.ForeColor = Color.Red;
-                return;
-            }
+             
+             
 
-            if (_id == 0)
+            if (!ProductoLogica.Instancia.Existe(obj.Codigo, _id))
             {
                
-                int idgenerado = ProductoLogica.Instancia.Guardar(obj, out mensaje);
+                int idgenerado = ProductoLogica.Instancia.Guardar(obj);
                 if (idgenerado > 0)
                 {
                     Limpiar();
-                    dgvdata.Rows.Add(new object[] { idgenerado, "", obj.Codigo, obj.Descripcion, obj.Categoria, obj.Almacen });
+                    dgvdata.Rows.Add(new object[] { idgenerado, "", obj.Codigo, obj.Descripcion, obj.Longitud, obj.Almacen });
                     lblresultado.Text = "Registro Correcto";
                     lblresultado.ForeColor = Color.Green;
                 }
@@ -194,13 +189,12 @@ namespace ProyectoVenta.Formularios
                 }
             }
             else {
-                
-                int afectados = ProductoLogica.Instancia.Editar(obj, out mensaje);
-                if (afectados > 0)
+                 
+                if (await ProductoLogica.Instancia.Editar(obj))
                 {
                     dgvdata.Rows[_indice].Cells["Codigo"].Value = obj.Codigo;
                     dgvdata.Rows[_indice].Cells["Descripcion"].Value = obj.Descripcion;
-                    dgvdata.Rows[_indice].Cells["Longitud"].Value = obj.Categoria;
+                    dgvdata.Rows[_indice].Cells["Longitud"].Value = obj.Longitud;
                     dgvdata.Rows[_indice].Cells["Almacen"].Value = obj.Almacen;
                     Limpiar();
                     lblresultado.Text = "Modificación Correcta";
@@ -224,14 +218,17 @@ namespace ProyectoVenta.Formularios
             {
                 if (MessageBox.Show("¿Desea eliminar el producto?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    int respuesta = ProductoLogica.Instancia.Eliminar(_id);
-                    if (respuesta > 0)
+                    
+                    if (ProductoLogica.Instancia.Eliminar(_id))
                     {
                         dgvdata.Rows.RemoveAt(_indice);
                         Limpiar(false);
                     }
                     else
+                    {
                         MessageBox.Show("No se pudo eliminar el producto", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                        
                 }
             }
             else {
