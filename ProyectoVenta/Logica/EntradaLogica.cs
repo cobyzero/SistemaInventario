@@ -135,48 +135,35 @@ namespace ProyectoVenta.Logica
             }
         }
 
-        public List<DetalleEntrada> ListarDetalle(int identrada)
+        public List<DetalleEntrada> ListarDetalle(string identrada)
         {
             List<DetalleEntrada> oLista = new List<DetalleEntrada>();
 
             try
-            {
-
-                using (SqlConnection conexion = new SqlConnection("Server=InventarioAlemana.mssql.somee.com;Database=InventarioAlemana;user id=cobyzero_SQLLogin_1;pwd=6r4zkblesj;persist security info=False;packet size=4096;Encrypt=false"))
+            { 
+                using (var db = new InventarioAlemanaContext())
                 {
-                    conexion.Open();
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("select CodigoProducto, DescripcionProducto, LongitudProducto,");
-                    query.AppendLine("AlmacenProducto, Cantidad");
-                    query.AppendLine("from DETALLE_ENTRADA where IdEntrada = @pidentrada");
+                    var listaEntrada = db.Entrada.Where((t) => t.NumeroDocumento == identrada).ToList();
 
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.Parameters.Add(new SqlParameter("@pidentrada", identrada));
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    foreach (var item in listaEntrada)
                     {
-                        while (dr.Read())
+                        oLista.Add(new DetalleEntrada()
                         {
-                            oLista.Add(new DetalleEntrada()
-                            {
-                                CodigoProducto = dr["CodigoProducto"].ToString(),
-                                DescripcionProducto = dr["DescripcionProducto"].ToString(),
-                                CategoriaProducto = dr["LongitudProducto"].ToString(),
-                                AlmacenProducto = dr["AlmacenProducto"].ToString(), 
-                                Cantidad = Convert.ToInt32(dr["Cantidad"].ToString()), 
-                            });
-                        }
+                            CodigoProducto = item.CodigoProducto,
+                            DescripcionProducto = item.DescripcionProducto,
+                            CategoriaProducto = item.LongitudProducto,
+                            AlmacenProducto = item.AlmacenProducto,
+                            Cantidad = item.CantidadProductos,
+                        });
                     }
+                     
+                    return oLista;
                 }
             }
             catch (Exception ex)
-            {
-                oLista = new List<DetalleEntrada>();
-            }
-
-
-            return oLista;
+            { 
+                return oLista;
+            } 
         }
 
 

@@ -12,6 +12,4 @@ public partial class Dato
     public string Ruc { get; set; }
 
     public string Direccion { get; set; }
-
-    public byte[] Logo { get; set; }
 }

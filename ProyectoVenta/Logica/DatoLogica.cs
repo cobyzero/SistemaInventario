@@ -69,48 +69,8 @@ namespace ProyectoVenta.Logica
                 return false;
             }
              
-        }
-
-        public async Task<bool> ActualizarLogo(byte[] imagen)
-        {  
-            try
-            { 
-                using (var db = new InventarioAlemanaContext())
-                {
-
-                    Data.Dato dato = db.Datos.Where((t) => t.IdDato == 1).First();
-
-                    dato.Logo = imagen;
-
-                    await db.SaveChangesAsync(); 
-                    
-                    return true;
-                }
-            }
-            catch (Exception ex)
-            { 
-                return false;
-            } 
-        }
-
-        public byte[] ObtenerLogo()
-        { 
-            byte[] obj = new byte[0];
-            try
-            {
-                using (var db = new InventarioAlemanaContext())
-                {
-                    Data.Dato dato = db.Datos.Where((t) => t.IdDato == 1).First();
-
-                    obj = dato.Logo;
-
-                    return obj;
-                }
-            }
-            catch (Exception ex)
-            {
-                return obj;
-            } 
         } 
+
+ 
     }
 }

@@ -71,7 +71,6 @@ public partial class InventarioAlemanaContext : DbContext
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
-            entity.Property(e => e.Logo).HasColumnType("image");
             entity.Property(e => e.RazonSocial)
                 .IsRequired()
                 .HasMaxLength(50)

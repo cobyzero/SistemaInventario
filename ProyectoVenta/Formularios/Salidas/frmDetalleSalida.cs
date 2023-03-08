@@ -159,18 +159,7 @@ namespace ProyectoVenta.Formularios.Salidas
 
                     PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
                     pdfDoc.Open();
-
-                    bool obtenido = true;
-                    byte[] byteimage = DatoLogica.Instancia.ObtenerLogo(out obtenido);
-                    if (obtenido)
-                    {
-                        iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(byteimage);
-                        img.ScaleToFit(60, 60);
-                        img.Alignment = iTextSharp.text.Image.UNDERLYING;
-                        img.SetAbsolutePosition(pdfDoc.Left, pdfDoc.GetTop(51));
-                        pdfDoc.Add(img);
-                    }
-
+                     
                     using (StringReader sr = new StringReader(Texto_Html))
                     {
                         XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);

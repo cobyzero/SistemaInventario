@@ -26,9 +26,9 @@ namespace ProyectoVenta.Formularios.Permisos
 
         private void frmPermisos_Load(object sender, EventArgs e)
         {
-            Modelo.Permisos padmin = PermisosLogica.Instancia.Obtener(1);
-            Modelo.Permisos pemple = PermisosLogica.Instancia.Obtener(2);
-            Modelo.Permisos palmac = PermisosLogica.Instancia.Obtener(3);
+            Data.Permiso padmin = PermisosLogica.Instancia.Obtener(1);
+            Data.Permiso pemple = PermisosLogica.Instancia.Obtener(2);
+            Data.Permiso palmac = PermisosLogica.Instancia.Obtener(3);
 
 
             a_salidas.Checked = padmin.Salidas == 1 ? true : false;
@@ -59,7 +59,7 @@ namespace ProyectoVenta.Formularios.Permisos
 
         }
 
-        private void btnguardaradministrador_Click(object sender, EventArgs e)
+        private async void btnguardaradministrador_Click(object sender, EventArgs e)
         {
             int _a_salidas = 0;
             int _a_entradas = 0;
@@ -93,7 +93,9 @@ namespace ProyectoVenta.Formularios.Permisos
 
             string mensaje = string.Empty;
 
-            int operaciones = PermisosLogica.Instancia.Guardar(new Modelo.Permisos() {
+            
+            if (await PermisosLogica.Instancia.Guardar(new Data.Permiso()
+            {
                 IdPermisos = 1,
                 Salidas = _a_salidas,
                 Entradas = _a_entradas,
@@ -102,19 +104,18 @@ namespace ProyectoVenta.Formularios.Permisos
                 Proveedores = _a_proveedores,
                 Inventario = _a_inventario,
                 Configuracion = _a_configuracion
-            }, out mensaje);
-
-            if (operaciones < 1)
+            }))
             {
-                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                MessageBox.Show("Se guardaron los cambios", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else {
-                MessageBox.Show("Se guardaron los cambios", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No se pudo actualizar los permisos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
         }
 
-        private void btnguardarempleados_Click(object sender, EventArgs e)
+        private async void btnguardarempleados_Click(object sender, EventArgs e)
         {
             int _e_salidas = 0;
             int _e_entradas = 0;
@@ -148,7 +149,8 @@ namespace ProyectoVenta.Formularios.Permisos
 
             string mensaje = string.Empty;
 
-            int operaciones = PermisosLogica.Instancia.Guardar(new Modelo.Permisos()
+           
+            if (!await PermisosLogica.Instancia.Guardar(new Data.Permiso()
             {
                 IdPermisos = 2,
                 Salidas = _e_salidas,
@@ -158,11 +160,9 @@ namespace ProyectoVenta.Formularios.Permisos
                 Proveedores = _e_proveedores,
                 Inventario = _e_inventario,
                 Configuracion = _e_configuracion
-            }, out mensaje);
-
-            if (operaciones < 1)
+            }))
             {
-                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("No se pudo actualizar los permisos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
@@ -171,7 +171,7 @@ namespace ProyectoVenta.Formularios.Permisos
 
         }
 
-        private void iconButton1_Click(object sender, EventArgs e)
+        private async void iconButton1_Click(object sender, EventArgs e)
         {
             int _e_salidas = 0;
             int _e_entradas = 0;
@@ -204,8 +204,9 @@ namespace ProyectoVenta.Formularios.Permisos
 
 
             string mensaje = string.Empty;
-
-            int operaciones = PermisosLogica.Instancia.Guardar(new Modelo.Permisos()
+ 
+            
+            if (!await PermisosLogica.Instancia.Guardar(new Data.Permiso()
             {
                 IdPermisos = 3,
                 Salidas = _e_salidas,
@@ -215,11 +216,9 @@ namespace ProyectoVenta.Formularios.Permisos
                 Proveedores = _e_proveedores,
                 Inventario = _e_inventario,
                 Configuracion = _e_configuracion
-            }, out mensaje);
-
-            if (operaciones < 1)
+            }))
             {
-                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("No se pudo actualizar los permisos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {

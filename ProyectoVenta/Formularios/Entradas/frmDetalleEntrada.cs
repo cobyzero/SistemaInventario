@@ -50,7 +50,7 @@ namespace ProyectoVenta.Formularios.Entradas
                 txtdocumentoproveedor.Text = obj.DocumentoProveedor;
                 txtnombreproveedor.Text = obj.NombreProveedor;
 
-                List<DetalleEntrada> olista = EntradaLogica.Instancia.ListarDetalle(obj.IdEntrada);
+                List<DetalleEntrada> olista = EntradaLogica.Instancia.ListarDetalle(obj.NumeroDocumento);
                 dgvdata.Rows.Clear();
                 foreach(DetalleEntrada de in olista) {
                     dgvdata.Rows.Add(new object[] {de.CodigoProducto,de.DescripcionProducto,de.CategoriaProducto,de.AlmacenProducto,de.Cantidad });
@@ -119,18 +119,7 @@ namespace ProyectoVenta.Formularios.Entradas
 
                     PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
                     pdfDoc.Open();
-
-                    bool obtenido = true;
-                    byte[] byteimage = DatoLogica.Instancia.ObtenerLogo(out obtenido);
-                    if (obtenido)
-                    {
-                        iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(byteimage);
-                        img.ScaleToFit(60, 60);
-                        img.Alignment = iTextSharp.text.Image.UNDERLYING;
-                        img.SetAbsolutePosition(pdfDoc.Left, pdfDoc.GetTop(51));
-                        pdfDoc.Add(img);
-                    }
-
+                      
                     using (StringReader sr = new StringReader(Texto_Html))
                     {
                         XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);

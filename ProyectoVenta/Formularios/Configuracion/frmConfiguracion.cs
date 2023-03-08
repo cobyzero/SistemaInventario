@@ -23,9 +23,8 @@ namespace ProyectoVenta.Formularios.Configuracion
         }
 
         private void frmConfiguracion_Load(object sender, EventArgs e)
-        {  
-            picLogo.Image = ByteToImage(DatoLogica.Instancia.ObtenerLogo());
-             
+        {
+          
             Data.Dato da = DatoLogica.Instancia.Obtener();
             txtrazonsocial.Text = da.RazonSocial;
             txtruc.Text = da.Ruc;
@@ -110,9 +109,10 @@ namespace ProyectoVenta.Formularios.Configuracion
         }
 
         private async void btnguardarcambios_Click(object sender, EventArgs e)
-        { 
+        {
 
-            if (txtrazonsocial.Text == "") {
+            if (txtrazonsocial.Text == "")
+            {
                 MessageBox.Show("Debe ingresar Razon Social", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -134,7 +134,7 @@ namespace ProyectoVenta.Formularios.Configuracion
                 Ruc = txtruc.Text,
                 Direccion = txtdireccion.Text
             }))
-            { 
+            {
                 MessageBox.Show("Los cambios fueron guardados", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -143,35 +143,18 @@ namespace ProyectoVenta.Formularios.Configuracion
             }
         }
 
-        private async void btnsubir_Click(object sender, EventArgs e)
-        { 
-            OpenFileDialog oOpenFileDialog = new OpenFileDialog();
-            oOpenFileDialog.Filter = "Files|*.jpg;*.jpeg;*.png";
-
-            if (oOpenFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                byte[] byteImagen = File.ReadAllBytes(oOpenFileDialog.FileName);
-              
-                if (await DatoLogica.Instancia.ActualizarLogo(byteImagen))
-                {
-                    picLogo.Image = ByteToImage(byteImagen);
-                }
-                else
-                { 
-                    MessageBox.Show("No se pudo actualizar el logo", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-            }
-        }
-
+        
         private void btnguardartipocodigo_Click(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 string mensaje = string.Empty;
                 int valor = Convert.ToInt32(((OpcionCombo)cbotipobarra.SelectedItem).Valor.ToString());
 
                 int respuesta = TipoBarraLogica.Instancia.Guardar(valor, out mensaje);
 
-                if (respuesta < 1) {
+                if (respuesta < 1)
+                {
                     MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
@@ -180,11 +163,12 @@ namespace ProyectoVenta.Formularios.Configuracion
 
                 MessageBox.Show("Se guardaron los cambios", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show("No se pudo guardar el tipo\nMayor Detalle:\n" + ex.Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
-        
+
     }
 }

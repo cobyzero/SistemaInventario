@@ -24,7 +24,7 @@ namespace ProyectoVenta.Formularios
         public string NombreCompleto { get; set; }
         public string FechaHora { get; set; }
         public string Clave { get; set; }
-        public ProyectoVenta.Modelo.Permisos oPermisos { get; set; }
+        public ProyectoVenta.Data.Permiso oPermisos { get; set; }
 
 
 
