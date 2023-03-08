@@ -39,15 +39,11 @@ namespace ProyectoVenta.Formularios
 
             this.Close();
         }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://ouo.io/RK1tRH");
-        }
+         
 
         private void iconPictureBox1_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://ouo.io/VRgLgZ");
+            
         }
 
         private void Frm_Closing(object sender, FormClosingEventArgs e)

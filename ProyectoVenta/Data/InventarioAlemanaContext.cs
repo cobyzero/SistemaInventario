@@ -105,7 +105,7 @@ public partial class InventarioAlemanaContext : DbContext
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
-            entity.Property(e => e.FechaRegistro).HasColumnType("date");
+            entity.Property(e => e.FechaRegistro).HasColumnType("datetime");
             entity.Property(e => e.LongitudProducto)
                 .IsRequired()
                 .HasMaxLength(50)
@@ -234,7 +234,7 @@ public partial class InventarioAlemanaContext : DbContext
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
-            entity.Property(e => e.FechaRegistro).HasColumnType("date");
+            entity.Property(e => e.FechaRegistro).HasColumnType("datetime");
             entity.Property(e => e.LongitudProducto)
                 .IsRequired()
                 .HasMaxLength(50)
