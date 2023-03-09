@@ -70,5 +70,50 @@ namespace ProyectoVenta.Logica
             }
 
         }
+
+        public List<Inventario> ResumenAlmacenero()
+        {
+            List<Inventario> oLista = new List<Inventario>();
+            try
+            {
+                using (var db = new InventarioAlemanaContext())
+                {
+                    var listaProductos = db.Productos.Where((t) => t.Stock < 5 && t.Stock > 0).ToList();
+
+                    foreach (var item in listaProductos)
+                    {
+                        var entradaDT = db.Entrada.Where((t) => t.IdProducto == item.IdProducto).ToList().Count();
+                        var salidaDT = db.Salida.Where((t) => t.IdProducto == item.IdProducto).ToList().Count();
+                         
+                        if (entradaDT > 0 && salidaDT > 0)
+                        {
+                            oLista.Add(new Inventario()
+                            {
+                                Codigo = item.Codigo,
+                                Descripcion = item.Descripcion,
+                                Categoria = item.Longitud,
+                                Almacen = item.Almacen,
+                                Entradas = entradaDT.ToString(),
+                                Salidas = salidaDT.ToString(),
+                                Stock = item.Stock.ToString(),
+                            });
+                        }
+
+
+                    }
+
+                    return oLista;
+                }
+            }
+            catch (Exception e)
+            {
+                return oLista;
+            }
+
+        }
+
+
+
+
     }
 }

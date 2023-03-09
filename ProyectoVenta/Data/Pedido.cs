@@ -15,13 +15,13 @@ public partial class Pedido
 
     public string Tecnico { get; set; }
 
-    public int? Cantidad { get; set; }
+    public int Cantidad { get; set; }
 
-    public double? Precio { get; set; }
+    public double Precio { get; set; }
 
-    public double? SubTotal { get; set; }
+    public double SubTotal { get; set; }
 
-    public int? Presupuesto { get; set; }
+    public int Presupuesto { get; set; }
 
-    public DateTime? FechaRegistro { get; set; }
+    public DateTime FechaRegistro { get; set; }
 }

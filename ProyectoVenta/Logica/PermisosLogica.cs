@@ -51,9 +51,7 @@ namespace ProyectoVenta.Logica
             {
                 using (var db = new InventarioAlemanaContext())
                 {
-                    Permiso permiso = db.Permisos.Where((t) => t.IdPermisos == objeto.IdPermisos).First();
-
-                    permiso = objeto;
+                    db.Permisos.Update(objeto);
 
                     await db.SaveChangesAsync();
                     return true;

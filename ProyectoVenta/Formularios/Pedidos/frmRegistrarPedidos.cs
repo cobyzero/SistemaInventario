@@ -1,4 +1,5 @@
-﻿using ProyectoVenta.Data;
+﻿using NPOI.SS.Formula.Functions;
+using ProyectoVenta.Data;
 using ProyectoVenta.Logica;
 using ProyectoVenta.Modales;
 using ProyectoVenta.Modelo;
@@ -19,6 +20,7 @@ namespace ProyectoVenta.Formularios.Pedidos
     {
         private static int _idproducto = 0;
         private static string _NombreUsuario = "";
+        private static int count = 0;
         decimal total = 0;
         public frmRegistrarPedidos(string _usuario = "")
         {
@@ -156,6 +158,14 @@ namespace ProyectoVenta.Formularios.Pedidos
 
         private void btnagregar_Click(object sender, EventArgs e)
         {
+
+            if (count == 0)
+            {
+                total = decimal.Parse(comboBox1.Text);
+                count++;
+            }
+
+
             if (txtcodigoproducto.Text.Trim() == "")
             {
                 MessageBox.Show("Debe ingresar el codigo de producto", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -182,6 +192,9 @@ namespace ProyectoVenta.Formularios.Pedidos
 
             decimal subtotal = txtcantidad.Value * decimal.Parse(txtprecio.Text);
 
+
+            total -= subtotal;
+
             dgvdata.Rows.Add(new object[] {"",
                     _idproducto.ToString(),
                     txtcodigoproducto.Text,
@@ -197,13 +210,12 @@ namespace ProyectoVenta.Formularios.Pedidos
             _idproducto = 0;
             txtcodigoproducto.Text = "";
             txtcodigoproducto.BackColor = Color.White;
-            txtdescripcionproducto.Text = ""; 
+            txtdescripcionproducto.Text = "";
             txtcantidad.Value = 1;
             txtprecio.Text = "";
 
             txtcodigoproducto.Focus();
 
-            total += subtotal;
             label11.Text = total.ToString();
 
             comboBox1.Enabled = false;
@@ -236,19 +248,19 @@ namespace ProyectoVenta.Formularios.Pedidos
             {
                 if (dgvdata.Columns[e.ColumnIndex].Name == "btneliminar")
                 {
-                     int idproducto = Convert.ToInt32(dgvdata.Rows[index].Cells["Id"].Value.ToString());
+                    int idproducto = Convert.ToInt32(dgvdata.Rows[index].Cells["Id"].Value.ToString());
                     int cantidad = Convert.ToInt32(dgvdata.Rows[index].Cells["Cantidad"].Value.ToString());
-                     
+
                     if (await SalidaLogica.Instancia.aumentarStock(idproducto, cantidad))
                     {
-                        dgvdata.Rows.RemoveAt(index); 
-                    } 
+                        dgvdata.Rows.RemoveAt(index);
+                    }
                 }
             }
         }
 
         private async void btnguardarsalida_Click(object sender, EventArgs e)
-        {
+        { 
             if (txtdoccliente.Text.Trim() == "")
             {
                 MessageBox.Show("Debe ingresar el documento del tecnico", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -280,11 +292,11 @@ namespace ProyectoVenta.Formularios.Pedidos
                     Precio = Convert.ToDouble(row.Cells["Precio"].Value.ToString()),
                     SubTotal = Convert.ToDouble(row.Cells["SubTotal"].Value.ToString()),
                     Presupuesto = Convert.ToInt32(row.Cells["Presupuesto"].Value.ToString()),
-                    FechaRegistro = DateTime.Now 
-                }) ;          
+                    FechaRegistro = DateTime.Now
+                });
             }
+             
 
-            
             bool operaciones = await PedidoLogica.Instancia.Registrar(olista);
 
             if (operaciones)

@@ -156,9 +156,11 @@ namespace ProyectoVenta.Formularios.Entradas
                 _idproducto.ToString(),
                 txtcodigoproducto.Text,
                 txtdescripcionproducto.Text,
+
+               txtcantidad.Value.ToString(),
                 _categoria,
+
                 _almacen,
-               txtcantidad.Value.ToString(), 
             });
              
 

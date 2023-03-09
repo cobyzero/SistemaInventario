@@ -52,6 +52,8 @@
             label1 = new System.Windows.Forms.Label();
             btnborrar = new FontAwesome.Sharp.IconButton();
             lblnrodocumento = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)dgvdata).BeginInit();
             SuspendLayout();
             // 
@@ -312,12 +314,32 @@
             lblnrodocumento.TabIndex = 174;
             lblnrodocumento.Text = "lblnrodocumento";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(29, 586);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(128, 15);
+            label3.TabIndex = 175;
+            label3.Text = "Campo de disposicion:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(183, 586);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(13, 15);
+            label4.TabIndex = 176;
+            label4.Text = "0";
+            // 
             // frmDetallePedidos
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(854, 622);
             ControlBox = false;
+            Controls.Add(label4);
+            Controls.Add(label3);
             Controls.Add(lblnrodocumento);
             Controls.Add(btnborrar);
             Controls.Add(btndescargarpdf);
@@ -372,5 +394,7 @@
         private FontAwesome.Sharp.IconButton btnborrar;
         private System.Windows.Forms.Label lblnrodocumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Longitud;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

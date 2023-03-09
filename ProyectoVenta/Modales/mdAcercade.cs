@@ -38,18 +38,12 @@ namespace ProyectoVenta.Modales
         }
 
         private bool checkExistData()
-        {
-            DateTime dt1 = Convert.ToDateTime("01/01/2000");
-            DateTime dt2 = Convert.ToDateTime("01/01/2025");
+        {  
+            List<ProyectoVenta.Modelo.Inventario> lista = InventarioLogica.Instancia.ResumenAlmacenero();
 
-            List<ProyectoVenta.Modelo.Inventario> lista = InventarioLogica.Instancia.Resumen(dt1, dt2);
-
-            foreach (ProyectoVenta.Modelo.Inventario vr in lista)
+            if (lista.Count > 0)
             {
-                if (int.Parse(vr.Stock) <= 5)
-                {
-                    return true;
-                }
+                return true;
             }
 
             return false;
@@ -58,16 +52,11 @@ namespace ProyectoVenta.Modales
         private void pushData()
         {
             dgvdata.Rows.Clear();
-            
-             DateTime dt1 = Convert.ToDateTime("01/01/2000");
-            DateTime dt2 = Convert.ToDateTime("01/01/2025");
- 
-            List<ProyectoVenta.Modelo.Inventario> lista = InventarioLogica.Instancia.Resumen(dt1, dt2);
+              
+            List<ProyectoVenta.Modelo.Inventario> lista = InventarioLogica.Instancia.ResumenAlmacenero();
              
             foreach (ProyectoVenta.Modelo.Inventario vr in lista)
-            {
-                if (int.Parse(vr.Stock) <= 5) 
-                { 
+            { 
                     dgvdata.Rows.Add(new object[] {
                     vr.Codigo,
                     vr.Descripcion,
@@ -76,10 +65,7 @@ namespace ProyectoVenta.Modales
                     vr.Entradas,
                     vr.Salidas,
                     vr.Stock, 
-                });
-                }
-                
-
+                }); 
             }
  
 
@@ -98,12 +84,14 @@ namespace ProyectoVenta.Modales
         private void mdAcercade_Load(object sender, EventArgs e)
         {
 
-            this.pushData();
             if (!checkExistData())
             {
                 MessageBox.Show("No tienes datos actualmente");
                 this.Close();
             }
+              
+
+            this.pushData();
         }
     }
 }

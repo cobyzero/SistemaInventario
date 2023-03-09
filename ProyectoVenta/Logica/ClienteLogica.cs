@@ -89,10 +89,7 @@ namespace ProyectoVenta.Logica
             {
                 using (var db = new InventarioAlemanaContext())
                 {
-                    Data.Cliente cliente = db.Clientes.Where((t) => t.IdCliente == objeto.IdCliente).First();
-
-                    cliente = objeto;
-
+                    db.Clientes.Update(objeto);
                     await db.SaveChangesAsync();
 
                     return true;

@@ -88,9 +88,7 @@ namespace ProyectoVenta.Logica
             {
                 using (var db = new InventarioAlemanaContext())
                 {
-                    Data.Usuario usuario = db.Usuarios.Where((t) => t.IdUsuario == objeto.IdUsuario).First();
-                    usuario = objeto;
-
+                    db.Usuarios.Update(objeto);
                     await db.SaveChangesAsync();
                     return true;
                 } 

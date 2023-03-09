@@ -18,6 +18,8 @@ namespace ProyectoVenta.Formularios.Pedidos
 {
     public partial class frmDetallePedidos : Form
     {
+        double campoDeDispocicion = 0;
+
         public frmDetallePedidos()
         {
             InitializeComponent();
@@ -66,12 +68,21 @@ namespace ProyectoVenta.Formularios.Pedidos
             List<Data.Pedido> olista = PedidoLogica.Instancia.ListarDetalle(txtnumerodocumento.Text);
             lblnrodocumento.Text = txtnumerodocumento.Text;
 
+
             if (olista.Count() > 0)
             {
+
+                campoDeDispocicion = (double)olista[0].Presupuesto;
+
                 foreach (Data.Pedido de in olista)
                 {
                     dgvdata.Rows.Add(new object[] { de.FechaRegistro, de.NumeroDocumento, de.CodigoProducto, de.DescripcionProducto, de.Tecnico, de.Cantidad, de.Precio, de.SubTotal, de.Presupuesto });
+
+                   campoDeDispocicion -= de.SubTotal;
+                
                 }
+
+                label4.Text = campoDeDispocicion.ToString();
             }
             else
             {
@@ -100,22 +111,22 @@ namespace ProyectoVenta.Formularios.Pedidos
 
             Texto_Html = Texto_Html.Replace("@nombrenegocio", odatos.RazonSocial.ToUpper());
             Texto_Html = Texto_Html.Replace("@docnegocio", odatos.Ruc);
-            Texto_Html = Texto_Html.Replace("@direcnegocio", odatos.Direccion); 
+            Texto_Html = Texto_Html.Replace("@direcnegocio", odatos.Direccion);
             Texto_Html = Texto_Html.Replace("@numerodocumento", lblnrodocumento.Text);
-             
+
 
             string filas = string.Empty;
             foreach (DataGridViewRow row in dgvdata.Rows)
             {
                 filas += "<tr>";
-                filas += "<td>" + row.Cells["FechaRegistro"].Value.ToString() + "</td>"; 
+                filas += "<td>" + row.Cells["FechaRegistro"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["CodigoProducto"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["DescripcionProducto"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["Tecnico"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["Cantidad"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["Precio"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["SubTotal"].Value.ToString() + "</td>";
-                filas += "<td>" + row.Cells["Presupuesto"].Value.ToString() + "</td>"; 
+                filas += "<td>" + row.Cells["Presupuesto"].Value.ToString() + "</td>";
                 filas += "</tr>";
             }
             Texto_Html = Texto_Html.Replace("@filas", filas);
@@ -152,14 +163,15 @@ namespace ProyectoVenta.Formularios.Pedidos
             txtnumerodocumento.Text = "";
             lblnrodocumento.Text = "";
             dgvdata.Rows.Clear();
-
-
+            campoDeDispocicion = 0;
+            label4.Text = campoDeDispocicion.ToString();
             txtnumerodocumento.Focus();
         }
 
         private void btnborrar_Click(object sender, EventArgs e)
         {
             limpiar();
+            
         }
 
 

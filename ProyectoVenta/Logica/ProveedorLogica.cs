@@ -91,9 +91,7 @@ namespace ProyectoVenta.Logica
             {
                 using (var db = new InventarioAlemanaContext())
                 {
-                    Data.Proveedor proveedor = db.Proveedors.Where((t) => t.IdProveedor == objeto.IdProveedor).First();
-
-                    proveedor = objeto;
+                    db.Proveedors.Update(objeto);
 
                     await db.SaveChangesAsync();
 

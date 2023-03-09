@@ -55,12 +55,8 @@ namespace ProyectoVenta.Logica
             {
                  using(var db = new InventarioAlemanaContext())
                  {
-                    Data.Dato dato = db.Datos.Where((t) => t.IdDato == 1).First();
-
-                    dato = objeto;
-
-                    await db.SaveChangesAsync();
-
+                    db.Datos.Update(objeto);
+                    await db.SaveChangesAsync(); 
                     return true;
                 }
             }

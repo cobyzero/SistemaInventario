@@ -96,7 +96,7 @@ namespace ProyectoVenta.Formularios.Pedidos
             label1.BackColor = System.Drawing.Color.White;
             label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             label1.ForeColor = System.Drawing.Color.Black;
-            label1.Location = new System.Drawing.Point(1, 48);
+            label1.Location = new System.Drawing.Point(-3, 42);
             label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(885, 579);
@@ -396,9 +396,9 @@ namespace ProyectoVenta.Formularios.Pedidos
             label8.Location = new System.Drawing.Point(23, 590);
             label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label8.Name = "label8";
-            label8.Size = new System.Drawing.Size(43, 15);
+            label8.Size = new System.Drawing.Size(153, 15);
             label8.TabIndex = 130;
-            label8.Text = "Total:";
+            label8.Text = "Campo de disposicion:";
             // 
             // btnguardarsalida
             // 
@@ -524,7 +524,7 @@ namespace ProyectoVenta.Formularios.Pedidos
             label11.AutoSize = true;
             label11.BackColor = System.Drawing.Color.White;
             label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            label11.Location = new System.Drawing.Point(75, 590);
+            label11.Location = new System.Drawing.Point(190, 591);
             label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label11.Name = "label11";
             label11.Size = new System.Drawing.Size(15, 15);

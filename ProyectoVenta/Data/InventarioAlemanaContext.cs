@@ -131,9 +131,11 @@ public partial class InventarioAlemanaContext : DbContext
             entity.ToTable("PEDIDOS");
 
             entity.Property(e => e.CodigoProducto)
+                .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.DescripcionProducto)
+                .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.FechaRegistro).HasColumnType("datetime");
@@ -142,6 +144,7 @@ public partial class InventarioAlemanaContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.Tecnico)
+                .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
         });

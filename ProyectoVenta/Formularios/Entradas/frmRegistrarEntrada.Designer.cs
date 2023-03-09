@@ -110,10 +110,11 @@
             this.btneliminar,
             this.Id,
             this.Codigo,
-            this.Descripcion,
-            this.Categoria,
-            this.Almacen,
-            this.Cantidad});
+            this.Descripcion, 
+            this.Cantidad,
+            this.Categoria ,
+            this.Almacen 
+            });
             this.dgvdata.Location = new System.Drawing.Point(26, 221);
             this.dgvdata.MultiSelect = false;
             this.dgvdata.Name = "dgvdata";
@@ -159,20 +160,6 @@
             this.Descripcion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Descripcion.Width = 260;
             // 
-            // Categoria
-            // 
-            this.Categoria.HeaderText = "Longitud";
-            this.Categoria.Name = "Longitud";
-            this.Categoria.ReadOnly = true;
-            this.Categoria.Visible = false;
-            // 
-            // Almacen
-            // 
-            this.Almacen.HeaderText = "Almacen";
-            this.Almacen.Name = "Almacen";
-            this.Almacen.ReadOnly = true;
-            this.Almacen.Visible = false;
-            // 
             // Cantidad
             // 
             this.Cantidad.HeaderText = "Cantidad";
@@ -181,6 +168,24 @@
             this.Cantidad.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Cantidad.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Cantidad.Width = 70;
+            // 
+            // Categoria
+            // 
+            this.Categoria.HeaderText = "Longitud";
+            this.Categoria.Name = "Longitud";
+            this.Categoria.ReadOnly = true;
+            this.Categoria.Visible = true; 
+            this.Cantidad.Width = 70;
+           
+            // 
+            // Almacen
+            // 
+            this.Almacen.HeaderText = "Almacen";
+            this.Almacen.Name = "Almacen";
+            this.Almacen.ReadOnly = true;
+            this.Almacen.Visible = true; 
+            this.Cantidad.Width = 70;
+            
             // 
             // txtcantidad
             // 
