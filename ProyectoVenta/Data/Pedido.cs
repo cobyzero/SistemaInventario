@@ -22,4 +22,6 @@ public partial class Pedido
     public double? SubTotal { get; set; }
 
     public int? Presupuesto { get; set; }
+
+    public DateTime? FechaRegistro { get; set; }
 }

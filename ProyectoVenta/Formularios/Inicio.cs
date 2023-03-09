@@ -240,8 +240,20 @@ namespace ProyectoVenta.Formularios
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            frmRegistrarPedidos pedidos = new frmRegistrarPedidos();
-            pedidos.ShowDialog();
+            using (var Iform = new IPedidos())
+            {
+
+                Iform.BackColor = Color.Teal;
+                Iform._NombreUsuario = NombreUsuario;
+                var result = Iform.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    Form FormularioVista = Iform.FormularioVista;
+                    this.Hide();
+                    FormularioVista.Show();
+                    FormularioVista.FormClosing += Frm_Closing;
+                }
+            }
         }
     }
 }

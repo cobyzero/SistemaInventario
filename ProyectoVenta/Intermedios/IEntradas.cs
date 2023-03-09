@@ -54,7 +54,7 @@ namespace ProyectoVenta.Intermedios
 
         private void btnbuscar_Click(object sender, EventArgs e)
         {
-            FormularioVista = new frmDetalleEntrada();
+            FormularioVista = new frmDetalleEntradas();
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

@@ -16,9 +16,9 @@ using System.Windows.Forms;
 
 namespace ProyectoVenta.Formularios.Entradas
 {
-    public partial class frmDetalleEntrada : Form
+    public partial class frmDetalleEntradas : Form
     {
-        public frmDetalleEntrada()
+        public frmDetalleEntradas()
         {
             InitializeComponent();
 
@@ -35,10 +35,7 @@ namespace ProyectoVenta.Formularios.Entradas
                 label5.Text = "Lieferantendokument";
                 label10.Text = "Anbietername";
                 label7.Text = "Produktliste".ToUpper();
-                Codigo.HeaderText = "Code";
-                Descripcion.HeaderText = "Beschreibung";
-                Categoria.HeaderText = "Länge";
-                Almacen.HeaderText = "speichern";
+               
                 Cantidad.HeaderText = "Menge";
                 btndescargarpdf.Text = "PDF Herunterladen";
 

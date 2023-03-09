@@ -269,12 +269,13 @@ namespace ProyectoVenta.Formularios.Pedidos
                     CodigoProducto = row.Cells["Codigo"].Value.ToString(),
                     DescripcionProducto = row.Cells["Descripcion"].Value.ToString(),
                     Tecnico = row.Cells["Tecnico"].Value.ToString(),
-                    Cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()), 
-                     Precio = Convert.ToDouble(row.Cells["Precio"].Value.ToString()),
+                    Cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()),
+                    Precio = Convert.ToDouble(row.Cells["Precio"].Value.ToString()),
                     SubTotal = Convert.ToDouble(row.Cells["SubTotal"].Value.ToString()),
                     Presupuesto = Convert.ToInt32(row.Cells["Presupuesto"].Value.ToString()),
- 
-                });             }
+                    FechaRegistro = DateTime.Now 
+                }) ;          
+            }
 
             
             bool operaciones = await PedidoLogica.Instancia.Registrar(olista);

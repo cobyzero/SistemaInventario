@@ -115,7 +115,6 @@ C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Debug\net7.0-windows\
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.csproj.AssemblyReference.cache
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Formularios.Clientes.frmClientes.resources
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Formularios.Configuracion.frmConfiguracion.resources
-C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Formularios.Entradas.frmDetalleEntrada.resources
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Formularios.Entradas.frmListarEntradas.resources
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Formularios.Entradas.frmRegistrarEntrada.resources
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Formularios.frmLogin.resources
@@ -171,3 +170,7 @@ C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Debug\net7.0-windows\
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Debug\net7.0-windows\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Debug\net7.0-windows\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\bin\Debug\net7.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Intermedios.IPedidos.resources
+C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Formularios.Pedidos.frmDetallePedidos.resources
+C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Formularios.Pedidos.frmListarPedidos.resources
+C:\Users\edyne\Desktop\SistemaInventario\ProyectoVenta\obj\Debug\net7.0-windows\ProyectoVenta.Formularios.Entradas.frmDetalleEntradas.resources

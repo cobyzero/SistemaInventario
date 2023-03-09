@@ -136,6 +136,7 @@ public partial class InventarioAlemanaContext : DbContext
             entity.Property(e => e.DescripcionProducto)
                 .HasMaxLength(50)
                 .IsUnicode(false);
+            entity.Property(e => e.FechaRegistro).HasColumnType("datetime");
             entity.Property(e => e.NumeroDocumento)
                 .IsRequired()
                 .HasMaxLength(50)

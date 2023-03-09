@@ -1,5 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Drawing.Charts;
 using ProyectoVenta.Data;
+using ProyectoVenta.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,32 +37,49 @@ namespace ProyectoVenta.Logica
         }
 
 
-        public int GetNumeroId()
+
+        public List<Pedido> Resumen(DateTime fechainicio, DateTime fechafin)
         {
-            int id = 0;
+            List<Pedido> oLista = new List<Pedido>();
+
             try
             {
                 using (var db = new InventarioAlemanaContext())
                 {
-                    foreach (var item in db.Pedidos)
-                    {
-                        if (item.IdPedido > id)
-                        {
-                            id = (int)item.IdPedido;
-                        }
-                    }
-
-                    return id;
+                    oLista = db.Pedidos.Where((t) => t.FechaRegistro > fechainicio && t.FechaRegistro < fechafin).ToList();
+                     
+                    return oLista;
                 }
             }
             catch (Exception)
             {
+                return oLista;
+            }
+        }
 
-                throw;
-            }        
+
+        public List<Pedido> ListarDetalle(string identrada)
+        {
+            List<Pedido> oLista = new List<Pedido>();
+
+            try
+            {
+                using (var db = new InventarioAlemanaContext())
+                {
+                    oLista = db.Pedidos.Where((t) => t.NumeroDocumento == identrada).ToList();
+                     
+                    return oLista;
+                }
+            }
+            catch (Exception ex)
+            {
+                return oLista;
+            }
         }
     }
 
 
-    
+
+
 }
+ 
