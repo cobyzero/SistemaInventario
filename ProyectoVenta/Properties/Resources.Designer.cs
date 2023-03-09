@@ -136,9 +136,9 @@ namespace ProyectoVenta.Properties {
         ///&lt;body&gt;
         ///    &lt;tab [resto de la cadena truncado]&quot;;.
         /// </summary>
-        internal static string PlantillaEntradaSinPrecio {
+        internal static string PlantillaEntrada {
             get {
-                return ResourceManager.GetString("PlantillaEntradaSinPrecio", resourceCulture);
+                return ResourceManager.GetString("PlantillaEntrada", resourceCulture);
             }
         }
         
@@ -212,8 +212,19 @@ namespace ProyectoVenta.Properties {
         /// </summary>
         internal static string PlantillaSalidaSinPrecio {
             get {
-                return ResourceManager.GetString("PlantillaSalidaSinPrecio", resourceCulture);
+                return ResourceManager.GetString("PlantillaSalida", resourceCulture);
             }
         }
+
+        internal static string PlantillaPedidos
+        {
+            get
+            {
+                return ResourceManager.GetString("PlantillaPedidos", resourceCulture);
+            }
+        }
+
+
+
     }
 }

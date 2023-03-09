@@ -94,7 +94,7 @@ namespace ProyectoVenta.Formularios.Entradas
 
             string Texto_Html = string.Empty;
             
-                Texto_Html = Properties.Resources.PlantillaEntradaSinPrecio.ToString();
+                Texto_Html = Properties.Resources.PlantillaEntrada.ToString();
              
 
             Data.Dato odatos = DatoLogica.Instancia.Obtener();

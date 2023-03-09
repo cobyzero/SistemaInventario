@@ -127,22 +127,22 @@
   <data name="delete32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\delete32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PlantillaProductos" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PlantillaProductos.xlsx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="_383148_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\383148-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="delete17" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\delete17.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PlantillaEntradaSinPrecio" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PlantillaEntradaSinPrecio.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data> 
-  <data name="PlantillaSalidaConPrecio" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PlantillaSalidaConPrecio.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="PlantillaEntrada" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Nueva carpeta\PlantillaEntrada.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="PlantillaSalidaSinPrecio" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PlantillaSalidaSinPrecio.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="PlantillaPedidos" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Nueva carpeta\PlantillaPedidos.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="PlantillaProductos" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Nueva carpeta\PlantillaProductos.xlsx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PlantillaSalida" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Nueva carpeta\PlantillaSalida.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

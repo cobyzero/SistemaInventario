@@ -49,50 +49,23 @@
         </tr>
     </table>
     <div style="height:15px !important"></div>
-    <hr />
-
-    <table border="0" style="width:100%">
-        <tr>
-            <td style="width:20%"><label style="font-size:12px;font-weight:bold">Documento Tecnico:</label></td>
-            <td style="width:35%"><label style="font-size:12px;font-weight:bold">Nombre Tecnico:</label></td>
-            <td style="width:30%"></td>
-            <td style="width:15%"><label style="font-size:12px;font-weight:bold">Fecha Registro:</label></td>
-        </tr>
-        <tr>
-            <td style="width:20%"><label style="font-size:12px;">@doccliente</label></td>
-            <td style="width:35%"><label style="font-size:12px;">@nombrecliente</label></td>
-            <td style="width:30%"></td>
-            <td style="width:15%"><label style="font-size:12px;">@fecharegistro</label></td>
-        </tr>
-
-
-    </table>
+    <hr /> 
     <div style="height:15px !important"></div>
     <table style="width:100%;font-size:12px;" class="border">
         <thead>
             <tr style="background-color:#CACACA">
-                <th>Codigo</th>
-                <th>Descripcion</th>
-                <th>Categoria</th>
+                <th>FechaRegistro</th>
+                <th>CodigoProducto</th>
+                <th>DescripcionProducto</th>
+                <th>Tecnico</th>
                 <th>Cantidad</th>
-                <th>Prec. Venta</th>
-                <th>Sub Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            @filas
-        </tbody>
-    </table>
-
-    <div style="height:15px !important"></div>
-    <table style="width:20%;font-size:12px;" class="border">
-        <thead>
-            <tr style="background-color:#CACACA">
-                <th>Monto Total</th>
+                <th>Precio</th>
+                <th>SubTotal</th>
+                <th>Presupuesto</th> 
             </tr>
         </thead>
         <tbody style="text-align:left">
-            <tr><td>@montototal</td></tr>
+            @filas
         </tbody>
     </table>
 </body>

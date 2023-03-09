@@ -64,6 +64,7 @@ namespace ProyectoVenta.Formularios.Pedidos
 
             dgvdata.Rows.Clear();
             List<Data.Pedido> olista = PedidoLogica.Instancia.ListarDetalle(txtnumerodocumento.Text);
+            lblnrodocumento.Text = txtnumerodocumento.Text;
 
             if (olista.Count() > 0)
             {
@@ -92,38 +93,36 @@ namespace ProyectoVenta.Formularios.Pedidos
 
             string Texto_Html = string.Empty;
 
-            Texto_Html = Properties.Resources.PlantillaEntradaSinPrecio.ToString();
+            Texto_Html = Properties.Resources.PlantillaPedidos.ToString();
 
 
             Data.Dato odatos = DatoLogica.Instancia.Obtener();
 
             Texto_Html = Texto_Html.Replace("@nombrenegocio", odatos.RazonSocial.ToUpper());
             Texto_Html = Texto_Html.Replace("@docnegocio", odatos.Ruc);
-            Texto_Html = Texto_Html.Replace("@direcnegocio", odatos.Direccion);
-
+            Texto_Html = Texto_Html.Replace("@direcnegocio", odatos.Direccion); 
             Texto_Html = Texto_Html.Replace("@numerodocumento", lblnrodocumento.Text);
-
-            //Texto_Html = Texto_Html.Replace("@docproveedor", txtdocumentoproveedor.Text);
-            //Texto_Html = Texto_Html.Replace("@nombreproveedor", txtnombreproveedor.Text);
-            //Texto_Html = Texto_Html.Replace("@fecharegistro", txtfecha.Text);
-
+             
 
             string filas = string.Empty;
             foreach (DataGridViewRow row in dgvdata.Rows)
             {
                 filas += "<tr>";
-                filas += "<td>" + row.Cells["Codigo"].Value.ToString() + "</td>";
-                filas += "<td>" + row.Cells["Descripcion"].Value.ToString() + "</td>";
-                filas += "<td>" + row.Cells["Longitud"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["FechaRegistro"].Value.ToString() + "</td>"; 
+                filas += "<td>" + row.Cells["CodigoProducto"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["DescripcionProducto"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["Tecnico"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["Cantidad"].Value.ToString() + "</td>";
-
+                filas += "<td>" + row.Cells["Precio"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["SubTotal"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["Presupuesto"].Value.ToString() + "</td>"; 
                 filas += "</tr>";
             }
             Texto_Html = Texto_Html.Replace("@filas", filas);
 
 
             SaveFileDialog savefile = new SaveFileDialog();
-            savefile.FileName = string.Format("Entrada_{0}.pdf", lblnrodocumento.Text);
+            savefile.FileName = string.Format("Pedido_{0}.pdf", lblnrodocumento.Text);
             savefile.Filter = "Pdf Files|*.pdf";
 
             if (savefile.ShowDialog() == DialogResult.OK)
