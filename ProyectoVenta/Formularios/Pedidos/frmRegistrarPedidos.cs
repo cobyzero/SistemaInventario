@@ -174,6 +174,12 @@ namespace ProyectoVenta.Formularios.Pedidos
                 return;
             }
 
+            if (txtprecio.Text.Trim() == "")
+            {
+                MessageBox.Show("Debe ingresar el precio", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             decimal subtotal = txtcantidad.Value * decimal.Parse(txtprecio.Text);
 
             dgvdata.Rows.Add(new object[] {"",
@@ -200,6 +206,7 @@ namespace ProyectoVenta.Formularios.Pedidos
             total += subtotal;
             label11.Text = total.ToString();
 
+            comboBox1.Enabled = false;
         }
 
 

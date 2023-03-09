@@ -167,8 +167,7 @@ namespace ProyectoVenta.Formularios.Entradas
             txtcodigoproducto.BackColor = Color.White;
             txtdescripcionproducto.Text = "";
             _categoria = "";
-            _almacen = "";
-          
+            _almacen = "";  
             txtcantidad.Value = 0;
             txtcodigoproducto.Focus();
         }
