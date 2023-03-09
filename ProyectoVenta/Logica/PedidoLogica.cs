@@ -14,17 +14,14 @@ namespace ProyectoVenta.Logica
         public static PedidoLogica Instancia = new PedidoLogica();
         
         public async Task<bool> Registrar(List<Pedido> pedido)
-        {
-            int count = 1;
+        { 
             try
             {
                 using (var db = new InventarioAlemanaContext())
                 { 
                     foreach (var item in pedido)
-                    {
-                        item.IdPedido = GetNumeroId() + count;
-                        db.Pedidos.Add(item); 
-                        count++;
+                    { 
+                        db.Pedidos.Add(item);  
                     }
                     await db.SaveChangesAsync();
                 }

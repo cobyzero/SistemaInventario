@@ -126,7 +126,7 @@ public partial class InventarioAlemanaContext : DbContext
 
         modelBuilder.Entity<Pedido>(entity =>
         {
-            entity.HasKey(e => e.IdPedido).HasName("PK__PEDIDOS__9D335DC335230B53");
+            entity.HasKey(e => e.IdPedido);
 
             entity.ToTable("PEDIDOS");
 

@@ -17,9 +17,9 @@ public partial class Pedido
 
     public int? Cantidad { get; set; }
 
-    public int? Precio { get; set; }
+    public double? Precio { get; set; }
 
-    public int? SubTotal { get; set; }
+    public double? SubTotal { get; set; }
 
     public int? Presupuesto { get; set; }
 }

@@ -174,7 +174,7 @@ namespace ProyectoVenta.Formularios.Pedidos
                 return;
             }
 
-            decimal subtotal = txtcantidad.Value * int.Parse(txtprecio.Text);
+            decimal subtotal = txtcantidad.Value * decimal.Parse(txtprecio.Text);
 
             dgvdata.Rows.Add(new object[] {"",
                     _idproducto.ToString(),
@@ -262,7 +262,7 @@ namespace ProyectoVenta.Formularios.Pedidos
             var olista = new List<Pedido>();
             foreach (DataGridViewRow row in dgvdata.Rows)
             {
-                olista.Add(new Pedido()
+                olista.Add(new Data.Pedido()
                 {
 
                     NumeroDocumento = txtnumerodocumento.Text.Trim(),
@@ -270,8 +270,8 @@ namespace ProyectoVenta.Formularios.Pedidos
                     DescripcionProducto = row.Cells["Descripcion"].Value.ToString(),
                     Tecnico = row.Cells["Tecnico"].Value.ToString(),
                     Cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()), 
-                     Precio = Convert.ToInt32(row.Cells["Precio"].Value.ToString()),
-                    SubTotal = Convert.ToInt32(row.Cells["SubTotal"].Value.ToString()),
+                     Precio = Convert.ToDouble(row.Cells["Precio"].Value.ToString()),
+                    SubTotal = Convert.ToDouble(row.Cells["SubTotal"].Value.ToString()),
                     Presupuesto = Convert.ToInt32(row.Cells["Presupuesto"].Value.ToString()),
  
                 });             }
