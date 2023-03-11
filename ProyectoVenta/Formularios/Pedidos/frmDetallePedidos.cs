@@ -19,7 +19,7 @@ namespace ProyectoVenta.Formularios.Pedidos
     public partial class frmDetallePedidos : Form
     {
         double campoDeDispocicion = 0;
-
+        double total = 0;
         public frmDetallePedidos()
         {
             InitializeComponent();
@@ -76,13 +76,14 @@ namespace ProyectoVenta.Formularios.Pedidos
 
                 foreach (Data.Pedido de in olista)
                 {
-                    dgvdata.Rows.Add(new object[] { de.FechaRegistro, de.NumeroDocumento, de.CodigoProducto, de.DescripcionProducto, de.Tecnico, de.Cantidad, de.Precio, de.SubTotal, de.Presupuesto });
+                    dgvdata.Rows.Add(new object[] { de.FechaRegistro, de.NumeroDocumento, de.CodigoProducto, de.DescripcionProducto, de.Tecnico, de.Cantidad, de.Precio, de.SubTotal });
 
-                   campoDeDispocicion -= de.SubTotal;
-                
+                    campoDeDispocicion -= de.SubTotal;
+                    total += de.SubTotal;
                 }
 
                 label4.Text = campoDeDispocicion.ToString();
+                label5.Text = total.ToString();
             }
             else
             {
@@ -126,7 +127,6 @@ namespace ProyectoVenta.Formularios.Pedidos
                 filas += "<td>" + row.Cells["Cantidad"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["Precio"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["SubTotal"].Value.ToString() + "</td>";
-                filas += "<td>" + row.Cells["Presupuesto"].Value.ToString() + "</td>";
                 filas += "</tr>";
             }
             Texto_Html = Texto_Html.Replace("@filas", filas);
@@ -166,12 +166,14 @@ namespace ProyectoVenta.Formularios.Pedidos
             campoDeDispocicion = 0;
             label4.Text = campoDeDispocicion.ToString();
             txtnumerodocumento.Focus();
+            total = 0;
+            label5.Text = total.ToString();
         }
 
         private void btnborrar_Click(object sender, EventArgs e)
         {
             limpiar();
-            
+
         }
 
 

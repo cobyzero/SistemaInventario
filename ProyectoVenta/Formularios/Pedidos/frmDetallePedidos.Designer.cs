@@ -41,7 +41,6 @@
             Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            Presupuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             label7 = new System.Windows.Forms.Label();
             btnbuscar = new FontAwesome.Sharp.IconButton();
             btnsalir = new FontAwesome.Sharp.IconButton();
@@ -54,6 +53,8 @@
             lblnrodocumento = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
+            label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)dgvdata).BeginInit();
             SuspendLayout();
             // 
@@ -91,7 +92,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvdata.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvdata.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { FechaRegistro, NroDocumento, CodigoProducto, DescripcionProducto, Tecnico, Cantidad, Precio, SubTotal, Presupuesto });
+            dgvdata.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { FechaRegistro, NroDocumento, CodigoProducto, DescripcionProducto, Tecnico, Cantidad, Precio, SubTotal });
             dgvdata.Location = new System.Drawing.Point(28, 159);
             dgvdata.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             dgvdata.MultiSelect = false;
@@ -168,12 +169,6 @@
             SubTotal.HeaderText = "SubTotal";
             SubTotal.Name = "SubTotal";
             SubTotal.ReadOnly = true;
-            // 
-            // Presupuesto
-            // 
-            Presupuesto.HeaderText = "Presupuesto";
-            Presupuesto.Name = "Presupuesto";
-            Presupuesto.ReadOnly = true;
             // 
             // label7
             // 
@@ -319,18 +314,36 @@
             label3.AutoSize = true;
             label3.Location = new System.Drawing.Point(29, 586);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(128, 15);
+            label3.Size = new System.Drawing.Size(71, 15);
             label3.TabIndex = 175;
-            label3.Text = "Campo de disposicion:";
+            label3.Text = "Disposicion:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(183, 586);
+            label4.Location = new System.Drawing.Point(128, 586);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(13, 15);
             label4.TabIndex = 176;
             label4.Text = "0";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(367, 586);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(13, 15);
+            label5.TabIndex = 178;
+            label5.Text = "0";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new System.Drawing.Point(300, 586);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(35, 15);
+            label6.TabIndex = 177;
+            label6.Text = "Total:";
             // 
             // frmDetallePedidos
             // 
@@ -338,6 +351,8 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(854, 622);
             ControlBox = false;
+            Controls.Add(label5);
+            Controls.Add(label6);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(lblnrodocumento);
@@ -389,12 +404,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Presupuesto;
 
         private FontAwesome.Sharp.IconButton btnborrar;
         private System.Windows.Forms.Label lblnrodocumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Longitud;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }

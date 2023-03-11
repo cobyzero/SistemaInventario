@@ -21,7 +21,9 @@ namespace ProyectoVenta.Formularios.Pedidos
         private static int _idproducto = 0;
         private static string _NombreUsuario = "";
         private static int count = 0;
+        decimal campoDeDisposicion = 0;
         decimal total = 0;
+
         public frmRegistrarPedidos(string _usuario = "")
         {
             _NombreUsuario = _usuario;
@@ -161,7 +163,7 @@ namespace ProyectoVenta.Formularios.Pedidos
 
             if (count == 0)
             {
-                total = decimal.Parse(comboBox1.Text);
+                campoDeDisposicion = decimal.Parse(comboBox1.Text);
                 count++;
             }
 
@@ -192,8 +194,16 @@ namespace ProyectoVenta.Formularios.Pedidos
 
             decimal subtotal = txtcantidad.Value * decimal.Parse(txtprecio.Text);
 
+            if (campoDeDisposicion < subtotal)
+            {
+                MessageBox.Show("Campo de disposicion no puede ser menor al SubTotal", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
-            total -= subtotal;
+            campoDeDisposicion -= subtotal;
+
+            total += subtotal;
+            label12.Text = total.ToString();
 
             dgvdata.Rows.Add(new object[] {"",
                     _idproducto.ToString(),
@@ -216,7 +226,7 @@ namespace ProyectoVenta.Formularios.Pedidos
 
             txtcodigoproducto.Focus();
 
-            label11.Text = total.ToString();
+            label11.Text = campoDeDisposicion.ToString();
 
             comboBox1.Enabled = false;
         }
@@ -251,16 +261,38 @@ namespace ProyectoVenta.Formularios.Pedidos
                     int idproducto = Convert.ToInt32(dgvdata.Rows[index].Cells["Id"].Value.ToString());
                     int cantidad = Convert.ToInt32(dgvdata.Rows[index].Cells["Cantidad"].Value.ToString());
 
-                    if (await SalidaLogica.Instancia.aumentarStock(idproducto, cantidad))
+                    campoDeDisposicion += Convert.ToDecimal(dgvdata.Rows[index].Cells["SubTotal"].Value.ToString());
+                    label11.Text = campoDeDisposicion.ToString();
+
+                    total -= Convert.ToDecimal(dgvdata.Rows[index].Cells["SubTotal"].Value.ToString());
+                    label12.Text = total.ToString();
+
+
+                    dgvdata.Rows.RemoveAt(index);
+
+                    if (dgvdata.Rows.Count == 0)
                     {
-                        dgvdata.Rows.RemoveAt(index);
+                        comboBox1.Enabled = true;
+                        count = 0;
+                        campoDeDisposicion = 0;
+                        label11.Text = campoDeDisposicion.ToString();
+
+                        total = 0;
+                        label12.Text = total.ToString();
+
                     }
                 }
             }
         }
 
         private async void btnguardarsalida_Click(object sender, EventArgs e)
-        { 
+        {
+
+            if (txtnumerodocumento.Text.Trim() == "")
+            {
+                MessageBox.Show("Debe ingresar el numero de documento", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             if (txtdoccliente.Text.Trim() == "")
             {
                 MessageBox.Show("Debe ingresar el documento del tecnico", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -295,7 +327,7 @@ namespace ProyectoVenta.Formularios.Pedidos
                     FechaRegistro = DateTime.Now
                 });
             }
-             
+
 
             bool operaciones = await PedidoLogica.Instancia.Registrar(olista);
 
@@ -305,7 +337,7 @@ namespace ProyectoVenta.Formularios.Pedidos
                 txtnomcliente.Text = "";
                 dgvdata.Rows.Clear();
                 txtdoccliente.Focus();
-                total = 0;
+                campoDeDisposicion = 0;
                 mdPedidos md = new mdPedidos();
                 md._numerodocumento = String.Format("{0:00000}", txtnumerodocumento.Text.Trim());
                 md.ShowDialog();
@@ -317,6 +349,16 @@ namespace ProyectoVenta.Formularios.Pedidos
                 MessageBox.Show("Error", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
 
         }
     }

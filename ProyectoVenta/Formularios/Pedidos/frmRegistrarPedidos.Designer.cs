@@ -72,6 +72,8 @@ namespace ProyectoVenta.Formularios.Pedidos
             comboBox1 = new System.Windows.Forms.ComboBox();
             label9 = new System.Windows.Forms.Label();
             label11 = new System.Windows.Forms.Label();
+            label12 = new System.Windows.Forms.Label();
+            label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)txtcantidad).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvdata).BeginInit();
             SuspendLayout();
@@ -396,9 +398,10 @@ namespace ProyectoVenta.Formularios.Pedidos
             label8.Location = new System.Drawing.Point(23, 590);
             label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label8.Name = "label8";
-            label8.Size = new System.Drawing.Size(153, 15);
+            label8.Size = new System.Drawing.Size(86, 15);
             label8.TabIndex = 130;
-            label8.Text = "Campo de disposicion:";
+            label8.Text = "Disposicion:";
+            label8.Click += label8_Click;
             // 
             // btnguardarsalida
             // 
@@ -524,12 +527,37 @@ namespace ProyectoVenta.Formularios.Pedidos
             label11.AutoSize = true;
             label11.BackColor = System.Drawing.Color.White;
             label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            label11.Location = new System.Drawing.Point(190, 591);
+            label11.Location = new System.Drawing.Point(130, 591);
             label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label11.Name = "label11";
             label11.Size = new System.Drawing.Size(15, 15);
             label11.TabIndex = 140;
             label11.Text = "0";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.BackColor = System.Drawing.Color.White;
+            label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            label12.Location = new System.Drawing.Point(381, 592);
+            label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label12.Name = "label12";
+            label12.Size = new System.Drawing.Size(15, 15);
+            label12.TabIndex = 142;
+            label12.Text = "0";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.BackColor = System.Drawing.Color.White;
+            label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            label13.Location = new System.Drawing.Point(320, 591);
+            label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label13.Name = "label13";
+            label13.Size = new System.Drawing.Size(43, 15);
+            label13.TabIndex = 141;
+            label13.Text = "Total:";
+            label13.Click += label13_Click;
             // 
             // frmRegistrarPedidos
             // 
@@ -537,6 +565,8 @@ namespace ProyectoVenta.Formularios.Pedidos
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(887, 630);
             ControlBox = false;
+            Controls.Add(label12);
+            Controls.Add(label13);
             Controls.Add(label11);
             Controls.Add(label9);
             Controls.Add(comboBox1);
@@ -625,5 +655,7 @@ namespace ProyectoVenta.Formularios.Pedidos
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
     }
 }

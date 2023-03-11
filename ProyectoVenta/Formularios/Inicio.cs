@@ -76,7 +76,7 @@ namespace ProyectoVenta.Formularios
             lblstatus2.Text = string.Format("{0}", FechaHora);
 
 
-            if (oPermisos.IdPermisos == 3 && checkExistData())
+            if ( checkExistData())
             {
                 mdAcercade form = new mdAcercade();
                 form.ShowDialog();
