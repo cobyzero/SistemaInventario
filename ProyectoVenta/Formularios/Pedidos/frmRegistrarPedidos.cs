@@ -196,7 +196,7 @@ namespace ProyectoVenta.Formularios.Pedidos
 
             if (campoDeDisposicion < subtotal)
             {
-                MessageBox.Show("Campo de disposicion no puede ser menor al SubTotal", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Monto presupuesto debe ser mayor al total del pedido, vuelva a generar el documento.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
