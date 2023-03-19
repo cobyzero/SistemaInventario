@@ -65,6 +65,7 @@
             btnsalir = new FontAwesome.Sharp.IconButton();
             txtdescripcionproducto = new System.Windows.Forms.TextBox();
             btnbuscarproducto = new FontAwesome.Sharp.IconButton();
+            label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)txtcantidad).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvdata).BeginInit();
             SuspendLayout();
@@ -322,7 +323,7 @@
             // Categoria
             // 
             Categoria.HeaderText = "Longitud";
-            Categoria.Name = "Longitud";
+            Categoria.Name = "Categoria";
             Categoria.ReadOnly = true;
             Categoria.Visible = false;
             // 
@@ -472,12 +473,22 @@
             btnbuscarproducto.UseVisualStyleBackColor = true;
             btnbuscarproducto.Click += btnbuscarproducto_Click;
             // 
-            // frmRegistrarSalida
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new System.Drawing.Point(86, 590);
+            label9.Name = "label9";
+            label9.Size = new System.Drawing.Size(13, 15);
+            label9.TabIndex = 138;
+            label9.Text = "0";
+            // 
+            // frmRegistrarSalidas
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(887, 630);
             ControlBox = false;
+            Controls.Add(label9);
             Controls.Add(btnbuscarproducto);
             Controls.Add(txtdescripcionproducto);
             Controls.Add(btnsalir);
@@ -510,7 +521,7 @@
             Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             MaximumSize = new System.Drawing.Size(903, 669);
             MinimumSize = new System.Drawing.Size(903, 669);
-            Name = "frmRegistrarSalida";
+            Name = "frmRegistrarSalidas";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = ".: Registrar Salida :.";
             Load += frmRegistrarSalida_Load;
@@ -556,5 +567,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn Almacen;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.Label label9;
     }
 }

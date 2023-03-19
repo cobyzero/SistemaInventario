@@ -21,7 +21,7 @@ namespace ProyectoVenta.Formularios.Salidas
         private static string _categoria = "";
         private static string _almacen = "";
         private static int _stock = 0;
-
+        private int total = 0;
         private static string _NombreUsuario = "";
 
         public frmRegistrarSalidas(string _usuario = "")
@@ -187,8 +187,8 @@ namespace ProyectoVenta.Formularios.Salidas
                 MessageBox.Show("La cantidad no puede ser mayor al stock", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-             
-             
+
+
             if (await SalidaLogica.Instancia.reducirStock(_idproducto, Convert.ToInt32(txtcantidad.Value.ToString())))
             {
                 dgvdata.Rows.Add(new object[] {"",
@@ -199,7 +199,9 @@ namespace ProyectoVenta.Formularios.Salidas
                     _almacen,
                     txtcantidad.Value.ToString(),
                 });
- 
+                total += (int)txtcantidad.Value;
+                label9.Text = total.ToString();
+
                 _idproducto = 0;
                 txtcodigoproducto.Text = "";
                 txtcodigoproducto.BackColor = Color.White;
@@ -210,7 +212,8 @@ namespace ProyectoVenta.Formularios.Salidas
                 _stock = 0;
                 txtcantidad.Value = 1;
                 txtcodigoproducto.Focus();
-            } 
+                
+            }
         }
 
 
@@ -242,11 +245,12 @@ namespace ProyectoVenta.Formularios.Salidas
                 {
                     int idproducto = Convert.ToInt32(dgvdata.Rows[index].Cells["Id"].Value.ToString());
                     int cantidad = Convert.ToInt32(dgvdata.Rows[index].Cells["Cantidad"].Value.ToString());
-                   
+                    total -= cantidad;
+                    label9.Text = total.ToString();
                     if (await SalidaLogica.Instancia.aumentarStock(idproducto, cantidad))
                     {
                         dgvdata.Rows.RemoveAt(index);
-                    } 
+                    }
 
                 }
             }
@@ -270,14 +274,14 @@ namespace ProyectoVenta.Formularios.Salidas
                 MessageBox.Show("Debe ingresar productos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-             
+
             int cantidad_productos = 0;
             int idcorrelativo = SalidaLogica.Instancia.ObtenerCorrelativo();
 
             List<Salidum> olista = new List<Salidum>();
 
             if (idcorrelativo < 1)
-            { 
+            {
                 return;
             }
 
@@ -300,7 +304,7 @@ namespace ProyectoVenta.Formularios.Salidas
 
                 cantidad_productos += Convert.ToInt32(row.Cells["Cantidad"].Value.ToString());
             }
- 
+
 
             bool operaciones = await SalidaLogica.Instancia.Registrar(olista);
 
@@ -314,8 +318,11 @@ namespace ProyectoVenta.Formularios.Salidas
                 mdSalidaExitosa md = new mdSalidaExitosa();
                 md._numerodocumento = String.Format("{0:00000}", idcorrelativo);
                 md.ShowDialog();
+
+                total = 0;
+                label9.Text = total.ToString();
             }
-           
+
 
 
         }
